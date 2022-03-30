@@ -34,7 +34,7 @@ public class Start extends Application{
 		stage.getIcons().add(image);
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		
-		stage.setTitle("햄버거 먹고싶은 사람의 FX프로그래밍"); // 2. 스테이지 창 이름
+		stage.setTitle("떡볶이 지령받은 사람"); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
 	}
 	
