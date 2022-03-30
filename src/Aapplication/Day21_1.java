@@ -1,4 +1,4 @@
-package application;
+package Aapplication;
 
 // javafx만 사용 [ awt. swing 이전 버전 사용 x ]
 import javafx.application.Application;
