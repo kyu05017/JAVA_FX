@@ -23,11 +23,14 @@ public class Main implements Initializable{
 	}
 	
 	public void loadpage( String page ) {
+		
 		try {
 			// 페이지(fxml) 객체화 
 			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // 무조건 예외처리
 			boarderPane.setCenter(parent); // 컨테이너(fxml) 가운데에 페이지 넣기 
-		}catch( Exception e ) { System.out.println("페이지 연결 실패");}
-		
+		}
+		catch( Exception e ) {
+			System.out.println("페이지 연결 실패");
+		}
 	}
 }
