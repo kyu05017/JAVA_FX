@@ -34,7 +34,7 @@ public class Start2 extends Application{
 		stage.getIcons().add(image);
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		
-		stage.setTitle("콩방맨"); // 2. 스테이지 창 이름
+		stage.setTitle("떡복이"); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
 	}
 	
