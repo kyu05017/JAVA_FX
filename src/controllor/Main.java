@@ -8,11 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+
 public class Main implements Initializable{
 				// Initializable : view가 새로 열렸을때 초기값 설정 메소드 제공
 	
     @FXML
     private BorderPane boarderPane; // 씬빌더에서 만든 컨테이너 객체
+    
+
+
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
