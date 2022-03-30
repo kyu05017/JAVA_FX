@@ -23,7 +23,7 @@ public class Start extends Application{
 		
 		// 스테이지 로고 설정ㄷ
 			// 1. 이미지 불러오기
-		Image image = new Image("img/a.png"); // 상대 경로
+		Image image = new Image("img/logo.png"); // 상대 경로
 		//Image image2 = new Image("//C:\\Users\\504\\git\\JAVA_FX\\src\\img"); 절대경로
 			// 절대 경로 VS 상대 경로
 			// 절대 경로 : 모든 경로
