@@ -1,4 +1,4 @@
-package controllor;
+package controllor.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +35,7 @@ public class Signuppane implements Initializable{
 
     @FXML
     void back(ActionEvent event) {
-    	Login.login.loadpage("/view/loginpane");
+    	Login.login.loadpage("/view/login/loginpane");
     	System.out.println("뒤로가기");
     }
 

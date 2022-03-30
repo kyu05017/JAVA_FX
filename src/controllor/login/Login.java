@@ -1,4 +1,4 @@
-package controllor;
+package controllor.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +44,7 @@ public class Login implements Initializable{
 		mediaPlayer.play();
 		
 		 
-		loadpage("/view/loginpane");
+		loadpage("/view/login/loginpane");
 		
 	}
 	

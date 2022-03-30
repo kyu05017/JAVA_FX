@@ -1,4 +1,4 @@
-package controllor;
+package controllor.login;
 
 
 import java.io.IOException;
@@ -44,13 +44,13 @@ public class Loginpane implements Initializable{
     @FXML
     void accfindip(ActionEvent event) {
     	System.out.println("아이디 찾기");
-    	Login.login.loadpage("/view/findid"); 
+    	Login.login.loadpage("/view/login/findid"); 
     }
 
     @FXML
     void accfindpw(ActionEvent event) {
     	System.out.println("비밀번호 찾기");
-    	Login.login.loadpage("/view/findpw");
+    	Login.login.loadpage("/view/login/findpw");
     }
 
     @FXML
@@ -61,7 +61,7 @@ public class Loginpane implements Initializable{
     		// * 기존이 login 클래스에서 사용중인 boaderpane 사용
     	
     	System.out.println("회원가입");
-    	Login.login.loadpage("/view/signuppane");
+    	Login.login.loadpage("/view/login/signuppane");
     }
 
     @FXML

@@ -1,4 +1,4 @@
-package controllor;
+package controllor.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +23,7 @@ public class Main implements Initializable{
 			// 1. boarderpane 
 		
 		System.out.println("Main뷰가 실행 되었습니다.");
-		loadpage("/view/login"); // loadpage 메소드 호출시 ( 파일 경로 )
+		loadpage("/view/login/login"); // loadpage 메소드 호출시 ( 파일 경로 )
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
