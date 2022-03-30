@@ -17,19 +17,19 @@ public class Main implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			// 1. boarderpane 
-		loadpage("/view/login");
+		
 		System.out.println("Main뷰가 실행 되었습니다.");
-	
+		loadpage("/view/login"); // loadpage 메소드 호출시 ( 파일 경로 )
 	}
 	
-	public void loadpage( String page ) {
+	public void loadpage( String page ) { // loadpage ( 파일경로 )
 		
 		try {
 			// 페이지(fxml) 객체화 
 			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // 무조건 예외처리
 			boarderPane.setCenter(parent); // 컨테이너(fxml) 가운데에 페이지 넣기 
 		}
-		catch( Exception e ) {
+		catch( Exception e ) { // 파일이 존재하지 않을 경우 예외처리
 			System.out.println("페이지 연결 실패");
 		}
 	}
