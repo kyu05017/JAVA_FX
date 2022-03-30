@@ -14,7 +14,7 @@ public class Main implements Initializable{
 	
     @FXML
     private BorderPane boarderPane; // 씬빌더에서 만든 컨테이너 객체
-    
+     
 
 
     

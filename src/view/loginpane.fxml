@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #00ff0000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.Loginpane">
+   <children>
+      <VBox layoutX="26.0" layoutY="76.0" prefHeight="210.0" prefWidth="360.0" style="-fx-background-color: #535233;" />
+      <TextField fx:id="textid" layoutX="73.0" layoutY="110.0" prefHeight="42.0" prefWidth="257.0" promptText="아이디" />
+      <PasswordField fx:id="textpw" layoutX="73.0" layoutY="168.0" prefHeight="42.0" prefWidth="257.0" promptText="비밀번호" />
+      <Button fx:id="btlogin" layoutX="244.0" layoutY="236.0" mnemonicParsing="false" onAction="#login" prefHeight="29.0" prefWidth="85.0" style="-fx-background-color: #34502B;" text="로그인" textFill="#e5ff00" />
+      <Button fx:id="btsignup" layoutX="14.0" layoutY="438.0" mnemonicParsing="false" onAction="#accsignup" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="회원가입" textFill="#e5ff00" />
+      <Button fx:id="btfindpw" layoutX="272.0" layoutY="438.0" mnemonicParsing="false" onAction="#accfindpw" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="비밀번호 찾기" textFill="#e5ff00" />
+      <Button fx:id="btfindid" layoutX="143.0" layoutY="438.0" mnemonicParsing="false" onAction="#accfindip" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="아이디찾기" textFill="#e5ff00" />
+      <Label fx:id="lbnconform" alignment="TOP_CENTER" layoutX="114.0" layoutY="368.0" prefHeight="19.0" prefWidth="172.0" text="회원 정보가 다릅니다." textFill="#ff4a13">
+         <font>
+            <Font name="HYGothic-Medium" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
