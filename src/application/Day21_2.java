@@ -16,7 +16,6 @@ public class Day21_2 extends Application{ // 1. Application클래스로 부터 상속
 			// Parent : fxml파일 ( 씬빌더 파일 ) 을 객체화
 				// FXMLLoader.load(getClass().getResource("경로/ 파일명.fxml"))
 		
-		
 		// 2. 씬 객체 생성 : 씬에 컨테이너 넣기
 		Scene scene = new Scene(parent);
 		
