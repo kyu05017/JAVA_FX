@@ -7,31 +7,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class Signuppane implements Initializable{
+public class FindId implements Initializable{
 
 	@FXML
-    private TextField textid;
-
-    @FXML
-    private PasswordField textpw;
+    private TextField textemail;
 
     @FXML
     private Button btback;
 
     @FXML
-    private Button btsignup;
-
-    @FXML
-    private PasswordField textpwcheck;
-
-    @FXML
-    private TextField textaddress;
-
-    @FXML
-    private TextField textemail;
+    private Button btfindid;
 
     @FXML
     void back(ActionEvent event) {
@@ -40,14 +27,14 @@ public class Signuppane implements Initializable{
     }
 
     @FXML
-    void signup(ActionEvent event) {	
-    	System.out.println("회원가입");
+    void findid(ActionEvent event) {
+    	System.out.println("아이디 찾기");
     }
+
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

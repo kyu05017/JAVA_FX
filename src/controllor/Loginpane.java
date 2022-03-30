@@ -43,11 +43,13 @@ public class Loginpane implements Initializable{
     @FXML
     void accfindip(ActionEvent event) {
     	System.out.println("아이디 찾기");
+    	Login.login.loadpage("/view/findid");
     }
 
     @FXML
     void accfindpw(ActionEvent event) {
     	System.out.println("비밀번호 찾기");
+    	Login.login.loadpage("/view/findpw");
     }
 
     @FXML
@@ -57,8 +59,8 @@ public class Loginpane implements Initializable{
     		// * new 는 새로운 메모리 할당 [ 기존 보더가 아닌 새로운 보다 ] 
     		// * 기존이 login 클래스에서 사용중인 boaderpane 사용
     	
-    	
-    	Login.getLogin().loadpage("/view/signuppane");
+    	System.out.println("회원가입");
+    	Login.login.loadpage("/view/signuppane");
     }
 
     @FXML

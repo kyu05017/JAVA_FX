@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #00ff0000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.Loginpane">
    <children>
@@ -22,5 +23,10 @@
             <Font name="HYGothic-Medium" size="15.0" />
          </font>
       </Label>
+      <Text fill="#e5ff00" layoutX="160.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="로그인">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

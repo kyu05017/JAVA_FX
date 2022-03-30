@@ -21,10 +21,7 @@ public class Login implements Initializable{
 		login = this; // super : 슈퍼클래스 ( 상속 ) this : 현클래스 
 		// 현클래스 자체 메모리 호출
 	}
-	public static Login getLogin() {
-		return login;
-	}
-	
+
 	
 	
 	@FXML
