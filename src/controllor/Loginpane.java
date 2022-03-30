@@ -6,11 +6,14 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
 public class Loginpane implements Initializable{
 
@@ -49,14 +52,22 @@ public class Loginpane implements Initializable{
 
     @FXML
     void accsignup(ActionEvent event) {
-    	System.out.println("회원가입");
+    	// login 컨트롤에 존재하는 boarderpane 객체내 센터 변경
+    		// * 문제 : 보더팬 객체다 다른곳에 있다
+    		// * new 는 새로운 메모리 할당 [ 기존 보더가 아닌 새로운 보다 ] 
+    		// * 기존이 login 클래스에서 사용중인 boaderpane 사용
+    	
+    	
+    	Login.getLogin().loadpage("/view/signuppane");
     }
 
     @FXML
     void login(ActionEvent event) {
     	System.out.println("로그인");
     }
-	
+    
+   
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

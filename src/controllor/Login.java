@@ -14,6 +14,19 @@ import javafx.scene.media.MediaView;
 
 public class Login implements Initializable{
 	
+	// *  해당 클래스를 반환 메모리를 반환 해주는 메소드 
+	public static Login login;
+	// * 생성자
+	public Login() {
+		login = this; // super : 슈퍼클래스 ( 상속 ) this : 현클래스 
+		// 현클래스 자체 메모리 호출
+	}
+	public static Login getLogin() {
+		return login;
+	}
+	
+	
+	
 	@FXML
 	private MediaView mediaview;
 	 
@@ -33,8 +46,9 @@ public class Login implements Initializable{
 			// 미디어 플레이어 시작
 		mediaPlayer.play();
 		
-		
+		 
 		loadpage("/view/loginpane");
+		
 	}
 	
 	
