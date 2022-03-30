@@ -12,7 +12,8 @@ public class Start extends Application{
 		// 스테이지 로고 설정ㄷ
 			// 1. 이미지 불러오기
 		Image image = new Image("img/a.png");
-		
+			// 2. 스테이지 설정
+		stage.getIcons().add(image);
 		stage.setTitle("Ezen"); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
 	}
