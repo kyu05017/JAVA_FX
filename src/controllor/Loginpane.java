@@ -1,6 +1,7 @@
 package controllor;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,6 +67,7 @@ public class Loginpane implements Initializable{
     @FXML
     void login(ActionEvent event) {
     	System.out.println("·Î±×ÀÎ");
+    	
     }
     
    
