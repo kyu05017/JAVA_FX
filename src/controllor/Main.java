@@ -1,4 +1,4 @@
-package controllor.login;
+package controllor;
 
 import java.net.URL;
 import java.util.ResourceBundle;

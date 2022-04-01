@@ -31,6 +31,30 @@ public class MemberDao {	// DB 접근 객체
 
 	}
 	// 메소드
+		// * 아이디 중복 체크 메소드 ( 인수 : 아이디를 인수로 받아 db에 존재하지지체크 ]
+	public boolean idcheck(String id) {
+		try {
+			// 1. SQL 작성
+				// select * from 테이블명 where 조건=( 필드명 = 값 )
+			String sql = "select * from member where m_id=?";
+			
+			// 2. SQL 조작
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			// 3. SQL 실행
+			rs = ps.executeQuery();//  select 실행은 결과물이 존재 -> resulitSet O
+			// ResultSet 처음 결과물이 null -- next > 결과 레코드
+			// 4. SQL 결과
+			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				return true; // 해당 아이디는 중복이 존재
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("[SQL 오류 ]" + e);
+		}
+		return false; // 해당아이디 중복 없음
+	}
+	
 		// 1. 회원가입 메소드 ( 인수를 DB에 넣을 아이디 비밀번호 이메일 주소 )
 	public boolean signup(Member member){
 		
