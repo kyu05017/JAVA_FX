@@ -1,5 +1,6 @@
 package controllor.login;
 
+
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -38,6 +40,9 @@ public class Signuppane implements Initializable{
     private TextField textemail;
 
     @FXML
+    private Label lbltext;
+
+    @FXML
     void back(ActionEvent event) {
     	Login.login.loadpage("/view/login/loginpane");
     	System.out.println("뒤로가기");
@@ -60,10 +65,30 @@ public class Signuppane implements Initializable{
     	// * 유효성 검사 [ 제한 ]
     		// 1. 아이디 중복체크
     		// 2. 아이디 형식
+    	if(id.length() < 4 || id.length() > 10) {
+    		lbltext.setText("[알림] 4~10자리만 가능합니다.");
+    		return;
+    	}
     		// 3. 비밀번호 형식 체크
+    	if(pw.length() < 4 || pw.length() > 10 || pwcheck.length() < 4 || pwcheck.length() > 10) {
+    		lbltext.setText("[알림] 4~10자리만 가능합니다.");
+    		return;
+    	}
     		// 4. 비밀번호 일치
+    	if(!pw.equals(pwcheck)) { // 패스워드랑 패스워드검사가 일하지 않으면
+    		lbltext.setText("[알림] 비밀번호가 일치하지 않습니다.");
+    		return;
+    	}
     		// 5. 이메일 체크
+    	if(email.indexOf("@") == -1) {
+    		lbltext.setText("[알림] 올바르지 않는 이메일 형식입니다.");
+    		return;
+    	}
     		// 6. 주소 체크
+    	if(!address.contains("시") && address.contains("구") &&address.contains("동")) {
+    		lbltext.setText("[알림] 시 , 구 ,도가 포함 되어있어야 합니다.");
+    		return;
+    	}
     	// * 모든 유효성 검사를 통과시 DB에 저장 
     		// 1. 객체화 [ 회원번호 없음, id, pw, 이메일, 주소, 포인트, 가입일 ]
     	Member member = new Member(0, id, pw, email, address, 0, since);

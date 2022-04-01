@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 public class Login implements Initializable{
 	
@@ -39,7 +40,16 @@ public class Login implements Initializable{
 			// 2. 미디어플레이어 객체에 동영상 넣기
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
 			// 3. 미이더 플레이어에 미디어 넣기
-		mediaview.setMediaPlayer(mediaPlayer);
+		mediaview.setMediaPlayer(mediaPlayer); 
+		// 무한반복
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+			
+			@Override
+			public void run() {
+				mediaPlayer.seek(Duration.ZERO);
+				
+			}
+		});
 			// 미디어 플레이어 시작
 		mediaPlayer.play();
 		
@@ -57,7 +67,7 @@ public class Login implements Initializable{
 			boaderpane.setCenter(parent); // 컨테이너(fxml) 가운데에 페이지 넣기 
 		}
 		catch( Exception e ) { // 파일이 존재하지 않을 경우 예외처리
-			System.out.println("페이지 연결 실패");
+			System.out.println("페이지 연결 실패" + e);
 		}
 	}
 }

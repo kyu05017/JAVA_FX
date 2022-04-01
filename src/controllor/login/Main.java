@@ -23,7 +23,7 @@ public class Main implements Initializable{
 			// 1. boarderpane 
 		
 		System.out.println("Main뷰가 실행 되었습니다.");
-		loadpage("/view/login/login"); // loadpage 메소드 호출시 ( 파일 경로 )
+		loadpage("/view/login/login"); // loadpage 메소드 호출시 ( 파일 경로 ) 
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
@@ -34,7 +34,7 @@ public class Main implements Initializable{
 			boarderPane.setCenter(parent); // 컨테이너(fxml) 가운데에 페이지 넣기 
 		}
 		catch( Exception e ) { // 파일이 존재하지 않을 경우 예외처리
-			System.out.println("페이지 연결 실패");
+			System.out.println("페이지 연결 실패"+ e); 
 		}
 	}
 }
