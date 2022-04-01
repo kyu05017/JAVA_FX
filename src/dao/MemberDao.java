@@ -86,6 +86,25 @@ public class MemberDao {	// DB 접근 객체
 	}
 		// 2. 로그인 메소드 ( 로그인에 필요한 아이디 비밀번호 )
 	public boolean login(String id, String pw) {
+		try {
+			// 1. SQL 작성 
+					// and : 조건1 && 조건2
+					// or  : 조건1 || 조건2
+			String sql = "select * from member where m_id=? and m_pw=?";
+			// 2. SQL 조작
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ps.setString(2, pw);
+			// 3. SQL 실행
+			rs = ps.executeQuery();
+			// 4. 결과
+			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				return true; // 해당 아이디는 중복이 존재
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("[SQL 오류]" + e);
+		}
 		return false;
 	}
 		// 3. 아이디 찾기 메소드 ( 아이디 찾기에 필요한 이메일 )

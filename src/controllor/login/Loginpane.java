@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,19 +68,15 @@ public class Loginpane implements Initializable{
     @FXML
     void login(ActionEvent event) {
     	System.out.println("로그인");
+    	// 1. 컨트롤에 입력된 값 가져오기
     	String id = textid.getText(); // 해당 fxid에 입력된 값 가져오디
     	String pw = textpw.getText(); // 해당 fxid에 입력된 값 가져오디
     	
-    	if(id.equals("admin") && pw.equals("1234")) {
-    		System.out.println("관리자");
-    		lbnconform.setText("관리자 입장");
-    	}
-    	else if(id.equals("1234") && pw.equals("1234")){
-    		System.out.println("일반회원");
-    		lbnconform.setText("일반회원 입장");
-    	}
-    	System.out.println( textid.getText() + "아이디 인식");
-    	System.out.println( textpw.getText() + "비밀번호 인식");
+    	// 2. db 객체내 메소드 호출
+    	boolean result = MemberDao.dao.login(id, pw);
+    	
+    	// 3. 결과확인
+    	
     	
     }
     

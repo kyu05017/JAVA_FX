@@ -11,6 +11,8 @@ import dto.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -101,10 +103,19 @@ public class Signuppane implements Initializable{
     	boolean result = MemberDao.dao.signup(member);
     	
     	if(result) {
-    		System.out.println("회원가입 성공");
+    		// 1. 메세지 창 [ Alert : 메세지 클래스 ]
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("회원가입");
+    		alert.setHeaderText("양들도 침묵 가입에 축하합니다.");
+    		alert.setContentText("이제 꺼져");
+    		alert.showAndWait();
+    		// 2. 화면 전환
+    		
+    		Login.login.loadpage("/view/login/loginpane");
     	}
     	else {
-    		System.out.println("회원가입 실패");
+    		lbltext.setText("[알림] DB 오류 관리자 문의");
+    		return;
     	}
     	
     }
