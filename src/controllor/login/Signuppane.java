@@ -64,6 +64,11 @@ public class Signuppane implements Initializable{
     	
     	// * 유효성 검사 [ 제한 ]
     		// 1. 아이디 중복체크
+    	Boolean result2 = MemberDao.dao.idcheck(id);
+    	if(result2) {
+    		lbltext.setText("[알림] 사용중인 아이디 입니다.");
+    		return;
+    	}
     		// 2. 아이디 형식
     	if(id.length() < 4 || id.length() > 10) {
     		lbltext.setText("[알림] 4~10자리만 가능합니다.");
@@ -106,7 +111,7 @@ public class Signuppane implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		lbltext.setText("");
 		
 	}
 	
