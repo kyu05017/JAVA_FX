@@ -50,7 +50,7 @@ public class Loginpane implements Initializable{
 
     @FXML
     void accfindpw(ActionEvent event) {
-    	System.out.println("비밀번호 찾기");
+    	System.out.println("비밀번호 찾기"); 
     	Login.login.loadpage("/view/login/findpw");
     }
 
@@ -76,7 +76,14 @@ public class Loginpane implements Initializable{
     	boolean result = MemberDao.dao.login(id, pw);
     	
     	// 3. 결과확인
-    	
+    	if(result) {
+    		// 페이지 전환 [ 다음주 ]
+    		// * 테스트
+    		lbnconform.setText("로그인성공");
+    	}
+    	else {
+    		lbnconform.setText("로그인실패");
+    	}
     	
     }
     
