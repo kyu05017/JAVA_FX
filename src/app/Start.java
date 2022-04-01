@@ -30,7 +30,7 @@ public class Start extends Application{
 				// C:\Users\504\git\JAVA_FX\src\img
 			// 상대 경로 : 현위치 [ 프로젝트 기준 src ] 기준 경로
 				// 생략 [ src폴더부터 ] img/파일명.확장자
-			// 2. 스테이지 설정
+			// 2. 스테이지 설정 
 		stage.getIcons().add(image);
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		
