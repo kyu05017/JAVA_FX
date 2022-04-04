@@ -7,9 +7,11 @@ import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class FindPw implements Initializable{
@@ -50,6 +52,11 @@ public class FindPw implements Initializable{
     		lbfindpw.setText("존재하지 않는 회원 입니다.");
     	}
     	else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("비밀번호 찾기");
+    		alert.setHeaderText("이메일로 비밀번호를 전송했습니다.");
+    		alert.setContentText("완료");
+    		alert.showAndWait();
     		lbfindpw.setText(result);
     	}
     

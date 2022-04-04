@@ -2,6 +2,8 @@ package controllor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import controllor.login.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,14 @@ import javafx.scene.layout.BorderPane;
 
 public class Main implements Initializable{
 				// Initializable : view가 새로 열렸을때 초기값 설정 메소드 제공
+	
+	public static Main main;
+	
+	public Main() {
+		main = this; // super : 슈퍼클래스 ( 상속 ) this : 현클래스 
+		// 현클래스 자체 메모리 호출
+	}
+
 	
     @FXML
     private BorderPane boarderPane; // 씬빌더에서 만든 컨테이너 객체

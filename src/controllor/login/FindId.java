@@ -7,9 +7,11 @@ import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class FindId implements Initializable{
 
@@ -44,6 +46,11 @@ public class FindId implements Initializable{
     		lbfindid.setText("존재하지 않는 아이디 입니다.");
     	}
     	else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("아이디 찾기");
+    		alert.setHeaderText("회원님의 아이디는 "+ result +"입니다.");
+    		alert.setContentText("완료");
+    		alert.showAndWait();
     		lbfindid.setText(result);
     	}
     }

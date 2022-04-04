@@ -3,6 +3,10 @@ package controllor.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import controllor.Board;
+import controllor.Main;
+import dao.BoardDao;
 import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,7 +68,7 @@ public class Loginpane implements Initializable{
     	// 1. 컨트롤에 입력된 값 가져오기
     	String id = textid.getText(); // 해당 fxid에 입력된 값 가져오디
     	String pw = textpw.getText(); // 해당 fxid에 입력된 값 가져오디
-    	
+   	
     	// 2. db 객체내 메소드 호출
     	boolean result = MemberDao.dao.login(id, pw);
     	
@@ -73,11 +77,14 @@ public class Loginpane implements Initializable{
     		// 페이지 전환 [ 다음주 ]
     		// * 테스트
     		lbnconform.setText("로그인성공");
+    		Main.main.loadpage("/view/board");
+
     	}
     	else {
     		lbnconform.setText("로그인실패");
     	}
     }
+
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
