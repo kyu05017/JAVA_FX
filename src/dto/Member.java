@@ -113,6 +113,8 @@ public class Member {	// µ¥ÀÌÅÍ ¸ğµ¨
 		this.m_address = m_address;
 	}
 
+	
+	
 	public int getM_point() {
 		return m_point;
 	}

@@ -235,6 +235,25 @@ public class MemberDao {	// DB 접근 객체
 			System.out.println("수정오료 " + e);
 		}
 		return false;
+	}
+	public boolean todayPoint(int num,int point) {
+		try {
+			// 1. SQL 작성
+			// select * from 테이블명 where 조건=( 필드명 = 값 )
+			String sql = "UPDATE member SET m_point=? where m_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			int new_point = point + 10;
+			ps.setInt(1, new_point);
+			ps.setInt(2, num);
+			// 3. SQL 실행
+			ps.executeUpdate(); 
 			
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("수정오료 " + e);
+		}
+		return false;
 	}
 }

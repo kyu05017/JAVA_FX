@@ -11,10 +11,12 @@ import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class Loginpane implements Initializable{
 	
@@ -78,7 +80,7 @@ public class Loginpane implements Initializable{
    	
     	// 2. db 객체내 메소드 호출
     	boolean result = MemberDao.dao.login(id, pw);
-
+    	
  
     
     	// 3. 결과확인
@@ -95,6 +97,7 @@ public class Loginpane implements Initializable{
     	else {
     		lbnconform.setText("로그인실패");
     	}
+    	
     }
 
     public String getid() {

@@ -121,8 +121,19 @@ public class Home implements Initializable{
 			}
 		});
 		// 미디어 플레이어 시작
-	mediaPlayer.play();
-		
+		mediaPlayer.play();
+		boolean result2 = MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
+		if(result2) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			System.out.println("로그인 포인트");
+    		alert.setTitle("방문 포인트 적립");
+    		alert.setHeaderText("오늘 처음 접속하셔서 10 포인트가 적립되었습니다.");
+    		alert.setContentText("완료");
+    		alert.showAndWait();
+		}
+		else {
+			
+		}
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
