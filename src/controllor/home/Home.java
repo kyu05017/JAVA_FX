@@ -84,7 +84,7 @@ public class Home implements Initializable{
 	}
 	@FXML
 	public void myinfo(MouseEvent e ) {
-		
+		loadpage("/view/home/myinfo");
 	}
 	
 	

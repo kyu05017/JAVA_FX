@@ -192,8 +192,6 @@ public class MemberDao {	// DB 접근 객체
 	}
 	// 6. 회원탈퇴 = 회원번호를 입력받아 인수로 받아 해당 회원번호의 레코드를 삭제
 	public boolean signOut(int num) {
-		
-		
 		try {
 			// 1. sql 작성
 			String sql = "delete from member where m_num=?";
