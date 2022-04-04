@@ -105,7 +105,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblInfoChange" layoutX="95.0" layoutY="526.0" text="회원수정">
+            <Label fx:id="lblInfoChange" onMouseClicked="#change" layoutX="95.0" layoutY="526.0" text="회원수정">
                <font>
                   <Font size="13.0" />
                </font>

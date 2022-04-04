@@ -44,10 +44,14 @@ public class Home implements Initializable{
 	private Label lblInfo;
 	
 	@FXML
+	private Label lblInfoChange;
+	
+	@FXML
 	public void logout(MouseEvent e ) {
 		// 1. 로그인 정보 지우기
 		Login.member = null;
 		Main.main.loadpage("/view/login/login");
+		System.out.println("로그아웃");
 	}
 	
 	@FXML
@@ -86,7 +90,11 @@ public class Home implements Initializable{
 	public void myinfo(MouseEvent e ) {
 		loadpage("/view/home/myinfo");
 	}
-	
+
+	@FXML
+	public void change(MouseEvent e ) {
+		loadpage("/view/home/changeinfo");
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

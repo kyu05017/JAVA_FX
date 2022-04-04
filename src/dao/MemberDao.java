@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controllor.login.Login;
 import dto.Member;
 
 public class MemberDao {	// DB 접근 객체
@@ -211,5 +212,29 @@ public class MemberDao {	// DB 접근 객체
 		return false;
 	}
 	// 7. 회원수정
-	
+	public boolean changeInfo(int num,String add,String email) {
+		
+		try {
+			// 1. SQL 작성
+			// select * from 테이블명 where 조건=( 필드명 = 값 )
+			String sql = "UPDATE member SET m_email=?,m_address=? where m_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, email);
+			ps.setString(2, add);
+			ps.setInt(3, num);
+
+			// 3. SQL 실행
+			ps.executeUpdate(); 
+			
+			// 4. sql 결과
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("수정오료 " + e);
+		}
+		return false;
+			
+	}
 }
