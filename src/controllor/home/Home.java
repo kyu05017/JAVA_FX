@@ -3,7 +3,6 @@ package controllor.home;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import controllor.Main;
 import controllor.login.Login;
 import dao.MemberDao;
@@ -17,6 +16,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 
 public class Home implements Initializable{
 	
@@ -45,6 +48,9 @@ public class Home implements Initializable{
 	
 	@FXML
 	private Label lblInfoChange;
+	
+    @FXML
+    private MediaView homeview;
 	
 	@FXML
 	public void logout(MouseEvent e ) {
@@ -100,6 +106,22 @@ public class Home implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbloginid.setText("ID : "+Login.member.getM_id());
 		lbloginpt.setText("point : " + Login.member.getM_point() + "점");
+		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
+		// 2. 미디어플레이어 객체에 동영상 넣기
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+			// 3. 미이더 플레이어에 미디어 넣기
+		homeview.setMediaPlayer(mediaPlayer); 
+		// 무한반복
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+			
+			@Override
+			public void run() {
+				mediaPlayer.seek(Duration.ZERO);
+				
+			}
+		});
+		// 미디어 플레이어 시작
+	mediaPlayer.play();
 		
 	}
 	
