@@ -17,7 +17,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class Loginpane implements Initializable{
-
+	
+	public static Loginpane loginpane;
+	
+	public Loginpane() {
+		loginpane = this; 
+	}
+	
     @FXML
     private TextField textid;
 
@@ -68,16 +74,19 @@ public class Loginpane implements Initializable{
     	// 1. 컨트롤에 입력된 값 가져오기
     	String id = textid.getText(); // 해당 fxid에 입력된 값 가져오디
     	String pw = textpw.getText(); // 해당 fxid에 입력된 값 가져오디
+    	
    	
     	// 2. db 객체내 메소드 호출
     	boolean result = MemberDao.dao.login(id, pw);
-    	
+
+ 
+    
     	// 3. 결과확인
     	if(result) {
     		// 페이지 전환 [ 다음주 ]
     		// * 테스트
     		lbnconform.setText("로그인성공");
-    		Main.main.loadpage("/view/board");
+    		Main.main.loadpage("/view/home/home");
 
     	}
     	else {
@@ -85,7 +94,10 @@ public class Loginpane implements Initializable{
     	}
     }
 
-    
+    public String getid() {
+    	return textid.getText();
+    }
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbnconform.setText("");

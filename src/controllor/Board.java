@@ -10,7 +10,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Board {
+	
 
+	
  	@FXML
     private TextField txtcontent;
 
@@ -47,6 +49,7 @@ public class Board {
     	System.out.println("DB내 데이터를 저장합니다.");
     	String content = txtcontent.getText(); 
     	// 1. DB 얀덩 객체 만들기
+
     	BoardDao dbcon = new BoardDao();
     	boolean result = dbcon.write(content);
     	if(result) {
@@ -58,7 +61,7 @@ public class Board {
     		txtcontent.setText("");
     	}
     	else {
-    		System.out.println("DB 저장 실패");
+    		System.out.println("보드DB 저장 실패");
     	}
     }
 	    

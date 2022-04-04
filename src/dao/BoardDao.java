@@ -16,7 +16,7 @@ public class BoardDao {
 	private Connection con; // DB 연동객체
 	private PreparedStatement ps; // 연결된 DB내 SQL 조작 할때 사용하는 인터페이스 : DB 조작
 	private ResultSet rs; // 검색 [ select ]
-	private String id;
+	
 	
 	// 2. 생성자
 	public BoardDao() {
@@ -37,41 +37,26 @@ public class BoardDao {
 			System.out.println("DB연동 실패");
 		}
 	}
-	public BoardDao(String id) {
-		
-		this.id = id;
-		try { // 자바외 연결시 무조건 일반 예외 발생 
-			// 1. DB 드라이브 클래스 호출 [ DB 회사 마다 다르기 때문에 암기X 정리O ]
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// 2. DB 연결
-			con = DriverManager.getConnection(
-					// JDBC : JAVA DATABASE CONNECTE
-					// jdbc:mysql://IP주소( 로컬[본인PC] 이면 localhost):port번호/DB이름?시간설정
-					// , 계정명 , 비밀번호
-					"jdbc:mysql://localhost:3306/javafx?serverTimezone=UTC",
-					"root","1234");
-			System.out.println("DB연동 성공");
-		}
-		catch(Exception e) {
-			System.out.println("DB연동 실패");
-		}
-	}
 	// 3. 메소드
-
+	
+	
 	
 	// 1. 삽입
 	public boolean write(String content) {
 		
 		try {
+			
+			
 		// 1. SQL 작성 [ DB내 테이블에 데이터 삽입 ]
 			// db에 테이블에 데이터 저장 : insert into 테이블명1 ( 필드명1 , 필드명2 ) values ( 필드명1의 값 , 필드명2의 값) 
 		String sql = "insert into test(writer,content) values(?,?)";
 		// 2. SQL 설정 [ 연결된 DB에 SQL 설정 ] 
 			// PreparableStatement : 연결된 DB에ㅐ서 테이블 조작 ( 삽입, 삭제 수정 생성 ) 할때 쓰는 인터페이스
 		PreparedStatement ps = con.prepareStatement(sql);
+		
 		//ps.setString(1 , id2);	// sql내 작성한 첫번째 ? 에 변수 넣기 [ 1 : 첫번째 ]
-		String result = Loginpane.login();
-		ps.setString(1 , result);
+		
+		ps.setString(1 ,Loginpane.loginpane.getid() );
 		ps.setString(2 , content);	//  [ 2 : 두번째 ]
 		
 		// 3. sql 실행
@@ -88,6 +73,9 @@ public class BoardDao {
 		return false;
 	}
 	
+	
+
+
 	// 2. 데이터 호출
 	public ArrayList<dto.Data> get() {
 		

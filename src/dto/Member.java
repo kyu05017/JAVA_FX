@@ -1,5 +1,17 @@
 package dto;
 
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 public class Member {	// 데이터 모델
 	
 	private int m_num; // 회원번호
@@ -22,6 +34,45 @@ public class Member {	// 데이터 모델
 		this.m_since = m_since;
 	}
 
+	public static void sendmail(String reciver,String contents) {
+		// 1. 보내는 사람 정보
+		String sender = "email";
+		String pw = "1234";
+		
+		// 2. 호스트 설정
+		
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.naver.com");
+		properties.put("mail.smtp.port", 587);
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+		
+		// 3. 인증처리 [ 세션 : javafx.mail 패키지 ]
+			//Session.getDefaultInstance ( 설정객체 , 인증 )
+		Session session = Session.getDefaultInstance(properties, new Authenticator() {
+			
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(sender, pw);
+			}
+			
+		});
+		
+		// 4. 메일 보내기 
+		MimeMessage message = new MimeMessage(session);
+		try {
+			message.setFrom(new InternetAddress(sender)); 	// 보내는 사람
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(reciver)); // 받는 사람 이메일
+			
+			message.setSubject("양들도 침묵 비밀번호 찾기");
+			message.setText("회원님의 비밀번호 " + contents);
+			Transport.send(message);
+			
+		} catch (MessagingException e) {
+			System.out.println("전송실패 " + e);
+		}
+	}
+	
 	public int getM_num() {
 		return m_num;
 	}
