@@ -1,6 +1,8 @@
 package controllor.home;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import controllor.Main;
@@ -122,17 +124,21 @@ public class Home implements Initializable{
 		});
 		// 미디어 플레이어 시작
 		mediaPlayer.play();
-		boolean result2 = MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
-		if(result2) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			System.out.println("로그인 포인트");
-    		alert.setTitle("방문 포인트 적립");
-    		alert.setHeaderText("오늘 처음 접속하셔서 10 포인트가 적립되었습니다.");
-    		alert.setContentText("완료");
-    		alert.showAndWait();
-		}
-		else {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	String since = sdf.format(new Date());
+		if(Login.member.getM_today().equals(since)) {
 			
+		}
+		else{
+			boolean result2 = MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
+			if(result2) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				System.out.println("로그인 포인트");
+	    		alert.setTitle("방문 포인트 적립");
+	    		alert.setHeaderText("오늘 처음 접속하셔서 10 포인트가 적립되었습니다.");
+	    		alert.setContentText("완료");
+	    		alert.showAndWait();
+			}
 		}
 	}
 	

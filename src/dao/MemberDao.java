@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import controllor.login.Login;
 import dto.Member;
@@ -100,6 +102,16 @@ public class MemberDao {	// DB 접근 객체
 			rs = ps.executeQuery();
 			// 4. 결과
 			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				String sql2 = "UPDATE member SET m_today=? where m_id=?";
+				// 2. sql 조작
+				ps = con.prepareStatement(sql2);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		    	String since = sdf.format(new Date());
+				ps.setString(1, since);
+				ps.setString(2, id);
+
+				// 3. SQL 실행
+				ps.executeUpdate(); 
 				return true; // 해당 아이디는 중복이 존재
 			}
 		}
@@ -175,7 +187,8 @@ public class MemberDao {	// DB 접근 객체
 					rs.getString(4),
 					rs.getString(5),
 					rs.getInt(6),
-					rs.getString(7)
+					rs.getString(7),
+					rs.getString(8)
 					//rs.next() : 결과내 다음 레코드 ( 줄, 가로 )
 					//rs.getint : 해당 필드의 자료형이 정수형으로 가져옴
 					//rs.getsttring : 해당필드의 자료형을 문자열로 가져옴

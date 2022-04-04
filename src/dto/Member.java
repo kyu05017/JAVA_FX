@@ -21,10 +21,11 @@ public class Member {	// µ¥ÀÌÅÍ ¸ðµ¨
 	private String m_address;
 	private int m_point;
 	private String m_since;
+	private String m_today;
 	
 	public Member() {}
 
-	public Member(int m_num, String m_id, String m_pw, String m_email, String m_address, int m_point, String m_since) {
+	public Member(int m_num, String m_id, String m_pw, String m_email, String m_address, int m_point, String m_since,String m_today) {
 		this.m_num = m_num;
 		this.m_id = m_id;
 		this.m_pw = m_pw;
@@ -32,6 +33,7 @@ public class Member {	// µ¥ÀÌÅÍ ¸ðµ¨
 		this.m_address = m_address;
 		this.m_point = m_point;
 		this.m_since = m_since;
+		this.m_today = m_today;
 	}
 
 	public static void sendmail(String reciver,String contents) {
@@ -73,6 +75,16 @@ public class Member {	// µ¥ÀÌÅÍ ¸ðµ¨
 		}
 	}
 	
+	
+	
+	public String getM_today() {
+		return m_today;
+	}
+
+	public void setM_today(String m_today) {
+		this.m_today = m_today;
+	}
+
 	public int getM_num() {
 		return m_num;
 	}
@@ -113,8 +125,7 @@ public class Member {	// µ¥ÀÌÅÍ ¸ðµ¨
 		this.m_address = m_address;
 	}
 
-	
-	
+
 	public int getM_point() {
 		return m_point;
 	}
