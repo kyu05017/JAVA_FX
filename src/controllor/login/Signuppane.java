@@ -106,7 +106,7 @@ public class Signuppane implements Initializable{
     		// 1. 메세지 창 [ Alert : 메세지 클래스 ]
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("회원가입");
-    		alert.setHeaderText("양들도 침묵 가입에 축하합니다.");
+    		alert.setHeaderText("토끼 중고나라에 가입했습니다.");
     		alert.setContentText("완료");
     		alert.showAndWait();
     		// 2. 화면 전환

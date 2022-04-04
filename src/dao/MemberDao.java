@@ -190,8 +190,28 @@ public class MemberDao {	// DB 접근 객체
 		return null;
 		 
 	}
-	// 6. 회원탈퇴
-	
+	// 6. 회원탈퇴 = 회원번호를 입력받아 인수로 받아 해당 회원번호의 레코드를 삭제
+	public boolean signOut(int num) {
+		
+		
+		try {
+			// 1. sql 작성
+			String sql = "delete from member where m_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			
+			// 3. sql 실행
+			ps.executeUpdate();
+			// 4. sql 결과
+			return true;
+			
+		} catch (SQLException e) {System.out.println("탈퇴오류"+e);}
+		
+		
+		
+		return false;
+	}
 	// 7. 회원수정
 	
 }

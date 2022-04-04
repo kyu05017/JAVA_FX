@@ -23,7 +23,7 @@
                </font>
             </Label>
             <Label fx:id="lbloginpt" layoutX="9.0" layoutY="273.0" prefHeight="19.0" prefWidth="176.0" text="포인트" />
-            <Label fx:id="lblogout" onMouseClicked="#logout" layoutX="148.0" layoutY="225.0" prefHeight="19.0" prefWidth="61.0" text="로그아웃" />
+            <Label fx:id="lblogout" layoutX="148.0" layoutY="225.0" onMouseClicked="#logout" prefHeight="19.0" prefWidth="61.0" text="로그아웃" />
             <Line endX="100.0" layoutX="108.0" layoutY="640.0" startX="-100.0" />
             <Label layoutX="13.0" layoutY="644.0" text="고객센터">
                <font>
@@ -100,17 +100,17 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblInfo" layoutX="13.0" layoutY="549.0" text="회원정보">
+            <Label fx:id="lblInfo" layoutX="13.0" layoutY="549.0" onMouseClicked="#myinfo" text="회원정보">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblInfoChange"  layoutX="95.0" layoutY="526.0" text="회원수정">
+            <Label fx:id="lblInfoChange" layoutX="95.0" layoutY="526.0" text="회원수정">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblsignOut" onMouseClicked="#signOut" layoutX="95.0" layoutY="549.0" text="회원탈퇴">
+            <Label fx:id="lblsignOut" layoutX="95.0" layoutY="549.0" onMouseClicked="#signOut" text="회원탈퇴">
                <font>
                   <Font size="13.0" />
                </font>
@@ -133,4 +133,7 @@
          </children>
       </AnchorPane>
    </left>
+   <center>
+      <BorderPane fx:id="mainpane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
