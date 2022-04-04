@@ -17,7 +17,7 @@
                   <Image url="@../../img/flower.png" />
                </image>
             </ImageView>
-            <Label layoutX="13.0" layoutY="244.0" prefHeight="29.0" prefWidth="176.0" text="아이디">
+            <Label layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="108.0" text="아이디">
                <font>
                   <Font size="18.0" />
                </font>
@@ -25,22 +25,22 @@
             <Label layoutX="13.0" layoutY="273.0" prefHeight="19.0" prefWidth="176.0" text="포인트" />
             <Label layoutX="148.0" layoutY="225.0" prefHeight="19.0" prefWidth="61.0" text="로그아웃" />
             <Line endX="100.0" layoutX="108.0" layoutY="640.0" startX="-100.0" />
-            <Label layoutX="13.0" layoutY="640.0" text="고객센터">
+            <Label layoutX="13.0" layoutY="644.0" text="고객센터">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="661.0" text="010-4339-1234">
+            <Label layoutX="20.0" layoutY="661.0" text="010-4339-1234">
                <font>
-                  <Font size="13.0" />
+                  <Font size="11.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="677.0" text="신고하기">
+            <Label layoutX="13.0" layoutY="679.0" text="신고하기">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="343.0" text="공지사항">
+            <Label layoutX="13.0" layoutY="343.0" text="공지사항">
                <font>
                   <Font size="12.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="434.0" text="커뮤니티 ">
+            <Label layoutX="8.0" layoutY="434.0" text="커뮤니티 ">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
@@ -74,7 +74,7 @@
             <Line endX="-25.0" layoutX="108.0" layoutY="368.0" startX="-100.0" />
             <Line endX="-25.0" layoutX="108.0" layoutY="425.0" startX="-100.0" />
             <Line endX="-25.0" layoutX="108.0" layoutY="492.0" startX="-100.0" />
-            <Label layoutX="9.0" layoutY="501.0" text="정보">
+            <Label layoutX="8.0" layoutY="501.0" text="정보">
                <font>
                   <Font size="18.0" />
                </font>
@@ -100,7 +100,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="557.0" text="회원정보">
+            <Label layoutX="13.0" layoutY="557.0" text="회원정보">
                <font>
                   <Font size="13.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="589.0" text="관리자">
+            <Label layoutX="8.0" layoutY="589.0" text="관리자">
                <font>
                   <Font size="18.0" />
                </font>
@@ -125,9 +125,9 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="698.0" text="010-4339-1234">
+            <Label layoutX="20.0" layoutY="698.0" text="010-4339-1234">
                <font>
-                  <Font size="13.0" />
+                  <Font size="11.0" />
                </font>
             </Label>
          </children>
