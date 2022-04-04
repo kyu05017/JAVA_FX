@@ -17,13 +17,13 @@
                   <Image url="@../../img/flower.png" />
                </image>
             </ImageView>
-            <Label layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="108.0" text="아이디">
+            <Label fx:id="lbloginid" layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="199.0" text="아이디">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="273.0" prefHeight="19.0" prefWidth="176.0" text="포인트" />
-            <Label layoutX="148.0" layoutY="225.0" prefHeight="19.0" prefWidth="61.0" text="로그아웃" />
+            <Label fx:id="lbloginpt" layoutX="9.0" layoutY="273.0" prefHeight="19.0" prefWidth="176.0" text="포인트" />
+            <Label fx:id="lblogout" onMouseClicked="#logout" layoutX="148.0" layoutY="225.0" prefHeight="19.0" prefWidth="61.0" text="로그아웃" />
             <Line endX="100.0" layoutX="108.0" layoutY="640.0" startX="-100.0" />
             <Label layoutX="13.0" layoutY="644.0" text="고객센터">
                <font>
@@ -100,17 +100,17 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="549.0" text="회원정보">
+            <Label fx:id="lblInfo" layoutX="13.0" layoutY="549.0" text="회원정보">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="95.0" layoutY="526.0" text="회원수정">
+            <Label fx:id="lblInfoChange"  layoutX="95.0" layoutY="526.0" text="회원수정">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="95.0" layoutY="549.0" text="회원탈퇴">
+            <Label fx:id="lblsignOut" onMouseClicked="#signOut" layoutX="95.0" layoutY="549.0" text="회원탈퇴">
                <font>
                   <Font size="13.0" />
                </font>
