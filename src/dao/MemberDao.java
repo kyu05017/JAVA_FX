@@ -102,16 +102,6 @@ public class MemberDao {	// DB 접근 객체
 			rs = ps.executeQuery();
 			// 4. 결과
 			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
-				String sql2 = "UPDATE member SET m_today=? where m_id=?";
-				// 2. sql 조작
-				ps = con.prepareStatement(sql2);
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		    	String since = sdf.format(new Date());
-				ps.setString(1, since);
-				ps.setString(2, id);
-
-				// 3. SQL 실행
-				ps.executeUpdate(); 
 				return true; // 해당 아이디는 중복이 존재
 			}
 		}
@@ -258,6 +248,7 @@ public class MemberDao {	// DB 접근 객체
 			ps = con.prepareStatement(sql);
 			int new_point = point + 10;
 			ps.setInt(1, new_point);
+			System.out.println(new_point);
 			ps.setInt(2, num);
 			// 3. SQL 실행
 			ps.executeUpdate(); 
@@ -268,5 +259,22 @@ public class MemberDao {	// DB 접근 객체
 			System.out.println("수정오료 " + e);
 		}
 		return false;
+	}
+	public void todaylogin(String id) {
+		try {
+			String sql2 = "UPDATE member SET m_today=? where m_id=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql2);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    	String since = sdf.format(new Date());
+			ps.setString(1, since);
+			ps.setString(2, id);
+	
+			// 3. SQL 실행
+			ps.executeUpdate(); 
+		}
+		catch(Exception e) {
+			
+		}
 	}
 }

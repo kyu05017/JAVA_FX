@@ -129,7 +129,7 @@ public class Home implements Initializable{
 		if(Login.member.getM_today().equals(since)) {
 			
 		}
-		else{
+		else {
 			boolean result2 = MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
 			if(result2) {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -140,6 +140,7 @@ public class Home implements Initializable{
 	    		alert.showAndWait();
 			}
 		}
+		MemberDao.dao.todaylogin(Login.member.getM_id());
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
