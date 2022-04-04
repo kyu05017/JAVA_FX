@@ -85,6 +85,9 @@ public class Loginpane implements Initializable{
     	if(result) {
     		// 페이지 전환 [ 다음주 ]
     		// * 테스트
+    		
+    		// 로그인 성공시 성공한 회원정보 저장 / 로그아웃시 초기화
+    		Login.member = MemberDao.dao.getmember(id);
     		lbnconform.setText("로그인성공");
     		Main.main.loadpage("/view/home/home");
 

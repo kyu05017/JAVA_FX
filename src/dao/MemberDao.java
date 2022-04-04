@@ -154,4 +154,44 @@ public class MemberDao {	// DB 접근 객체
 		}
 		return null; // 해당아이디 중복 없음
 	}
+	
+	// 5. 아이디로 회원정보 호출
+	public Member getmember (String id) {
+		try {
+			// 1. sql 작성
+			String sql = "select * from member where m_id=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			// 3. sql 실행
+			rs = ps.executeQuery();
+			// 4. sql 결과
+			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				Member member = new Member(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getString(4),
+					rs.getString(5),
+					rs.getInt(6),
+					rs.getString(7)
+					//rs.next() : 결과내 다음 레코드 ( 줄, 가로 )
+					//rs.getint : 해당 필드의 자료형이 정수형으로 가져옴
+					//rs.getsttring : 해당필드의 자료형을 문자열로 가져옴
+				);
+				return member;
+				
+			}
+			
+		}
+		catch(Exception e ) {
+			System.out.println(e);
+		}
+		return null;
+		 
+	}
+	// 6. 회원탈퇴
+	
+	// 7. 회원수정
+	
 }
