@@ -79,7 +79,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Line endX="-25.0" layoutX="108.0" layoutY="581.0" startX="-100.0" />
+            <Line endX="-25.0" layoutX="108.0" layoutY="575.0" startX="-100.0" />
             <Label layoutX="13.0" layoutY="464.0" text="거래후기">
                <font>
                   <Font size="13.0" />
@@ -100,7 +100,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="557.0" text="회원정보">
+            <Label layoutX="13.0" layoutY="549.0" text="회원정보">
                <font>
                   <Font size="13.0" />
                </font>
@@ -110,17 +110,17 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="95.0" layoutY="557.0" text="회원탈퇴">
+            <Label layoutX="95.0" layoutY="549.0" text="회원탈퇴">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="8.0" layoutY="589.0" text="관리자">
+            <Label layoutX="10.0" layoutY="583.0" text="관리자">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="616.0" text="통계">
+            <Label layoutX="13.0" layoutY="611.0" text="통계">
                <font>
                   <Font size="13.0" />
                </font>
