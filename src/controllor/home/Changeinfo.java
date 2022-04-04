@@ -56,6 +56,11 @@ public class Changeinfo implements Initializable{
     	}
     	else {
     		System.out.println("수정실패");
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("회원정보 수정");
+    		alert.setHeaderText("수정 실패. [ 관리자 문의 ]");
+    		alert.setContentText("완료");
+    		alert.showAndWait();
     		
     	}
 
