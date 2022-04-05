@@ -19,8 +19,7 @@ public class Start extends Application{
 		// 6. 신 객체 -> 컨테이너 연결
 		Scene scene = new Scene(parent);
 		
-		Font.loadFont(getClass().getResourceAsStream("SuncheonB.ttf"), 15);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		
 		// 7. 씬 -> 스테이지
 		stage.setScene(scene);
 		
@@ -39,7 +38,9 @@ public class Start extends Application{
 		// 외부 폰트 설정
 		// 1. 폰트 가져오기
 		//Font.loadFont(getClass().getResource("MaruBuri.ttf"),14);
-		
+		//Font.loadFont(getClass().getResourceAsStream("SuncheonB.ttf"), 15);
+		Font.loadFont(getClass().getResourceAsStream("SuncheonB.ttf"), 15);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		
 		
