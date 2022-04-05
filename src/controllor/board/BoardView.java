@@ -86,7 +86,7 @@ public class BoardView implements Initializable{
     		    		alert2.showAndWait();
     				}
     				else {
-    					
+    					System.out.println("삭제 실패했데");
     				}
     			}
     			else if(optional.get() == ButtonType.CANCEL) {
