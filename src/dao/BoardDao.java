@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import dto.Board;
 import dto.Reply;
 import javafx.collections.FXCollections;
@@ -36,7 +39,7 @@ public class BoardDao {
 	public boolean write(Board board) {
 		try {
 			// 1. SQL 작성 [ 회원번호 ( 자동 )제외한 모든 필드 삽입  ]
-			String sql = "insert into board(b_title,b_contents,b_writer) values(?,?,?)";
+			String sql = "insert into board(b_title,b_contentw,b_writer) values(?,?,?)";
 			// 2. SQL 조작
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board.getB_title());

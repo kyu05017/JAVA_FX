@@ -52,7 +52,7 @@ public class BoardWrite implements Initializable{
     		alert.showAndWait();
     	}
     	else {
-    		Board board = new Board(0, title, contents,writer, null, 0);
+    		Board board = new Board(0, title, contents,writer, null, 0 );
     	
 	    	boolean result =  BoardDao.dao.write(board);
 	    	

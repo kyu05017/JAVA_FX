@@ -1,6 +1,5 @@
 package dto;
 
-import com.mysql.cj.conf.StringProperty;
 
 public class Board {
 	
@@ -22,8 +21,6 @@ public class Board {
 		this.b_view = b_view;
 	}
 
-	
-	
 	
 	public int getB_num() {
 		return b_num;

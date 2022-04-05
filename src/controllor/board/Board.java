@@ -65,10 +65,10 @@ public class Board implements Initializable{
 			// 0. 클릭한 객체 객체로 저장
 			board = boardtable.getSelectionModel().getSelectedItem();
 			// 1. 조회수 증가
+			
 			BoardDao.dao.view(board.getB_num(), board.getB_view());
 			// 2. 페이지 저장 
 			// 3. 페이지 전환
-			
 			Home.home.loadpage("/view/board/boardview");
 			}
 			catch(Exception e2) {
