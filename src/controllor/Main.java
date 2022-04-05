@@ -44,7 +44,7 @@ public class Main implements Initializable{
 			boarderPane.setCenter(parent); // 컨테이너(fxml) 가운데에 페이지 넣기 
 		}
 		catch( Exception e ) { // 파일이 존재하지 않을 경우 예외처리
-			System.out.println("페이지 연결 실패"+ e); 
+			System.out.println("홈 페이지 연결 실패 "+ e); 
 		}
 	}
 }
