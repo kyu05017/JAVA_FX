@@ -22,7 +22,7 @@ public class Board implements Initializable{
     private TableColumn<dto.Board, Integer> bnum;
 
     @FXML
-    private TableColumn<dto.Board, String> bcont;
+    private TableColumn<?, ?> btitle;
 
     @FXML
     private TableColumn<dto.Board, String> bwriter;
