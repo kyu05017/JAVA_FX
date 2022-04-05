@@ -1,5 +1,7 @@
 package dto;
 
+import com.mysql.cj.conf.StringProperty;
+
 public class Board {
 	
 	private int b_num; // 회원번호
@@ -20,6 +22,9 @@ public class Board {
 		this.b_view = b_view;
 	}
 
+	
+	
+	
 	public int getB_num() {
 		return b_num;
 	}
@@ -31,11 +36,12 @@ public class Board {
 	public String getB_title() {
 		return b_title;
 	}
-
+	
 	public void setB_title(String b_title) {
 		this.b_title = b_title;
 	}
 
+	
 	public String getB_contents() {
 		return b_contents;
 	}
