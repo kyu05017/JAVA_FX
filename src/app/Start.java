@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Start extends Application{
@@ -32,8 +33,15 @@ public class Start extends Application{
 				// 생략 [ src폴더부터 ] img/파일명.확장자
 			// 2. 스테이지 설정 
 		stage.getIcons().add(image);
-		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		
+		// 외부 폰트 설정
+		// 1. 폰트 가져오기
+		//Font.loadFont(getClass().getResource("MaruBuri.ttf"),14);
+		
+		Font.loadFont(getClass().getResourceAsStream("MaruBuri.ttf"), 15);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		
+		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		stage.setTitle("토끼 중고나라 "); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
 	}
