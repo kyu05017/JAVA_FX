@@ -3,12 +3,12 @@ package controllor.board;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controllor.home.Home;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-
 
 public class Board implements Initializable{
 
@@ -17,11 +17,11 @@ public class Board implements Initializable{
     private TableView<?> boardtable;
 
     @FXML
-    private ButtonType btwrite;
+    private Button btwrite;
 
     @FXML
     void addwrite(ActionEvent event) {
-
+    	Home.home.loadpage("/view/board/boardwrite");
     }
 	    
 	@Override

@@ -86,7 +86,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblboard" onMouseClicked="#board" layoutX="88.0" layoutY="464.0" text="자유게시판">
+            <Label fx:id="lblboard" onMouseClicked="#boardacc" layoutX="88.0" layoutY="464.0" text="자유게시판">
                <font>
                   <Font size="13.0" />
                </font>

@@ -57,10 +57,7 @@ public class Home implements Initializable{
     @FXML
     private Label lblboard;
     
-    @FXML
-	public void board(MouseEvent e ) {
-    	loadpage("view/board/board");
-	}
+    
     
 	@FXML
 	public void logout(MouseEvent e ) {
@@ -111,7 +108,10 @@ public class Home implements Initializable{
 	public void change(MouseEvent e ) {
 		loadpage("/view/home/changeinfo");
 	}
-	
+	@FXML
+	public void boardacc(MouseEvent e ) {
+    	loadpage("/view/board/board");
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
