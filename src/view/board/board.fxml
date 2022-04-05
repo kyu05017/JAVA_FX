@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -16,11 +17,11 @@
       </Text>
       <TableView fx:id="boardtable" layoutX="14.0" layoutY="131.0" prefHeight="575.0" prefWidth="1037.0">
          <columns>
-            <TableColumn fx:id="bnum" prefWidth="75.0" text="번호" />
-            <TableColumn fx:id="btitle" prefWidth="670.0" text="제목" />
-            <TableColumn fx:id="bwriter" minWidth="0.0" prefWidth="94.0" text="작성자" />
-            <TableColumn fx:id="bdate" prefWidth="125.0" text="작성일" />
-            <TableColumn fx:id="bview" prefWidth="72.0" text="조회수" />
+            <TableColumn prefWidth="75.0" text="번호" />
+            <TableColumn prefWidth="670.0" text="제목" />
+            <TableColumn minWidth="0.0" prefWidth="94.0" text="작성자" />
+            <TableColumn prefWidth="125.0" text="작성일" />
+            <TableColumn prefWidth="72.0" text="조회수" />
          </columns>
       </TableView>
       <Button fx:id="btwrite" layoutX="920.0" layoutY="78.0" mnemonicParsing="false" onAction="#addwrite" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="글쓰기">
@@ -28,5 +29,6 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Line endX="162.0" endY="-1.52587890625E-5" layoutX="115.0" layoutY="70.0" startX="-100.0" stroke="STEELBLUE" />
    </children>
 </AnchorPane>

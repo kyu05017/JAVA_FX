@@ -12,26 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Board implements Initializable{
 
     @FXML
-    private TableView<dto.Board> boardtable;
-    
-    @FXML
-    private TableColumn<dto.Board, Integer> bnum;
-
-    @FXML
-    private TableColumn<?, ?> btitle;
-
-    @FXML
-    private TableColumn<dto.Board, String> bwriter;
-
-    @FXML
-    private TableColumn<dto.Board, String> bdate;
-
-    @FXML
-    private TableColumn<dto.Board, Integer> bview;
+    private TableView<dto.Board> boardtable; // 테이블에 넣을 자료형 선택 [ 테이블에 게시물 표시하기 위해 ] 
     
     @FXML
     private Button btwrite;
@@ -48,6 +34,23 @@ public class Board implements Initializable{
 		ObservableList<dto.Board> boardlist = BoardDao.dao.list();
 		System.out.println(boardlist);
 		// 2. TableView에 추가
+		TableColumn tc = boardtable.getColumns().get(0); // 첫번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("b_num"));
+		
+		tc = boardtable.getColumns().get(1); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("b_title"));
+		
+		tc = boardtable.getColumns().get(2); // 세번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("b_writer"));
 
+		tc = boardtable.getColumns().get(3); // 네번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("b_date"));
+
+		tc = boardtable.getColumns().get(4); // 다섯번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("b_view"));
+		
+		// 3. TableView에 list 연결
+		boardtable.setItems(boardlist);
+		// 테이블명(fxid).settime ( ObservableList )
 	}  
 }
