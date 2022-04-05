@@ -59,7 +59,9 @@ public class BoardDao {
 			
 			// 1. sql  작성 [ 데이터 호출 ]
 				//select * (모든 필드) from 테이블명
-			String sql = "select * from board";
+			 	// 오름차순 by b_num asc = b_num기준으로 오름차순 정렬
+				// 내림차순 by b_num desc = b_num기준으로 내림차순 정렬
+			String sql = "select * from board order by b_num desc";
 			// 2. SQL 조작 [ DB 와 연결된 객체와 조작ㄱ인터페이스 연결 ]
 			ps = con.prepareStatement(sql);
 			
