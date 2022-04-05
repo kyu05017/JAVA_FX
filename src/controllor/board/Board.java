@@ -36,7 +36,6 @@ public class Board implements Initializable{
 		//ArrayList<E>가 아닌 ObservableList를 사용 하는 이유 [ TableView가 사용 ]
 		// 1. DB 에서 모든 게시물 가져오기
 		ObservableList<dto.Board> boardlist = BoardDao.dao.list();
-		System.out.println(boardlist);
 		// 2. TableView에 추가
 		TableColumn<?, ?> tc = boardtable.getColumns().get(0); // 첫번째 열 호출
 		tc.setCellValueFactory(new PropertyValueFactory<>("b_num"));
@@ -63,7 +62,6 @@ public class Board implements Initializable{
 		//boardtable.setOnMouseClicked( e -> { 실행 코드 });; 클릭 했을때 
 		boardtable.setOnMouseClicked( e -> {
 			try {
-			System.out.println("클릭"+e);
 			// 0. 클릭한 객체 객체로 저장
 			board = boardtable.getSelectionModel().getSelectedItem();
 			// 1. 조회수 증가
