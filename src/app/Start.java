@@ -38,7 +38,7 @@ public class Start extends Application{
 		// 1. 폰트 가져오기
 		//Font.loadFont(getClass().getResource("MaruBuri.ttf"),14);
 		
-		Font.loadFont(getClass().getResourceAsStream("MaruBuri.ttf"), 15);
+		Font.loadFont(getClass().getResourceAsStream("MaruBuri-SemiBold.ttf"), 15);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
