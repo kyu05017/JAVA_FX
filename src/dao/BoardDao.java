@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import controllor.login.Login;
 import dto.Board;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,10 +101,47 @@ public class BoardDao {
 
 	// 3. 글삭제
 	public boolean delete(int b_num) {
+		try {
+			// 1. sql 작성
+			String sql = "delete from board where b_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, b_num);
+			
+			// 3. sql 실행
+			ps.executeUpdate();
+			// 4. sql 결과
+			return true;
+			
+		} catch (SQLException e) {System.out.println("삭제오류"+e);}
+		
 		return false;
 	}
 	// 4. 글수정
 	public boolean updaete(int b_num, String title, String contents) {
+		
+		return false;
+	}
+	public boolean view(int num,int view) {
+		try {
+			// 1. SQL 작성
+			// select * from 테이블명 where 조건=( 필드명 = 값 )
+			String sql = "UPDATE board SET b_view=? where b_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			int new_view = view + 1;
+			controllor.board.Board.board.setB_view(new_view);
+			ps.setInt(1, new_view);
+			System.out.println(new_view);
+			ps.setInt(2, num);
+			// 3. SQL 실행
+			ps.executeUpdate(); 
+			
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("수정오료 " + e);
+		}
 		return false;
 	}
 }
