@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -11,17 +12,29 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1064.0">
          <children>
+            <VBox layoutX="656.0" layoutY="139.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
+            <Text layoutX="774.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="정보 수정">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
             <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원수정">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <TextField fx:id="txtadd" layoutX="644.0" layoutY="260.0" />
-            <TextField fx:id="txtemail" layoutX="644.0" layoutY="322.0" />
-            <Text layoutX="552.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="주소" wrappingWidth="32.6513671875" />
-            <Text layoutX="543.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="이메일" wrappingWidth="49.6513671875" />
-            <Button fx:id="btok" layoutX="593.0" layoutY="443.0" mnemonicParsing="false" onAction="#accchange" prefHeight="29.0" prefWidth="136.0" text="수정" />
+            <TextField fx:id="txtadd" layoutX="806.0" layoutY="326.0" prefHeight="29.0" prefWidth="184.0" />
+            <TextField fx:id="txtemail" layoutX="806.0" layoutY="262.0" prefHeight="29.0" prefWidth="184.0" />
+            <Text layoutX="681.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="주소" wrappingWidth="32.6513671875">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+            <Text layoutX="675.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="이메일" wrappingWidth="49.6513671875">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
             <Line endX="162.0" endY="-1.52587890625E-5" layoutX="115.0" layoutY="70.0" startX="-100.0" stroke="STEELBLUE" />
+            <Button fx:id="btok" layoutX="765.0" layoutY="428.0" mnemonicParsing="false" onAction="#accchange" prefHeight="29.0" prefWidth="136.0" text="수정" />
          </children>
       </AnchorPane>
    </children>

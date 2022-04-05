@@ -2,22 +2,42 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.Myinfo">
    <children>
+      <MediaView fx:id="homeview" fitHeight="600.0" fitWidth="1064.0" layoutX="3.0" layoutY="59.0" />
+      <VBox layoutX="656.0" layoutY="139.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
       <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원정보">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Label fx:id="my_id" layoutX="311.0" layoutY="194.0" prefHeight="19.0" prefWidth="478.0" text="아이디" />
-      <Label fx:id="my_date" layoutX="311.0" layoutY="521.0" prefHeight="19.0" prefWidth="378.0" text="주소" />
-      <Label fx:id="my_add" layoutX="311.0" layoutY="356.0" prefHeight="19.0" prefWidth="385.0" text="주소" />
-      <Label fx:id="my_point" layoutX="311.0" layoutY="435.0" prefHeight="19.0" prefWidth="348.0" text="포인트" />
-      <Label fx:id="my_email" layoutX="311.0" layoutY="273.0" prefHeight="19.0" prefWidth="385.0" text="이메일" />
+      <Label fx:id="my_id" layoutX="683.0" layoutY="205.0" prefHeight="19.0" prefWidth="313.0" text="아이디">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="my_date" layoutX="683.0" layoutY="377.0" prefHeight="19.0" prefWidth="313.0" text="가입일">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="my_add" layoutX="683.0" layoutY="290.0" prefHeight="19.0" prefWidth="313.0" text="주소">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="my_point" layoutX="683.0" layoutY="332.0" prefHeight="19.0" prefWidth="313.0" text="포인트">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="my_email" layoutX="683.0" layoutY="246.0" prefHeight="19.0" prefWidth="313.0" text="이메일">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Line endX="162.0" endY="-1.52587890625E-5" layoutX="115.0" layoutY="70.0" startX="-100.0" stroke="STEELBLUE" />
    </children>
 </AnchorPane>
