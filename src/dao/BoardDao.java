@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class BoardDao {
+public class BoardDao { // 2022 04 06 06 12
 	
 	private Connection con; // 1 .DB 연동시 사용되는 클래스 : DB 연동클래스
 	private PreparedStatement ps; // 2. 연결된 DB내 SQL 조작 할때 사용하는 인터페이스 : DB 조작
