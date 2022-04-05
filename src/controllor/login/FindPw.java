@@ -26,7 +26,7 @@ public class FindPw implements Initializable{
     @FXML
     private Button btfindpw;
 
-    @FXML
+    @FXML 
     private TextField textid;
     
     @FXML
