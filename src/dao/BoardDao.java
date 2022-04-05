@@ -1,14 +1,14 @@
 package dao;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import dto.Board;
+import dto.MemberView;
 import dto.Reply;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,13 +33,46 @@ public class BoardDao {
 	}
 	
 	// 메소드
-	
+	public static void viewSave() {
+		try {
+			FileOutputStream outputStream = new FileOutputStream("D:/viewlist.txt");
+			for(MemberView temp : controllor.board.Board.m_view) {
+				String Save = temp.getId()+","+temp.getB_num()+","+temp.getDate()+"\n";
+				outputStream.write(Save.getBytes());
+			}
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	public static void viewLoad() {
+		try {
+			FileInputStream inputStream = new FileInputStream("D:/viewlist.txt");
+			byte[] bytes = new byte[1024]; 
+			inputStream.read(bytes); 
+			String file = new String(bytes); 
+			String[]list = file.split("\n"); 
+			int i = 0;
+			for(String temp : list) {
+				if( i+1 == list.length ) {
+					break; 
+				}
+				String[] filed = temp.split(",");
+				MemberView temp2 = new MemberView(filed[0],Integer.parseInt(filed[1]),filed[2]);
+				controllor.board.Board.m_view.add(temp2);
+				i++;
+			}
+			
+		}
+		catch(Exception e) {
+		}
+	}
 	
 	//1. 글쓰기
 	public boolean write(Board board) {
 		try {
 			// 1. SQL 작성 [ 회원번호 ( 자동 )제외한 모든 필드 삽입  ]
-			String sql = "insert into board(b_title,b_contentw,b_writer) values(?,?,?)";
+			String sql = "insert into board(b_title,b_contents,b_writer) values(?,?,?)";
 			// 2. SQL 조작
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board.getB_title());

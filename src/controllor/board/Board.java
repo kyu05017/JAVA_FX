@@ -1,10 +1,15 @@
 package controllor.board;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import controllor.home.Home;
+import controllor.login.Login;
 import dao.BoardDao;
+import dto.MemberView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Board implements Initializable{
-
+	
+	
+	
 	public static dto.Board board; // 테이블에서 클릭한 객체를 저장한 객체
 	
     @FXML
@@ -29,10 +36,11 @@ public class Board implements Initializable{
     	Home.home.loadpage("/view/board/boardwrite");
     }
 	    
-    
+    public static ArrayList<MemberView> m_view = new ArrayList<>();
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		BoardDao.viewLoad();
 		//ArrayList<E>가 아닌 ObservableList를 사용 하는 이유 [ TableView가 사용 ]
 		// 1. DB 에서 모든 게시물 가져오기
 		ObservableList<dto.Board> boardlist = BoardDao.dao.list();
@@ -65,8 +73,19 @@ public class Board implements Initializable{
 			// 0. 클릭한 객체 객체로 저장
 			board = boardtable.getSelectionModel().getSelectedItem();
 			// 1. 조회수 증가
-			
-			BoardDao.dao.view(board.getB_num(), board.getB_view());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    	String today = sdf.format(new Date());
+			MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),today);
+			m_view.add(view);
+			BoardDao.viewSave();
+			for(MemberView temp : m_view) {
+				if(temp.getId().equals(Login.member.getM_id()) && temp.getB_num() == Board.board.getB_num()) {
+					if(!temp.getDate().equals(today)){
+						BoardDao.dao.view(board.getB_num(), board.getB_view());
+						break;
+					}
+				}
+			}
 			// 2. 페이지 저장 
 			// 3. 페이지 전환
 			Home.home.loadpage("/view/board/boardview");
