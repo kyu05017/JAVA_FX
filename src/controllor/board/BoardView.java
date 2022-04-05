@@ -71,6 +71,7 @@ public class BoardView implements Initializable{
     			alert.setHeaderText("정말 삭제 하시겠습니까?");
     			// 2. 버튼 확인 [ Optional 클래스 ]
     			Optional<ButtonType> optional = alert.showAndWait();
+    			//Optional 클래스 == null값을 객체로 저장하는 클래스
     			if(optional.get() == ButtonType.OK) { // ok를 늘렀을때ㅑ 회원 탈퇴
     				System.out.println("삭제");
     				boolean result =  BoardDao.dao.delete(controllor.board.Board.board.getB_num());
@@ -95,6 +96,9 @@ public class BoardView implements Initializable{
 
     @FXML
     void rewrite(ActionEvent event) {
+    	
+    	String reply = txtrecontents.getText();
+    	
     	
     }
 
