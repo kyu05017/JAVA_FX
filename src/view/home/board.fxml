@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.Myinfo">
+   <children>
+      <Text layoutX="565.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원정보">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Label fx:id="my_id" layoutX="448.0" layoutY="196.0" prefHeight="19.0" prefWidth="385.0" text="아이디" />
+      <Label fx:id="my_date" layoutX="448.0" layoutY="521.0" prefHeight="19.0" prefWidth="378.0" text="주소" />
+      <Label fx:id="my_add" layoutX="448.0" layoutY="356.0" prefHeight="19.0" prefWidth="385.0" text="주소" />
+      <Label fx:id="my_point" layoutX="448.0" layoutY="435.0" prefHeight="19.0" prefWidth="348.0" text="포인트" />
+      <Label fx:id="my_email" layoutX="448.0" layoutY="273.0" prefHeight="19.0" prefWidth="385.0" text="이메일" />
+   </children>
+</AnchorPane>
