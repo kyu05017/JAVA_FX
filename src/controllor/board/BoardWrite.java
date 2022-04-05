@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class BoardWrite implements Initializable{
 	
@@ -17,15 +18,17 @@ public class BoardWrite implements Initializable{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@FXML
+    @FXML
     private Button btback;
 
     @FXML
-    private TextArea btwrtie;
+    private TextArea txtcontents;
 
     @FXML
     private Button btwrite1;
+
+    @FXML
+    private TextField txttitle;
 
     @FXML
     void accback(ActionEvent event) {
@@ -34,6 +37,9 @@ public class BoardWrite implements Initializable{
 
     @FXML
     void addwrite(ActionEvent event) {
-
+    	String title = txttitle.getText();
+    	String contents = txtcontents.getText();
+    	
+    	
     }
 }
