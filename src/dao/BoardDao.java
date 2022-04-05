@@ -120,6 +120,7 @@ public class BoardDao {
 	// 4. ±Û¼öÁ¤
 	public boolean updaete(int b_num, String title, String contents) {
 		
+		
 		return false;
 	}
 	public boolean view(int num,int view) {

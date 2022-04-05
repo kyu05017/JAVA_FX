@@ -13,7 +13,7 @@
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #f3e8dc;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="216.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bthome" fitHeight="216.0" fitWidth="220.0" onMouseClicked="#tohome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/flower.png" />
                </image>
@@ -86,7 +86,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblboard" onMouseClicked="#boardacc" layoutX="88.0" layoutY="464.0" text="자유게시판">
+            <Label fx:id="lblboard" layoutX="88.0" layoutY="464.0" onMouseClicked="#boardacc" text="자유게시판">
                <font>
                   <Font size="13.0" />
                </font>

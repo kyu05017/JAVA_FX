@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
@@ -30,6 +31,13 @@ public class Home implements Initializable{
 	public Home() {
 		home = this; 
 	}
+	@FXML
+    private ImageView bthome;
+	@FXML
+    void tohome(MouseEvent event) {
+		Main.main.loadpage("/view/home/home");
+    }
+	
 	@FXML
 	private BorderPane mainpane;
 	

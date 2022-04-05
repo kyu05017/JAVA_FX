@@ -95,12 +95,12 @@ public class BoardView implements Initializable{
 
     @FXML
     void rewrite(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void update(ActionEvent event) {
-
+    	
     }
     
     @Override
