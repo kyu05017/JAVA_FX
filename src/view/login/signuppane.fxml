@@ -7,20 +7,51 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #00ff0000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.login.Signuppane">
    <children>
-      <VBox layoutX="20.0" layoutY="13.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #535233;" />
-      <TextField fx:id="textid" layoutX="73.0" layoutY="43.0" prefHeight="42.0" prefWidth="266.0" promptText="아이디" />
-      <PasswordField fx:id="textpw" layoutX="73.0" layoutY="91.0" prefHeight="42.0" prefWidth="266.0" promptText="비밀번호" />
+      <VBox layoutX="20.0" layoutY="13.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
+      <TextField fx:id="textid" layoutX="168.0" layoutY="66.0" prefHeight="42.0" prefWidth="203.0" promptText="아이디" />
+      <PasswordField fx:id="textpw" layoutX="168.0" layoutY="115.0" prefHeight="42.0" prefWidth="203.0" promptText="비밀번호" />
       <Button fx:id="btback" layoutX="248.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="뒤로가기" textFill="#e5ff00" />
-      <Button fx:id="btsignup" layoutX="248.0" layoutY="305.0" mnemonicParsing="false" onAction="#signup" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="회원가입" textFill="#e5ff00" />
-      <PasswordField fx:id="textpwcheck" layoutX="73.0" layoutY="141.0" prefHeight="42.0" prefWidth="266.0" promptText="비밀번호 확인" />
-      <TextField fx:id="textaddress" layoutX="73.0" layoutY="190.0" prefHeight="42.0" prefWidth="266.0" promptText="주소" />
-      <TextField fx:id="textemail" layoutX="73.0" layoutY="240.0" prefHeight="42.0" prefWidth="266.0" promptText="이메일" />
+      <Button fx:id="btsignup" layoutX="249.0" layoutY="316.0" mnemonicParsing="false" onAction="#signup" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="회원가입" textFill="#e5ff00" />
+      <PasswordField fx:id="textpwcheck" layoutX="168.0" layoutY="164.0" prefHeight="42.0" prefWidth="203.0" promptText="비밀번호 확인" />
+      <TextField fx:id="textaddress" layoutX="168.0" layoutY="212.0" prefHeight="42.0" prefWidth="203.0" promptText="주소" />
+      <TextField fx:id="textemail" layoutX="168.0" layoutY="260.0" prefHeight="42.0" prefWidth="203.0" promptText="이메일" />
       <Label fx:id="lbltext" alignment="CENTER" layoutX="125.0" layoutY="390.0" text="경고메세지" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font></Label>
+      <Text layoutX="150.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원가입">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="아이디">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="36.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호확인">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="주소">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="이메일">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
