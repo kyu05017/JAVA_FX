@@ -10,6 +10,8 @@ import controllor.login.Login;
 import dao.BoardDao;
 import dao.MemberDao;
 import dto.Board;
+import dto.Reply;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,10 +19,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BoardView implements Initializable{
 	
@@ -57,7 +61,7 @@ public class BoardView implements Initializable{
     private TextArea txtrecontents;
 
     @FXML
-    private TableView<?> retalbe;
+    private TableView<Reply> retalbe;
 
     @FXML
     void back(ActionEvent event) {
@@ -97,16 +101,49 @@ public class BoardView implements Initializable{
     @FXML
     void rewrite(ActionEvent event) {
     	
-    	String reply = txtrecontents.getText();
+    	String reply_contents = txtrecontents.getText();
     	
+    	Reply reply = new Reply(0, reply_contents, Login.member.getM_id(), null,controllor.board.Board.board.getB_num());
     	
+    	boolean result =  BoardDao.dao.reply_write(reply);
+    	
+    	if(result) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setHeaderText("댓글 작성이 완료 되었습니다.");
+    		alert.showAndWait();
+    	}
     }
-
+    
+    
+    boolean upcheck = true; // 수정 버튼 스위치 변수
+    
     @FXML
     void update(ActionEvent event) {
     	
+    	Alert alert = new Alert(AlertType.INFORMATION); // 1. 메세지 출력
+    	
+    	if(upcheck) {
+    		alert.setHeaderText("게시글 수정후 수정 완료 버튼을 눌러주세요.");
+    		alert.showAndWait();
+    		txttitle.setEditable(true);
+			txtcontents.setEditable(true);
+			btupdate.setText("수정완료");
+	    	upcheck = false;
+    	}
+    	else {
+
+	    	boolean result = BoardDao.dao.updaete(controllor.board.Board.board.getB_num(),txttitle.getText(),txtcontents.getText());
+	    	
+	    	if(result) {
+	    		alert.setHeaderText("수정이 완료 되었습니다.");
+				alert.showAndWait();
+				txttitle.setEditable(false);
+				txtcontents.setEditable(false);
+				Home.home.loadpage("/view/board/board");
+				upcheck = true;
+	    	}
+    	}
     }
-    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	
@@ -124,9 +161,24 @@ public class BoardView implements Initializable{
 			btupdate.setVisible(false); // true == 보이기
 		}
 		// 텍스트 수정 못하게 잠금 처리
+
 		txttitle.setEditable(false);
 		txtcontents.setEditable(false);
 		
+		ObservableList<Reply> replylist = BoardDao.dao.reply_list();
+		
+		TableColumn<?, ?> tc = retalbe.getColumns().get(0);
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_num"));
+		
+		tc = retalbe.getColumns().get(1); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_contents"));
+		
+		tc = retalbe.getColumns().get(2); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_writerr"));
+		
+		tc = retalbe.getColumns().get(3); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_date"));
+		retalbe.setItems(replylist);
 		
 	}
 }
