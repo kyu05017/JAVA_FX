@@ -119,15 +119,22 @@ public class BoardView implements Initializable{
     	
     	String reply_contents = txtrecontents.getText();
     	
-    	Reply reply = new Reply(0, reply_contents, Login.member.getM_id(), null,controllor.board.Board.board.getB_num());
-    	
-    	boolean result =  BoardDao.dao.reply_write(reply);
-    	
-    	if(result) {
+    	if(txtrecontents.getText().equals("")) {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setHeaderText("댓글 작성이 완료 되었습니다.");
+    		alert.setHeaderText("내용을 입력해주세요.");
     		alert.showAndWait();
-    		replyshow();
+    	}
+    	else {
+    		Reply reply = new Reply(0, reply_contents, Login.member.getM_id(), null,controllor.board.Board.board.getB_num());
+        	
+        	boolean result =  BoardDao.dao.reply_write(reply);
+        	
+        	if(result) {
+        		Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setHeaderText("댓글 작성이 완료 되었습니다.");
+        		alert.showAndWait();
+        		replyshow();
+        	}
     	}
     }
     

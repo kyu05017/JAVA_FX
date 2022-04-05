@@ -46,18 +46,22 @@ public class BoardWrite implements Initializable{
     	String contents = txtcontents.getText();
     	// 작성자 : 현재로그인된 객체는 로그인 클래스내 맴버객체에 저장되어있음
     	String writer = Login.member.getM_id();
-    	Board board = new Board(0, title, contents,writer, null, 0);
-    	
-    	boolean result =  BoardDao.dao.write(board);
-    	
-    	if(result) {
+    	if(txttitle.getText().equals("") || txtcontents.getText().equals("")) {
     		Alert alert = new Alert(AlertType.INFORMATION);
-    		alert.setHeaderText("게시글이 작성 되었습니다.");
+    		alert.setHeaderText("내용을 입력해주세요.");
     		alert.showAndWait();
-    		Home.home.loadpage("/view/board/board");
     	}
     	else {
-    		
+    		Board board = new Board(0, title, contents,writer, null, 0);
+    	
+	    	boolean result =  BoardDao.dao.write(board);
+	    	
+	    	if(result) {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setHeaderText("게시글이 작성 되었습니다.");
+	    		alert.showAndWait();
+	    		Home.home.loadpage("/view/board/board");
+	    	}
     	}
     }
 }
