@@ -16,12 +16,12 @@ import javafx.util.Duration;
 
 public class Login implements Initializable{
 	
-	// *  ÇØ´ç Å¬·¡½º¸¦ ¹İÈ¯ ¸Ş¸ğ¸®¸¦ ¹İÈ¯ ÇØÁÖ´Â ¸Ş¼Òµå 
+	// *  í•´ë‹¹ í´ë˜ìŠ¤ë¥¼ ë°˜í™˜ ë©”ëª¨ë¦¬ë¥¼ ë°˜í™˜ í•´ì£¼ëŠ” ë©”ì†Œë“œ 
 	public static Login login;
-	// * »ı¼ºÀÚ
+	// * ìƒì„±ì
 	public Login() {login = this;}
 
-	// ·Î±×ÀÎ ¼º°øÇÑ °´Ã¼ [ ´Ù¸¥ Å¬·¡½º¿¡¼­ È£ÃâÇÏ±â À§ÇØ ]
+	// ë¡œê·¸ì¸ ì„±ê³µí•œ ê°ì²´ [ ë‹¤ë¥¸ í´ë˜ìŠ¤ì—ì„œ í˜¸ì¶œí•˜ê¸° ìœ„í•´ ]
 	public static Member member;
 	
 	
@@ -34,14 +34,14 @@ public class Login implements Initializable{
 	 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// 1. µ¿¿µ»ó »ğÀÔÇÏ±â
-			// 1. µ¿¿µ»ó ÆÄÀÏ °´Ã¼È­
+		// 1. ë™ì˜ìƒ ì‚½ì…í•˜ê¸°
+			// 1. ë™ì˜ìƒ íŒŒì¼ ê°ì²´í™”
 		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
-			// 2. ¹Ìµğ¾îÇÃ·¹ÀÌ¾î °´Ã¼¿¡ µ¿¿µ»ó ³Ö±â
+			// 2. ë¯¸ë””ì–´í”Œë ˆì´ì–´ ê°ì²´ì— ë™ì˜ìƒ ë„£ê¸°
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
-			// 3. ¹ÌÀÌ´õ ÇÃ·¹ÀÌ¾î¿¡ ¹Ìµğ¾î ³Ö±â
+			// 3. ë¯¸ì´ë” í”Œë ˆì´ì–´ì— ë¯¸ë””ì–´ ë„£ê¸°
 		mediaview.setMediaPlayer(mediaPlayer); 
-		// ¹«ÇÑ¹İº¹
+		// ë¬´í•œë°˜ë³µ [ ë¯¸ë””ì–´ê°€ ëë‚¬ì„ë•Œ ] 
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			
 			@Override
@@ -50,7 +50,7 @@ public class Login implements Initializable{
 				
 			}
 		});
-			// ¹Ìµğ¾î ÇÃ·¹ÀÌ¾î ½ÃÀÛ
+			// ë¯¸ë””ì–´ í”Œë ˆì´ì–´ ì‹œì‘
 		mediaPlayer.play();
 		
 		 
@@ -59,15 +59,15 @@ public class Login implements Initializable{
 	}
 	
 	
-	public void loadpage( String page ) { // loadpage ( ÆÄÀÏ°æ·Î )
+	public void loadpage( String page ) { // loadpage ( íŒŒì¼ê²½ë¡œ )
 		
 		try {
-			// ÆäÀÌÁö(fxml) °´Ã¼È­ 
-			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // ¹«Á¶°Ç ¿¹¿ÜÃ³¸®
-			boaderpane.setCenter(parent); // ÄÁÅ×ÀÌ³Ê(fxml) °¡¿îµ¥¿¡ ÆäÀÌÁö ³Ö±â 
+			// í˜ì´ì§€(fxml) ê°ì²´í™” 
+			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // ë¬´ì¡°ê±´ ì˜ˆì™¸ì²˜ë¦¬
+			boaderpane.setCenter(parent); // ì»¨í…Œì´ë„ˆ(fxml) ê°€ìš´ë°ì— í˜ì´ì§€ ë„£ê¸° 
 		}
-		catch( Exception e ) { // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ¿¹¿ÜÃ³¸®
-			System.out.println("ÆäÀÌÁö ¿¬°á ½ÇÆĞ" + e);
+		catch( Exception e ) { // íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ê²½ìš° ì˜ˆì™¸ì²˜ë¦¬
+			System.out.println("í˜ì´ì§€ ì—°ê²° ì‹¤íŒ¨" + e);
 		}
 	}
 }
