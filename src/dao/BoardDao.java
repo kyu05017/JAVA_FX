@@ -195,11 +195,18 @@ public class BoardDao {
 			for(MemberView temp : controllor.board.Board.m_view) {
 				if(temp.getId().equals(id) && temp.getB_num() == num) {
 					if(temp.getDate().equals(today)) {
+						System.out.println("temp id " + temp.getId());
+						System.out.println("temp num " + temp.getB_num());
+						System.out.println("temp date " + temp.getDate());
+						System.out.println(num);
+						System.out.println(id);
+						System.out.println(today);
 						System.out.println("조회수 미증가");
 						break;
 					}
-					else if((!temp.getDate().equals(today)) || temp == null){
+					else if((!temp.getDate().equals(today))){
 						System.out.println("조회수 증가");
+						temp.setDate(today);
 						String sql = "UPDATE board SET b_view=? where b_num=?";
 						// 2. sql 조작
 						
@@ -210,7 +217,8 @@ public class BoardDao {
 						System.out.println(new_view);
 						ps.setInt(2, num);
 						// 3. SQL 실행
-						ps.executeUpdate(); 
+						ps.executeUpdate();
+						BoardDao.viewSave();
 						break;
 					}
 				}

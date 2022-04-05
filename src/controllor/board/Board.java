@@ -73,12 +73,10 @@ public class Board implements Initializable{
 			// 0. 클릭한 객체 객체로 저장
 			board = boardtable.getSelectionModel().getSelectedItem();
 			// 1. 조회수 증가
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	    	String today = sdf.format(new Date());
-			MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),today);
-			m_view.add(view);
-			BoardDao.viewSave();
 			
+			MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),"yyyy-MM-dd");
+			m_view.add(view);
+
 			BoardDao.dao.view(board.getB_num(), board.getB_view(),Login.member.getM_id());
 			// 2. 페이지 저장 
 			// 3. 페이지 전환
