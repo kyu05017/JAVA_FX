@@ -37,7 +37,6 @@ public class Home implements Initializable{
     void tohome(MouseEvent event) {
 		Main.main.loadpage("/view/home/home");
     }
-	
 	@FXML
 	private BorderPane mainpane;
 	
