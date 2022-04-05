@@ -2,36 +2,24 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.BoardWrite">
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.board.BoardWrite">
    <children>
       <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="자유 게시판">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="btback" layoutX="920.0" layoutY="78.0" mnemonicParsing="false" onAction="#addback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="뒤로가기">
+      <Button fx:id="btback" layoutX="920.0" layoutY="78.0" mnemonicParsing="false" onAction="#accback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="뒤로가기">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="txttitle" layoutX="14.0" layoutY="182.0" prefHeight="34.0" prefWidth="1040.0" />
-      <Text layoutX="14.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제목" wrappingWidth="55.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextArea fx:id="txtcontents" layoutX="14.0" layoutY="260.0" prefHeight="405.0" prefWidth="1040.0" />
-      <Text layoutX="14.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내용" wrappingWidth="55.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="btwrite1" layoutX="923.0" layoutY="672.0" mnemonicParsing="false" onAction="#addwrite" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="작성완료">
+      <TextArea fx:id="btwrtie" layoutX="11.0" layoutY="121.0" prefHeight="539.0" prefWidth="1039.0" />
+      <Button fx:id="btwrite1" layoutX="920.0" layoutY="672.0" mnemonicParsing="false" onAction="#addwrite" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="작성완료">
          <font>
             <Font size="18.0" />
          </font>
