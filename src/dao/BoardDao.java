@@ -7,11 +7,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import dto.Board;
 import dto.MemberView;
 import dto.Reply;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class BoardDao {
 	
@@ -182,20 +187,37 @@ public class BoardDao {
 		}
 		return false;
 	}
-	public boolean view(int num,int view) {
+	public boolean view(int num,int view,String id) {
+		BoardDao.viewLoad();
 		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    	String today = sdf.format(new Date());
+			for(MemberView temp : controllor.board.Board.m_view) {
+				if(temp.getId().equals(id) && temp.getB_num() == num) {
+					if(temp.getDate().equals(today)) {
+						System.out.println("조회수 미증가");
+						break;
+					}
+					else if((!temp.getDate().equals(today)) || temp == null){
+						System.out.println("조회수 증가");
+						String sql = "UPDATE board SET b_view=? where b_num=?";
+						// 2. sql 조작
+						
+						ps = con.prepareStatement(sql);
+						int new_view = view + 1;
+						controllor.board.Board.board.setB_view(new_view);
+						ps.setInt(1, new_view);
+						System.out.println(new_view);
+						ps.setInt(2, num);
+						// 3. SQL 실행
+						ps.executeUpdate(); 
+						break;
+					}
+				}
+			}
 			// 1. SQL 작성
 			// select * from 테이블명 where 조건=( 필드명 = 값 )
-			String sql = "UPDATE board SET b_view=? where b_num=?";
-			// 2. sql 조작
-			ps = con.prepareStatement(sql);
-			int new_view = view + 1;
-			controllor.board.Board.board.setB_view(new_view);
-			ps.setInt(1, new_view);
-			System.out.println(new_view);
-			ps.setInt(2, num);
-			// 3. SQL 실행
-			ps.executeUpdate(); 
+			
 			
 			return true;
 		}
@@ -270,5 +292,48 @@ public class BoardDao {
 		}
 		// 실패시 
 		return null;
+	}
+	// 8. 댓글 삭제
+	public boolean reply_delete(int r_num) {
+		try {
+			// 1. sql 작성
+			String sql = "delete from reply where r_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, r_num);
+			
+			// 3. sql 실행
+			ps.executeUpdate();
+			// 4. sql 결과
+			return true;
+			
+		} catch (SQLException e) {
+			System.out.println("[SQL 댓글 삭제 실패 ] "+ e);
+			}
+		
+		return false;
+	}
+	// 9. 댓글 수정
+	public boolean re_updaete(int r_num,String contents) {
+		try {
+			// 1. SQL 작성
+			// select * from 테이블명 where 조건=( 필드명 = 값 )
+			String sql = "UPDATE reply SET r_contents=? where r_num=?";
+			// 2. sql 조작
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, contents);
+			ps.setInt(2, r_num);
+
+			// 3. SQL 실행
+			ps.executeUpdate(); 
+			
+			// 4. sql 결과
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("수정오료 " + e);
+		}
+		return false;
 	}
 }

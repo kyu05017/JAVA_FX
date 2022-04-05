@@ -24,7 +24,7 @@ public class Board implements Initializable{
 	
 	
 	public static dto.Board board; // 테이블에서 클릭한 객체를 저장한 객체
-	
+
     @FXML
     private TableView<dto.Board> boardtable; // 테이블에 넣을 자료형 선택 [ 테이블에 게시물 표시하기 위해 ] 
     
@@ -40,7 +40,7 @@ public class Board implements Initializable{
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		BoardDao.viewLoad();
+		
 		//ArrayList<E>가 아닌 ObservableList를 사용 하는 이유 [ TableView가 사용 ]
 		// 1. DB 에서 모든 게시물 가져오기
 		ObservableList<dto.Board> boardlist = BoardDao.dao.list();
@@ -78,14 +78,8 @@ public class Board implements Initializable{
 			MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),today);
 			m_view.add(view);
 			BoardDao.viewSave();
-			for(MemberView temp : m_view) {
-				if(temp.getId().equals(Login.member.getM_id()) && temp.getB_num() == Board.board.getB_num()) {
-					if(!temp.getDate().equals(today)){
-						BoardDao.dao.view(board.getB_num(), board.getB_view());
-						break;
-					}
-				}
-			}
+			
+			BoardDao.dao.view(board.getB_num(), board.getB_view(),Login.member.getM_id());
 			// 2. 페이지 저장 
 			// 3. 페이지 전환
 			Home.home.loadpage("/view/board/boardview");

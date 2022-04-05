@@ -24,7 +24,7 @@
          </font>
       </Button>
       <TextArea fx:id="txtcontents" layoutX="12.0" layoutY="225.0" prefHeight="250.0" prefWidth="1039.0" />
-      <Button fx:id="btrewrite1" layoutX="920.0" layoutY="522.0" mnemonicParsing="false" onAction="#rewrite" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="댓글작성">
+      <Button fx:id="btrewrite1" layoutX="920.0" layoutY="535.0" mnemonicParsing="false" onAction="#rewrite" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="댓글작성">
          <font>
             <Font size="18.0" />
          </font>
@@ -57,5 +57,15 @@
             <TableColumn prefWidth="145.0" text="작성일" />
         </columns>
       </TableView>
+      <Button fx:id="btredelete" layoutX="920.0" layoutY="494.0" mnemonicParsing="false" onAction="#redel" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="댓글삭제">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btreupdate" layoutX="920.0" layoutY="536.0" mnemonicParsing="false" onAction="#reupdate" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="댓글수정">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

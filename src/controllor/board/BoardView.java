@@ -25,8 +25,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BoardView implements Initializable{
 	
-	
-	
 	@FXML
     private Button btback;
 
@@ -59,6 +57,16 @@ public class BoardView implements Initializable{
 
     @FXML
     private TableView<Reply> retalbe;
+    
+    @FXML
+    private Button btredelete;
+    
+    @FXML
+    private Button btreupdate;
+    
+    
+    
+    public static Reply reply;
 
     // * 댓글 테이블 
     public void replyshow() {
@@ -77,6 +85,8 @@ public class BoardView implements Initializable{
 		tc = retalbe.getColumns().get(3); // 두번째 열 호출
 		tc.setCellValueFactory(new PropertyValueFactory<>("r_date"));
 		retalbe.setItems(replylist);
+		
+		
     }
     
     @FXML
@@ -87,31 +97,60 @@ public class BoardView implements Initializable{
     @FXML
     void delete(ActionEvent event) {
     	// 1. 메세지 설정
-    			Alert alert = new Alert(AlertType.CONFIRMATION); // 확인,취소 버튼 타입
-    			alert.setHeaderText("정말 삭제 하시겠습니까?");
-    			// 2. 버튼 확인 [ Optional 클래스 ]
-    			Optional<ButtonType> optional = alert.showAndWait();
-    			//Optional 클래스 == null값을 객체로 저장하는 클래스
-    			if(optional.get() == ButtonType.OK) { // ok를 늘렀을때ㅑ 회원 탈퇴
-    				System.out.println("삭제");
-    				boolean result =  BoardDao.dao.delete(controllor.board.Board.board.getB_num());
-    				
-    				if(result) {
-    					// 페이지 전황
-    					Home.home.loadpage("/view/board/board");
-    					Alert alert2 = new Alert(AlertType.INFORMATION);
-    		    		alert2.setTitle("글삭제");
-    		    		alert2.setHeaderText("게시글 삭제가 완료 되었습니다.");
-    		    		alert2.setContentText("완료");
-    		    		alert2.showAndWait();
-    				}
-    				else {
-    					System.out.println("삭제 실패했데");
-    				}
-    			}
-    			else if(optional.get() == ButtonType.CANCEL) {
-    				System.out.println("취소");
-    			}
+		Alert alert = new Alert(AlertType.CONFIRMATION); // 확인,취소 버튼 타입
+		alert.setHeaderText("정말 삭제 하시겠습니까?");
+		// 2. 버튼 확인 [ Optional 클래스 ]
+		Optional<ButtonType> optional = alert.showAndWait();
+		//Optional 클래스 == null값을 객체로 저장하는 클래스
+		if(optional.get() == ButtonType.OK) { // ok를 늘렀을때ㅑ 회원 탈퇴
+			System.out.println("삭제");
+			boolean result =  BoardDao.dao.delete(controllor.board.Board.board.getB_num());
+			
+			if(result) {
+				// 페이지 전황
+				Home.home.loadpage("/view/board/board");
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+	    		alert2.setTitle("글삭제");
+	    		alert2.setHeaderText("게시글 삭제가 완료 되었습니다.");
+	    		alert2.setContentText("완료");
+	    		alert2.showAndWait();
+			}
+			else {
+				System.out.println("삭제 실패했데");
+			}
+		}
+		else if(optional.get() == ButtonType.CANCEL) {
+			System.out.println("취소");
+		}
+    }
+    @FXML
+    void redel(ActionEvent event) {
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION); // 확인,취소 버튼 타입
+		alert.setHeaderText("정말 삭제 하시겠습니까?");
+		// 2. 버튼 확인 [ Optional 클래스 ]
+		Optional<ButtonType> optional = alert.showAndWait();
+		//Optional 클래스 == null값을 객체로 저장하는 클래스
+		if(optional.get() == ButtonType.OK) { // ok를 늘렀을때ㅑ 회원 탈퇴
+			System.out.println("삭제");
+			boolean result =  BoardDao.dao.reply_delete(reply.getR_num());
+			
+			if(result) {
+				// 페이지 전황
+				Home.home.loadpage("/view/board/board");
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+	    		alert2.setTitle("글삭제");
+	    		alert2.setHeaderText("게시글 삭제가 완료 되었습니다.");
+	    		alert2.setContentText("완료");
+	    		alert2.showAndWait();
+			}
+			else {
+				System.out.println("삭제 실패했데");
+			}
+		}
+		else if(optional.get() == ButtonType.CANCEL) {
+			System.out.println("취소");
+		}
     }
 
     @FXML
@@ -138,9 +177,7 @@ public class BoardView implements Initializable{
     	}
     }
     
-    
-    boolean upcheck = true; // 수정 버튼 스위치 변수
-    
+    boolean upcheck = true; // 수정 버튼 스위치 변
     @FXML
     void update(ActionEvent event) {
     	
@@ -168,6 +205,29 @@ public class BoardView implements Initializable{
 	    	}
     	}
     }
+    boolean re_upcheck = true; // 수정 버튼 스위치 변
+    @FXML
+    void reupdate(ActionEvent event) {
+    	Alert alert = new Alert(AlertType.INFORMATION); // 1. 메세지 출력
+    	
+    	if(re_upcheck) {
+    		alert.setHeaderText("댓글 수정후 수정 완료 버튼을 눌러주세요.");
+    		alert.showAndWait();
+			re_upcheck = false;
+    	}
+    	else {
+
+	    	boolean result = BoardDao.dao.re_updaete(reply.getR_num(),txtrecontents.getText());
+	    	
+	    	if(result) {
+	    		alert.setHeaderText("수정이 완료 되었습니다.");
+				alert.showAndWait();
+				re_upcheck = true;
+	    	}
+    	}
+    }
+    
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	replyshow();
@@ -184,8 +244,28 @@ public class BoardView implements Initializable{
 			btdelete.setVisible(false); // 버튼 숨기기
 			btupdate.setVisible(false); // true == 보이기
 		}
-		// 텍스트 수정 못하게 잠금 처리
 		
+		btredelete.setVisible(false);
+		
+		retalbe.setOnMouseClicked( e -> {
+			
+			reply = retalbe.getSelectionModel().getSelectedItem();
+			if(reply.getR_writerr().equals(Login.member.getM_id())) {
+				btredelete.setVisible(true);
+				btreupdate.setVisible(true);
+				btrewrite1.setVisible(false);
+				
+			}
+			else {
+				btreupdate.setVisible(false);
+				btredelete.setVisible(false);
+				btrewrite1.setVisible(true);
+			}
+
+			
+		});
+		
+		// 텍스트 수정 못하게 잠금 처리
 		txttitle.setEditable(false);
 		txtcontents.setEditable(false);
 		
