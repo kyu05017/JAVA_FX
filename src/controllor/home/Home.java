@@ -106,8 +106,7 @@ public class Home implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lbloginid.setText("ID : "+Login.member.getM_id());
-		lbloginpt.setText("point : " + Login.member.getM_point() + "점");
+		
 		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
 		// 2. 미디어플레이어 객체에 동영상 넣기
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -141,6 +140,8 @@ public class Home implements Initializable{
 			}
 		}
 		MemberDao.dao.todaylogin(Login.member.getM_id());
+		lbloginid.setText("ID : "+Login.member.getM_id());
+		lbloginpt.setText("point : " + Login.member.getM_point() + "점");
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
