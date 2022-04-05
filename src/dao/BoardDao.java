@@ -24,7 +24,9 @@ public class BoardDao {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTimezone=UTC","root","1234"); // 2. DB 주소 연결
 			System.out.println("보드 DB연동 성공");
 		} 
-		catch (Exception e) {System.out.println("보드 DB연동 실패" + e);}
+		catch (Exception e) {
+			System.out.println("[SQL 모드 연동 실패 ] "+ e);
+		}
 	}
 	
 	// 메소드
@@ -94,7 +96,7 @@ public class BoardDao {
 			return boardlist;
 		}
 		catch (Exception e) {
-			System.out.println("[sql 연결 실패] : 사유 " + e);
+			System.out.println("[SQL 글목록 로드 실패 ] "+ e);
 		}
 		// 실패시 
 		return null;
@@ -114,7 +116,9 @@ public class BoardDao {
 			// 4. sql 결과
 			return true;
 			
-		} catch (SQLException e) {System.out.println("삭제오류"+e);}
+		} catch (SQLException e) {
+			System.out.println("[SQL 게시글 삭제 실패 ] "+ e);
+			}
 		
 		return false;
 	}
@@ -160,7 +164,7 @@ public class BoardDao {
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("수정오료 " + e);
+			System.out.println("[SQL 조회수 저장 ] "+ e);
 		}
 		return false;
 	}
