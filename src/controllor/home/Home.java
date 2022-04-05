@@ -140,6 +140,7 @@ public class Home implements Initializable{
 		mediaPlayer.play();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	String since = sdf.format(new Date());
+    	
 		if(Login.member.getM_today().equals(since)) {
 			
 		}

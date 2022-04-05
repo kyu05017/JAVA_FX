@@ -98,7 +98,7 @@ public class Signuppane implements Initializable{
     	}
     	// * 모든 유효성 검사를 통과시 DB에 저장 
     		// 1. 객체화 [ 회원번호 없음, id, pw, 이메일, 주소, 포인트, 가입일 ]
-    	Member member = new Member(0, id, pw, email, address, 0, since,null);
+    	Member member = new Member(0, id, pw, email, address, 0, since,"yyyy-MM-dd");
     		// 2. DB 객체내 메소드 호출
     	boolean result = MemberDao.dao.signup(member);
     	

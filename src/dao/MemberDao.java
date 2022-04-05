@@ -63,7 +63,7 @@ public class MemberDao {	// DB 접근 객체
 		
 		try {
 		// 1. SQL 작성 [ 회원번호 ( 자동 )제외한 모든 필드 삽입  ]
-		String sql = "insert into member(m_id,m_pw,m_email,m_address,m_point,m_since) values(?,?,?,?,?,?)";
+		String sql = "insert into member(m_id,m_pw,m_email,m_address,m_point,m_since,m_today) values(?,?,?,?,?,?,?)";
 		
 		
 		// 2. SQL 조작
@@ -74,7 +74,7 @@ public class MemberDao {	// DB 접근 객체
 		ps.setString(4, member.getM_address());
 		ps.setInt(5, member.getM_point());
 		ps.setString(6, member.getM_since());
-		
+		ps.setString(7, member.getM_today());
 		// 3. SQL 실행
 		ps.executeUpdate(); 	
 		
@@ -275,7 +275,7 @@ public class MemberDao {	// DB 접근 객체
 			ps.executeUpdate(); 
 		}
 		catch(Exception e) {
-			
+			System.out.println("투데이 수정오료 " + e);
 		}
 	}
 }
