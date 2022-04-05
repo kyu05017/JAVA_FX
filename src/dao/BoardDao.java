@@ -187,7 +187,7 @@ public class BoardDao {
 		return false;// * 실패시
 	}
 	// 7 . 불러오시
-	public ObservableList<Reply> reply_list() {
+	public ObservableList<Reply> reply_list(int b_num) {
 		
 		try {
 			// *
@@ -197,10 +197,10 @@ public class BoardDao {
 				//select * (모든 필드) from 테이블명
 			 	// 오름차순 by b_num asc = b_num기준으로 오름차순 정렬
 				// 내림차순 by b_num desc = b_num기준으로 내림차순 정렬
-			String sql = "select * from reply order by r_num desc";
+			String sql = "select * from reply where b_num=?";
 			// 2. SQL 조작 [ DB 와 연결된 객체와 조작ㄱ인터페이스 연결 ]
 			ps = con.prepareStatement(sql);
-			
+			ps.setInt(1, b_num);
 			// 3. sql 실행 [ ResultSet 인터페이스 java.sql 패키지 ]
 			rs =  ps.executeQuery();
 			

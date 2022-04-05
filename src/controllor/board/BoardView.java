@@ -3,12 +3,9 @@ package controllor.board;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import controllor.Main;
 import controllor.home.Home;
 import controllor.login.Login;
 import dao.BoardDao;
-import dao.MemberDao;
 import dto.Board;
 import dto.Reply;
 import javafx.collections.ObservableList;
@@ -63,6 +60,25 @@ public class BoardView implements Initializable{
     @FXML
     private TableView<Reply> retalbe;
 
+    // * 댓글 테이블 
+    public void replyshow() {
+    	
+    	ObservableList<Reply> replylist = BoardDao.dao.reply_list(controllor.board.Board.board.getB_num());
+		
+		TableColumn<?, ?> tc = retalbe.getColumns().get(0);
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_num"));
+		
+		tc = retalbe.getColumns().get(1); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_writerr"));
+		
+		tc = retalbe.getColumns().get(2); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_contents"));
+		
+		tc = retalbe.getColumns().get(3); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("r_date"));
+		retalbe.setItems(replylist);
+    }
+    
     @FXML
     void back(ActionEvent event) {
     	Home.home.loadpage("/view/board/board");
@@ -111,6 +127,7 @@ public class BoardView implements Initializable{
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setHeaderText("댓글 작성이 완료 되었습니다.");
     		alert.showAndWait();
+    		replyshow();
     	}
     }
     
@@ -146,7 +163,7 @@ public class BoardView implements Initializable{
     }
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-    	
+    	replyshow();
 		Board board = controllor.board.Board.board; // 보드 컨트롤러내 테이블에서 선택된 객체를 호출
 		
 		lblwriter.setText("작성자 : "+board.getB_writer());
@@ -161,24 +178,11 @@ public class BoardView implements Initializable{
 			btupdate.setVisible(false); // true == 보이기
 		}
 		// 텍스트 수정 못하게 잠금 처리
-
+		
 		txttitle.setEditable(false);
 		txtcontents.setEditable(false);
 		
-		ObservableList<Reply> replylist = BoardDao.dao.reply_list();
 		
-		TableColumn<?, ?> tc = retalbe.getColumns().get(0);
-		tc.setCellValueFactory(new PropertyValueFactory<>("r_num"));
-		
-		tc = retalbe.getColumns().get(1); // 두번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("r_contents"));
-		
-		tc = retalbe.getColumns().get(2); // 두번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("r_writerr"));
-		
-		tc = retalbe.getColumns().get(3); // 두번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("r_date"));
-		retalbe.setItems(replylist);
-		
+
 	}
 }

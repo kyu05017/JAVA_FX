@@ -62,6 +62,7 @@ public class Board implements Initializable{
 		// * TableView 에서 해당 셀을 크릭 했을때 이벤트 발생 가능
 		//boardtable.setOnMouseClicked( e -> { 실행 코드 });; 클릭 했을때 
 		boardtable.setOnMouseClicked( e -> {
+			try {
 			System.out.println("클릭"+e);
 			// 0. 클릭한 객체 객체로 저장
 			board = boardtable.getSelectionModel().getSelectedItem();
@@ -71,7 +72,10 @@ public class Board implements Initializable{
 			// 3. 페이지 전환
 			
 			Home.home.loadpage("/view/board/boardview");
-			
+			}
+			catch(Exception e2) {
+				System.out.println("게시물 없음" + e2);
+			}
 		});
 		
 		// [ 일회용 ] 인수 -> 실행코드 // 람다식 ( 익명 함수 ) : 이름이 없는 함수 [ 인수와 실행코드 ]
