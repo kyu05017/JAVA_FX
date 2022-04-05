@@ -54,6 +54,14 @@ public class Home implements Initializable{
     @FXML
     private MediaView homeview;
 	
+    @FXML
+    private Label lblboard;
+    
+    @FXML
+	public void board(MouseEvent e ) {
+    	loadpage("/view/board/boardlist");
+	}
+    
 	@FXML
 	public void logout(MouseEvent e ) {
 		// 1. 로그인 정보 지우기

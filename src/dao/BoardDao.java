@@ -26,6 +26,7 @@ public class BoardDao {
 	// 메소드
 	//1. 글쓰기
 	public boolean write(Board board) {
+		
 		return false;
 	}
 	// 2. 글목록
