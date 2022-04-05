@@ -59,7 +59,7 @@ public class Home implements Initializable{
     
     @FXML
 	public void board(MouseEvent e ) {
-    	loadpage("/view/board/boardlist");
+    	loadpage("view/board/board");
 	}
     
 	@FXML
