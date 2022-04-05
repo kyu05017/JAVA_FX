@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import controllor.login.Login;
 import dto.Member;
 
 public class MemberDao {	// DB 접근 객체
 
-	private Connection con; // SB 연동시 사용되는 클래스 : DB 연동클래스
+	private Connection con; // DB 연동시 사용되는 클래스 : DB 연동클래스
 	private PreparedStatement ps; // 연결된 DB내 SQL 조작 할때 사용하는 인터페이스 : DB 조작
 	private ResultSet rs; // 검색 [ select ]
 	
@@ -245,6 +247,7 @@ public class MemberDao {	// DB 접근 객체
 			// 2. sql 조작
 			ps = con.prepareStatement(sql);
 			int new_point = point + 10;
+			Login.member.setM_point(new_point);
 			ps.setInt(1, new_point);
 			System.out.println(new_point);
 			ps.setInt(2, num);
