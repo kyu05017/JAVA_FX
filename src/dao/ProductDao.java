@@ -109,22 +109,16 @@ public class ProductDao {
 		}
 		return false;
 	}
-	public ObservableList<Product> my_itemlist(int m_num) {
+	public ArrayList<Product> my_itemlist(int num){
 		
+		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
-			// *
-			ObservableList<Product> myitemlist = FXCollections.observableArrayList();
-
 			String sql = "select * from product where m_num=?";
-
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, m_num);
-
-			rs =  ps.executeQuery();
-
-			while(rs.next()) {
-				// 1. 한줄식 [ 레코드 ] 단위 객체화
-				Product temp = new Product(
+			ps = con.prepareStatement(sql);	
+			ps.setInt(1,num);// SQL 연결 
+			rs = ps.executeQuery();					// SQL 실행  
+			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
+				Product product = new Product(  	// 해당 레코드를 객체화
 						rs.getInt(1) ,
 						rs.getString(2),
 						rs.getString(3), 
@@ -133,18 +127,12 @@ public class ProductDao {
 						rs.getInt(6),
 						rs.getInt(7),
 						rs.getString(8),
-						rs.getInt(9)
-				);
-				myitemlist.add(temp);
-			}
-			// 반복문이 종료되면 리스트 반환
-			// 성공시 데이터 목록 반환
-			return myitemlist;
-		}
-		catch (Exception e) {
-			System.out.println("[sql 연결 실패] : 사유 " + e);
-		}
-		// 실패시 
-		return null;
+						rs.getInt(9));
+				productlist.add(product);			// 리스트에 객체 담기 
+			}	
+			return productlist;						// 리스트 반환
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return null; // 만약에 실패시 NULL 반환
 	}
+	
 }
