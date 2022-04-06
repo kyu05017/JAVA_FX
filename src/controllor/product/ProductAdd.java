@@ -70,55 +70,60 @@ public class ProductAdd implements Initializable{
     @FXML
     void accadd(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
-    	// 1. 컨트롤에 입력된 데이터 받기
-    	String name = txtpname.getText();
-    	
-    	String prise = txtpprise.getText();
-    	int new_prise = Integer.parseInt(prise);
-    	String contents = txtpcontents.getText();
-    	
-    	// * 카테고리 
-    	String category = "";
-    	if(opt1.isSelected()) {
-    		category = "남성의류";
+    	try {
+	    	// 1. 컨트롤에 입력된 데이터 받기
+	    	String name = txtpname.getText();
+	    	String prise = txtpprise.getText();
+	    	int new_prise = Integer.parseInt(prise);
+	    	String contents = txtpcontents.getText();
+	    	
+	    	// * 카테고리 
+	    	String category = "";
+	    	if(opt1.isSelected()) {
+	    		category = "남성의류";
+	    	}
+	    	else if(opt2.isSelected()){
+	    		category = "여성의류";
+	    	}
+	    	else if(opt3.isSelected()){
+	    		category = "전자제품";
+	    	}
+	    	else if(opt4.isSelected()){
+	    		category = "생활용품";
+	    	}
+	    	int m_num = Login.member.getM_num();
+	    	// 2. 유효성 검사
+	    	if(txtpname.getText().equals("")) {
+	    		alert.setHeaderText("제목을 입력해 주세요.");
+	    		alert.showAndWait();
+	    	}
+	    	else if(txtpcontents.getText().equals("")) {
+	    		alert.setHeaderText("내용을 입력해 주세요.");
+	    		alert.showAndWait();
+	    	}
+	    	else {
+	    		// 3. 객체화
+	        	Product product = new Product(0, name, pimage, contents, category, new_prise, 1, null, m_num);
+	        	
+	        	// 4. DB처리
+	        	boolean result = ProductDao.dao.addproduct(product);
+	        	// 5. 결과러리
+	        	if(result) {
+	        		alert.setHeaderText("제품이 등록 되었습니다.");
+	        		alert.showAndWait();
+	        		Home.home.loadpage("/view/product/product");
+	        	}
+	    	}
     	}
-    	else if(opt2.isSelected()){
-    		category = "여성의류";
-    	}
-    	else if(opt3.isSelected()){
-    		category = "전자제품";
-    	}
-    	else if(opt4.isSelected()){
-    		category = "생활용품";
-    	}
-    	int m_num = Login.member.getM_num();
-    	// 2. 유효성 검사
-    	if(txtpname.equals("")) {
-    		alert.setHeaderText("제목을 입력해 주세요.");
+    	catch(NullPointerException e) {
+    		alert.setHeaderText("가격은 숫자만 입력 가능 합니다.");
     		alert.showAndWait();
-    		Home.home.loadpage("/view/product/product");
     	}
-    	if(txtpprise.equals("")) {
-    		alert.setHeaderText("가격을 입력해 주세요.");
-    		alert.showAndWait();
-    		Home.home.loadpage("/view/product/product");
-    	}
-    	if(txtpcontents.equals("")) {
-    		alert.setHeaderText("내용을 입력해 주세요.");
-    		alert.showAndWait();
-    		Home.home.loadpage("/view/product/product");
-    	}
-    	// 3. 객체화
-    	Product product = new Product(0, name, pimage, contents, category, new_prise, 1, null, m_num);
-    	
-    	// 4. DB처리
-    	boolean result = ProductDao.dao.addproduct(product);
-    	// 5. 결과러리
-    	if(result) {
-    		alert.setHeaderText("제품이 등록 되었습니다.");
-    		alert.showAndWait();
-    		Home.home.loadpage("/view/product/product");
-    	}
+//    	catch(Exception e) {
+//    		alert.setHeaderText("관리자에게 문의 하세요");
+//    		System.out.println(e);
+//    		alert.showAndWait();
+//    	}
     }
 
     @FXML
@@ -146,10 +151,7 @@ public class ProductAdd implements Initializable{
     	
     	// 5. 파일경로 
     	pimage = file.toURI().toString();
-    	
-    	System.out.println(file.toURI()); // 경로 구분선 : /
-    	System.out.println(file.getPath()); // 경로 구분선  : \
-    	System.out.println(file.toURI().toString());  // toString 문자열 반환
+
     	
     	// 5. 이미지 미리보기 컨트롤에 이미지 띄우기
     	Image image = new Image(pimage); // 해당 이미지 경로 값이 / 로 구분 되어야 함
