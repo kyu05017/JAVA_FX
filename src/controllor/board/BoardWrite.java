@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import controllor.home.Home;
 import controllor.login.Login;
 import dao.BoardDao;
+import dao.MemberDao;
 import dto.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,8 +59,9 @@ public class BoardWrite implements Initializable{
 	    	
 	    	if(result) {
 	    		Alert alert = new Alert(AlertType.INFORMATION);
-	    		alert.setHeaderText("게시글이 작성 되었습니다.");
+	    		alert.setHeaderText("게시글이 작성 되었습니다. 포인트 +10점");
 	    		alert.showAndWait();
+	    		MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
 	    		Home.home.loadpage("/view/board/board");
 	    	}
     	}

@@ -13,8 +13,8 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1064.0">
          <children>
-            <VBox layoutX="656.0" layoutY="139.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
             <MediaView fx:id="homeview" fitHeight="600.0" fitWidth="1064.0" layoutX="3.0" layoutY="59.0" />
+            <VBox layoutX="656.0" layoutY="139.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
             <Text layoutX="774.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="정보 수정">
                <font>
                   <Font size="24.0" />

@@ -93,6 +93,12 @@ public class ProductAdd implements Initializable{
 	    	}
 	    	int m_num = Login.member.getM_num();
 	    	// 2. 유효성 검사
+	    	if(!(opt1.isSelected() || opt2.isSelected() || opt3.isSelected() || opt4.isSelected()) ) {
+	    		alert.setHeaderText("카테고리를 선택하세요");
+	    		alert.showAndWait();
+	    		return;
+	    	}
+	    	
 	    	if(txtpname.getText().equals("")) {
 	    		alert.setHeaderText("제목을 입력해 주세요.");
 	    		alert.showAndWait();
