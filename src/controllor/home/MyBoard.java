@@ -3,7 +3,6 @@ package controllor.home;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import controllor.board.Board;
 import controllor.login.Login;
 import controllor.product.ProductControl;
@@ -16,22 +15,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 public class MyBoard implements Initializable{
-	
-	public static Product select;
 	
 	@FXML
     private TableView<dto.Board> myboard;
 	
 	@FXML
-    private TableView<Product> myitem;
+    private ScrollPane scrollpane;
+
+    @FXML
+    private VBox vbox;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -101,7 +103,7 @@ public class MyBoard implements Initializable{
 						// 1. 클릭한 버튼의 id 가져오기
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						// 2. 클릭한 제품 번호 저장 
-						select = productlist.get(id);
+						ProductControl.select = productlist.get(id);
 						Home.home.loadpage("/view/product/productview");
 					} );	
 				gridPane.add( button  , col , row); // 그리드내  해당 열번호 , 행번호 에 버튼 추가
@@ -122,7 +124,7 @@ public class MyBoard implements Initializable{
 					button.setId( i+"" );
 					button.setOnAction( e -> { 
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
-						select = productlist.get(id);
+						ProductControl.select = productlist.get(id);
 						Home.home.loadpage("/view/product/productview");
 					} );	
 				gridPane.add( button  , col , row+1 ); // 마지막행에 나머지값 만큼 버튼 추가해서 그리드에 추가

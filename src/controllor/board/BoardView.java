@@ -172,7 +172,8 @@ public class BoardView implements Initializable{
         		Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setHeaderText("댓글 작성이 완료 되었습니다.");
         		alert.showAndWait();
-        		replyshow();
+        		txtrecontents.setText("");
+        		replyshow();        		
         	}
     	}
     }
@@ -223,6 +224,7 @@ public class BoardView implements Initializable{
 	    		alert.setHeaderText("수정이 완료 되었습니다.");
 				alert.showAndWait();
 				re_upcheck = true;
+				txtrecontents.setText("");
 	    	}
     	}
     }
