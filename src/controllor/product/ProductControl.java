@@ -72,13 +72,14 @@ public class ProductControl implements Initializable{
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						// 2. 클릭한 제품 번호 저장 
 						select = productlist.get(id);
+						Home.home.loadpage("/view/product/productview");
 					} );	
 				gridPane.add( button  , col , row); // 그리드내  해당 열번호 , 행번호 에 버튼 추가
 				
 				i++; //인덱스 증가
 			}
 		}
-		// * 3배수의 나머지값
+		// * 3배수의 나머지값 ㅇㄹㄴㅇㄹㄴㄴㄴ
 		int row = productlist.size() / 3;		// 행
 		int remain = productlist.size() % 3 ;	// 마지막행의 나머지 
 		if( remain != 0  ) { // 나머지가 존재하면 
@@ -92,6 +93,7 @@ public class ProductControl implements Initializable{
 					button.setOnAction( e -> { 
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						select = productlist.get(id);
+						Home.home.loadpage("/view/product/productview");
 					} );	
 				gridPane.add( button  , col , row+1 ); // 마지막행에 나머지값 만큼 버튼 추가해서 그리드에 추가
 				i++; //인덱스 증가
