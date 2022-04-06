@@ -91,7 +91,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="135.0" layoutY="402.0" text="상품등록">
+            <Label fx:id="lbladdp" onMouseClicked="#addp"  layoutX="135.0" layoutY="402.0" text="상품등록">
                <font>
                   <Font size="13.0" />
                </font>

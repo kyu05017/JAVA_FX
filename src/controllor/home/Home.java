@@ -35,6 +35,9 @@ public class Home implements Initializable{
     private ImageView bthome;
 	
 	@FXML
+	private Label lbladdp;
+	
+	@FXML
 	private Label lblproduct;
 	
 	@FXML
@@ -63,16 +66,18 @@ public class Home implements Initializable{
 	
     @FXML
     private Label lblboard;
-    
-    @FXML
+
+    @FXML // 남자의류 이동
+    void addp(MouseEvent event) {loadpage("/view/product/productadd");}
+    @FXML // 남자의류 이동
     void accproduct(MouseEvent event) {loadpage("/view/product/product");}
-    @FXML
+    @FXML // 홈화면 이동
     void tohome(MouseEvent event) {Main.main.loadpage("/view/home/home");}
-    @FXML
+    @FXML // 내정보 이동
 	public void myinfo(MouseEvent e ) {loadpage("/view/home/myinfo");}
-	@FXML
+	@FXML // 정보수정 이동
 	public void change(MouseEvent e ) {loadpage("/view/home/changeinfo");}
-	@FXML
+	@FXML // 게시판 이동
 	public void boardacc(MouseEvent e ) {loadpage("/view/board/board");}
 	@FXML
 	public void logout(MouseEvent e ) {
