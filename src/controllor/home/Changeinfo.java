@@ -12,13 +12,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 import javafx.scene.control.Alert.AlertType;
 
 
 public class Changeinfo implements Initializable{
-	 @FXML
+	@FXML
     private TextField txtadd;
-
+	
+	@FXML
+	private MediaView homeview;
+	
     @FXML
     private TextField txtemail;
 
@@ -34,6 +41,22 @@ public class Changeinfo implements Initializable{
  
 	@FXML
     void accchange(ActionEvent event) {
+		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
+		// 2. 미디어플레이어 객체에 동영상 넣기
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+			// 3. 미이더 플레이어에 미디어 넣기
+		homeview.setMediaPlayer(mediaPlayer); 
+		// 무한반복
+		mediaPlayer.setOnEndOfMedia(new Runnable() {
+			
+			@Override
+			public void run() {
+				mediaPlayer.seek(Duration.ZERO);
+				
+			}
+		});
+		// 미디어 플레이어 시작
+		mediaPlayer.play();
     	System.out.println("정보수정");
     	// 1. 컨트롤에 입력된 값 가져오기
     	String add = txtadd.getText(); // 해당 fxid에 입력된 값 가져오디

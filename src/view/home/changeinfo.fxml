@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -13,6 +14,7 @@
       <AnchorPane prefHeight="720.0" prefWidth="1064.0">
          <children>
             <VBox layoutX="656.0" layoutY="139.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460 #F4A460;" />
+            <MediaView fx:id="homeview" fitHeight="600.0" fitWidth="1064.0" layoutX="3.0" layoutY="59.0" />
             <Text layoutX="774.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="정보 수정">
                <font>
                   <Font size="24.0" />
