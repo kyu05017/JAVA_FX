@@ -33,17 +33,10 @@ public class Home implements Initializable{
 	}
 	@FXML
     private ImageView bthome;
-	@FXML
-    void tohome(MouseEvent event) {
-		Main.main.loadpage("/view/home/home");
-    }
 	
 	@FXML
 	private Label lblproduct;
-	@FXML
-    void accproduct(MouseEvent event) {
-		loadpage("/view/product/product");
-    }
+	
 	@FXML
 	private BorderPane mainpane;
 	
@@ -71,8 +64,16 @@ public class Home implements Initializable{
     @FXML
     private Label lblboard;
     
-    
-    
+    @FXML
+    void accproduct(MouseEvent event) {loadpage("/view/product/product");}
+    @FXML
+    void tohome(MouseEvent event) {Main.main.loadpage("/view/home/home");}
+    @FXML
+	public void myinfo(MouseEvent e ) {loadpage("/view/home/myinfo");}
+	@FXML
+	public void change(MouseEvent e ) {loadpage("/view/home/changeinfo");}
+	@FXML
+	public void boardacc(MouseEvent e ) {loadpage("/view/board/board");}
 	@FXML
 	public void logout(MouseEvent e ) {
 		// 1. 로그인 정보 지우기
@@ -112,19 +113,6 @@ public class Home implements Initializable{
 		}
 		
 		
-	}
-	@FXML
-	public void myinfo(MouseEvent e ) {
-		loadpage("/view/home/myinfo");
-	}
-
-	@FXML
-	public void change(MouseEvent e ) {
-		loadpage("/view/home/changeinfo");
-	}
-	@FXML
-	public void boardacc(MouseEvent e ) {
-    	loadpage("/view/board/board");
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
