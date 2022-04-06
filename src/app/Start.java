@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class Start extends Application{
+public class Start extends Application{ // 20220406 09 01
 
 	@Override
 	public void start(Stage stage) throws Exception {
