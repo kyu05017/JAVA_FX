@@ -46,7 +46,7 @@
       <Label layoutX="566.0" layoutY="184.0" text="카테고리" />
       <Label layoutX="96.0" layoutY="242.0" text="제품 가격" />
       <Label layoutX="96.0" layoutY="303.0" text="제품 설명" />
-      <Label layoutX="561.0" layoutY="303.0" text="이미지 미리보기" />
-      <Label fx:id="txtpath" layoutX="681.0" layoutY="303.0" prefHeight="19.0" prefWidth="310.0" text="경로" />
+      <Label layoutX="561.0" layoutY="303.0" text="미리보기" />
+      <Label fx:id="txtpath" layoutX="631.0" layoutY="303.0" prefHeight="19.0" prefWidth="375.0" text="경로" />
    </children>
 </AnchorPane>
