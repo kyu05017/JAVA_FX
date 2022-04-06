@@ -278,4 +278,25 @@ public class MemberDao {	// DB 접근 객체
 			System.out.println("투데이 수정오료 " + e);
 		}
 	}
+	// 
+	public String getM_id(int m_num) {
+		try {
+			String sql = "select m_id from member where m_num=?";
+			
+			// 2. SQL 조작
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, m_num);
+			// 3. SQL 실행
+			rs = ps.executeQuery();//  select 실행은 결과물이 존재 -> resulitSet O
+			// ResultSet 처음 결과물이 null -- next > 결과 레코드
+			// 4. SQL 결과
+			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				return rs.getString(1); // 해당 아이디는 중복이 존재
+			}
+		}
+		catch(Exception e) {
+			System.out.println("아이디 찾기 오류 " + e);
+		}
+		return null;
+	}
 }
