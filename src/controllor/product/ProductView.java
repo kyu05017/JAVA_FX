@@ -81,7 +81,7 @@ public class ProductView implements Initializable{
 
     @FXML
     void accreupdate(ActionEvent event) {
-    	Home.home.loadpage("/view/product/productupdate");
+    	
     }
     
     @FXML
@@ -121,7 +121,7 @@ public class ProductView implements Initializable{
 
     @FXML
     void accupdate(ActionEvent event) {
-
+    	Home.home.loadpage("/view/product/productupdate");
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

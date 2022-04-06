@@ -96,7 +96,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="526.0" text="내가쓴글">
+            <Label fx:id="lblmyboard" onMouseClicked="#myboard"  layoutX="13.0" layoutY="526.0" text="내가쓴글">
                <font>
                   <Font size="13.0" />
                </font>

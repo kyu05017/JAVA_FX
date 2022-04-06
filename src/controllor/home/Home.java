@@ -66,7 +66,10 @@ public class Home implements Initializable{
 	
     @FXML
     private Label lblboard;
-
+    @FXML
+    private Label lblmyboard;
+    @FXML // 남자의류 이동
+    void myboard(MouseEvent event) {loadpage("/view/home/myboard");}
     @FXML // 남자의류 이동
     void addp(MouseEvent event) {loadpage("/view/product/productadd");}
     @FXML // 남자의류 이동

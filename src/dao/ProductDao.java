@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import dto.Board;
 import dto.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,8 +90,18 @@ public class ProductDao {
 		return false;
 	}
 	// 5. 제품 수정
-	public boolean updaete() {
+	public boolean updaete(Product product) {
 		try {
+			String sql = "update product set p_name=? , p_img=? , p_contents=?,p_category=? , p_money=? where p_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, product.getP_name());
+			ps.setString(2, product.getP_img());
+			ps.setString(3, product.getP_contents());
+			ps.setString(4, product.getP_category());
+			ps.setInt(5, product.getP_money());
+			ps.setInt(6, product.getP_num());
+			ps.executeUpdate();
+			return true;
 			
 		}
 		catch(Exception e) {
@@ -97,5 +109,42 @@ public class ProductDao {
 		}
 		return false;
 	}
-	
+	public ObservableList<Product> my_itemlist(int m_num) {
+		
+		try {
+			// *
+			ObservableList<Product> myitemlist = FXCollections.observableArrayList();
+
+			String sql = "select * from product where m_num=?";
+
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, m_num);
+
+			rs =  ps.executeQuery();
+
+			while(rs.next()) {
+				// 1. 한줄식 [ 레코드 ] 단위 객체화
+				Product temp = new Product(
+						rs.getInt(1) ,
+						rs.getString(2),
+						rs.getString(3), 
+						rs.getString(4), 
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getInt(9)
+				);
+				myitemlist.add(temp);
+			}
+			// 반복문이 종료되면 리스트 반환
+			// 성공시 데이터 목록 반환
+			return myitemlist;
+		}
+		catch (Exception e) {
+			System.out.println("[sql 연결 실패] : 사유 " + e);
+		}
+		// 실패시 
+		return null;
+	}
 }

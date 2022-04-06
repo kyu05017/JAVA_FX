@@ -337,4 +337,40 @@ public class BoardDao { // 2022 04 06 06 12
 		}
 		return false;
 	}
+	// 9.내 글확인
+	public ObservableList<Board> my_boardlist(String id) {
+		
+		try {
+			// *
+			ObservableList<Board> myboardlist = FXCollections.observableArrayList();
+
+			String sql = "select * from board where b_writer=?";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+
+			rs =  ps.executeQuery();
+
+			while(rs.next()) {
+				// 1. 한줄식 [ 레코드 ] 단위 객체화
+				Board temp = new Board(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6)
+						); 
+				myboardlist.add(temp);
+			}
+			// 반복문이 종료되면 리스트 반환
+			// 성공시 데이터 목록 반환
+			return myboardlist;
+		}
+		catch (Exception e) {
+			System.out.println("[sql 연결 실패] : 사유 " + e);
+		}
+		// 실패시 
+		return null;
+	}
 }
