@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import dto.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ProductDao {
 	
@@ -46,10 +47,58 @@ public class ProductDao {
 		return false;
 	}
 	// 2. 제품 풀력
-	
+	public ObservableList<Product> plist() {
+		try {
+			ObservableList<Product> productlist = FXCollections.observableArrayList();
+			String sql = "select * from product order by b_num desc";
+			ps = con.prepareStatement(sql);
+			rs =  ps.executeQuery();
+			while(rs.next()) {
+				Product temp = new Product(
+					rs.getInt(1),
+					rs.getString(2), 
+					rs.getString(3),
+					rs.getString(4),
+					rs.getString(5),
+					rs.getInt(6),	
+					rs.getInt(7),
+					rs.getString(8),
+					rs.getInt(9)
+				);
+				productlist.add(temp);
+			}
+			return productlist;
+		}
+		catch(Exception e) {
+			System.out.println("[SQL 제품 로드 실패 ]" + e);
+		}
+		return null;
+	}
 	// 3. 제품 조회
 	
 	// 4. 제품 삭제
-	
+	public boolean delete(int p_num) {
+		try {
+			String sql = "delete from product where p_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, p_num);
+			ps.executeUpdate();
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("[SQL 제품 삭제 실패 ]" + e);
+		}
+		return false;
+	}
 	// 5. 제품 수정
+	public boolean updaete() {
+		try {
+			
+		}
+		catch(Exception e) {
+			System.out.println("[SQL 제품 수정 실패 ]" + e);
+		}
+		return false;
+	}
+	
 }
