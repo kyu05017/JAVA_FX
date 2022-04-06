@@ -37,6 +37,13 @@ public class Home implements Initializable{
     void tohome(MouseEvent event) {
 		Main.main.loadpage("/view/home/home");
     }
+	
+	@FXML
+	private Label lblproduct;
+	@FXML
+    void accproduct(MouseEvent event) {
+		loadpage("/view/product/product");
+    }
 	@FXML
 	private BorderPane mainpane;
 	

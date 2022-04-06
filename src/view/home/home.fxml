@@ -57,7 +57,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="402.0" text="의류(남)">
+            <Label fx:id="lblproduct" onMouseClicked="#accproduct"  layoutX="13.0" layoutY="402.0" text="의류(남)">
                <font>
                   <Font size="13.0" />
                </font>
