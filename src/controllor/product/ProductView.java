@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import controllor.home.Home;
 import controllor.login.Login;
-import dao.BoardDao;
 import dao.MemberDao;
 import dao.ProductDao;
 import dto.Product;
@@ -57,7 +56,34 @@ public class ProductView implements Initializable{
 
     @FXML
     private Label txtprise;
+    
+    @FXML
+    private TextArea txtrefiled;
 
+    @FXML
+    private Button btredel;
+
+    @FXML
+    private Button btreadd;
+
+    @FXML
+    private Button btreupdate;
+    
+    @FXML
+    void accreadd(ActionEvent event) {
+
+    }
+
+    @FXML
+    void accredel(ActionEvent event) {
+
+    }
+
+    @FXML
+    void accreupdate(ActionEvent event) {
+    	Home.home.loadpage("/view/product/productupdate");
+    }
+    
     @FXML
     void accback(ActionEvent event) {
     	Home.home.loadpage("/view/product/product");
