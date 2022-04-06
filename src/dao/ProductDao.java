@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import dto.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,32 +48,28 @@ public class ProductDao {
 		return false;
 	}
 	// 2. 제품 풀력
-	public ObservableList<Product> plist() {
+	public ArrayList<Product> plist(){
+		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
-			ObservableList<Product> productlist = FXCollections.observableArrayList();
-			String sql = "select * from product order by b_num desc";
-			ps = con.prepareStatement(sql);
-			rs =  ps.executeQuery();
-			while(rs.next()) {
-				Product temp = new Product(
-					rs.getInt(1),
-					rs.getString(2), 
-					rs.getString(3),
-					rs.getString(4),
-					rs.getString(5),
-					rs.getInt(6),	
-					rs.getInt(7),
-					rs.getString(8),
-					rs.getInt(9)
-				);
-				productlist.add(temp);
-			}
-			return productlist;
-		}
-		catch(Exception e) {
-			System.out.println("[SQL 제품 로드 실패 ]" + e);
-		}
-		return null;
+			String sql = "select * from product";	// SQL 작성
+			ps = con.prepareStatement(sql);			// SQL 연결 
+			rs = ps.executeQuery();					// SQL 실행  
+			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
+				Product product = new Product(  	// 해당 레코드를 객체화
+						rs.getInt(1) ,
+						rs.getString(2),
+						rs.getString(3), 
+						rs.getString(4), 
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getInt(9));
+				productlist.add(product);			// 리스트에 객체 담기 
+			}	
+			return productlist;						// 리스트 반환
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return null; // 만약에 실패시 NULL 반환
 	}
 	// 3. 제품 조회
 	
