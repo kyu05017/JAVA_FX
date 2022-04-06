@@ -116,14 +116,15 @@ public class ProductAdd implements Initializable{
 	    	}
     	}
     	catch(NullPointerException e) {
-    		alert.setHeaderText("가격은 숫자만 입력 가능 합니다.");
+    		alert.setHeaderText("내용을 입력하세요");
+    		System.out.println(e);
     		alert.showAndWait();
     	}
-//    	catch(Exception e) {
-//    		alert.setHeaderText("관리자에게 문의 하세요");
-//    		System.out.println(e);
-//    		alert.showAndWait();
-//    	}
+    	catch(NumberFormatException e) {
+    		alert.setHeaderText("가격은 숫자만 입력 가능 합니다.");
+    		System.out.println(e);
+    		alert.showAndWait();
+    	}
     }
 
     @FXML
