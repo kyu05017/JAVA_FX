@@ -47,7 +47,7 @@
                </font>
             </Label>
             <Line endX="100.0" layoutX="108.0" layoutY="299.0" startX="-100.0" />
-            <Label layoutX="8.0" layoutY="375.0" text="중고">
+            <Label fx:id="lblproduct"  onMouseClicked="#accproduct"  layoutX="8.0" layoutY="375.0" text="중고">
                <font>
                   <Font size="18.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lblproduct" onMouseClicked="#accproduct"  layoutX="13.0" layoutY="402.0" text="의류(남)">
+            <Label  layoutX="13.0" layoutY="402.0" text="의류(남)">
                <font>
                   <Font size="13.0" />
                </font>
