@@ -248,22 +248,25 @@ public class BoardView implements Initializable{
 		btredelete.setVisible(false);
 		
 		retalbe.setOnMouseClicked( e -> {
-			
-			reply = retalbe.getSelectionModel().getSelectedItem();
-			if(reply.getR_writerr().equals(Login.member.getM_id())) {
-				btredelete.setVisible(true);
-				btreupdate.setVisible(true);
-				btrewrite1.setVisible(false);
-				
+			try {
+				reply = retalbe.getSelectionModel().getSelectedItem();
+				if(reply.getR_writerr().equals(Login.member.getM_id())) {
+					btredelete.setVisible(true);
+					btreupdate.setVisible(true);
+					btrewrite1.setVisible(false);
+					
+				}
+				else {
+					btreupdate.setVisible(false);
+					btredelete.setVisible(false);
+					btrewrite1.setVisible(true);
+				}
 			}
-			else {
-				btreupdate.setVisible(false);
-				btredelete.setVisible(false);
-				btrewrite1.setVisible(true);
+			catch(Exception e2) {
+				System.out.println("댓글없는 부분 누름");
 			}
-
-			
 		});
+		
 		
 		// 텍스트 수정 못하게 잠금 처리
 		txttitle.setEditable(false);
