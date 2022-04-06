@@ -31,16 +31,6 @@ public class Changeinfo implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		txtemail.setText(Login.member.getM_email());
-		txtadd.setText(Login.member.getM_address());
-		
-	}
-	@FXML
-	private Button btok;
-
- 
-	@FXML
-    void accchange(ActionEvent event) {
 		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
 		// 2. 미디어플레이어 객체에 동영상 넣기
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -57,6 +47,17 @@ public class Changeinfo implements Initializable{
 		});
 		// 미디어 플레이어 시작
 		mediaPlayer.play();
+		txtemail.setText(Login.member.getM_email());
+		txtadd.setText(Login.member.getM_address());
+		
+	}
+	@FXML
+	private Button btok;
+
+ 
+	@FXML
+    void accchange(ActionEvent event) {
+		
     	System.out.println("정보수정");
     	// 1. 컨트롤에 입력된 값 가져오기
     	String add = txtadd.getText(); // 해당 fxid에 입력된 값 가져오디
