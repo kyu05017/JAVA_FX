@@ -93,8 +93,6 @@ public class ProductView implements Initializable{
 		}
     }
 
-    
-
     @FXML
     void accupdate(ActionEvent event) {
 
