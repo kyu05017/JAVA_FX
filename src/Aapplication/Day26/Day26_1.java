@@ -39,6 +39,11 @@ public class Day26_1 {
 			System.out.println("네이버 pc의 정보 "+address2);
 			System.out.println("네이버 pc의 이름 "+address2.getHostName());
 			System.out.println("네이버 pc의 아이피 "+address2.getHostAddress());
+			
+			InetAddress address3 = InetAddress.getByName("www.facebook.com");
+			System.out.println("페이스북 pc의 정보 "+address3);
+			System.out.println("페이스북 pc의 이름 "+address3.getHostName());
+			System.out.println("페이스북 pc의 아이피 "+address3.getHostAddress());
 		} catch (UnknownHostException e) {}
 		
 	}
