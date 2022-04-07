@@ -248,7 +248,7 @@ public class BoardView implements Initializable{
 		}
 		
 		btredelete.setVisible(false);
-		
+		btreupdate.setVisible(false);
 		retalbe.setOnMouseClicked( e -> {
 			try {
 				reply = retalbe.getSelectionModel().getSelectedItem();
