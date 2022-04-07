@@ -40,22 +40,17 @@ public class Chatting implements Initializable{
     
     
     public void clientstart() {
-    	
-    	Thread thread = new Thread() {
+    	Thread thread = new Thread() { // 멀티스레드 
     		@Override
     		public void run() {
     			try {
-    				socket = new Socket("127.0.0.1",1234);
-    				send(Login.member.getM_id() +  "님이 입장 하셨습니다.");
-    				receive(); // 접속과 동시에 받기 메소드는 무한루프를 돌림
-    			}
-    			catch (Exception e) {
-    				System.out.println("클라이언스 실행 오류 " + e);
-    			}
+    				socket = new Socket("127.0.0.1",1234); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
+    				send( Login.member.getM_id()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
+    				receive(); // 접속과 동시에 받기 메소드는 무한루프
+    			}catch(Exception e ) {}
     		};
-    	};
-    	// 멀티 스레드 실행
-    	thread.start();
+    	};// 멀티스레드 구현 끝
+    	thread.start(); // 멀티스레드 실행
     }
 	public void clientstop() {try {socket.close();}catch (Exception e) {System.out.println("클라이언트 닫기 실패 " + e);}}
 	public void send(String msg) {
