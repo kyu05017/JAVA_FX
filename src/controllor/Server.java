@@ -75,14 +75,14 @@ public class Server implements Initializable {
     		
     		serverstart(); // 서버 실행 메소드 호출
     		
-    		txtserver.appendText("[[ 서버 실행합니다.]]\n"); // 텍스트목록에 내용추가
+    		txtserver.appendText("\t\t  [[ 서버 실행합니다.]]\n"); // 텍스트목록에 내용추가
     		btnserver.setText("서버 중지"); // 버튼의 텍스트 변경
     		
     	}else { // 버튼의 텍스트가 "서버 중지" 이면
     		
     		serverstop(); // 서버 중지 메소드 호출
     		
-    		txtserver.appendText("[[ 서버 중지합니다.]]\n");
+    		txtserver.appendText("\t\t  [[ 서버 중지합니다.]]\n");
     		btnserver.setText("서버 실행");
     	}
     }

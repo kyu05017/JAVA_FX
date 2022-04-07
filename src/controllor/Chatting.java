@@ -79,7 +79,7 @@ public class Chatting implements Initializable {
 	    		byte[] bytes = new byte[1000]; 	// 2. 바이트배열 선언 
 	    		inputStream.read(bytes);		// 3. 읽어오기 
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
-	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
+	    		txtcontent.appendText(Login.member.getM_id()+" : "+msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
 	    	}
     	}catch( Exception e ) {}
     }
