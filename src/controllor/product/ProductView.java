@@ -79,6 +79,26 @@ public class ProductView implements Initializable{
     @FXML
     private TableView<Reply_Product> retalbe;
     
+    @FXML
+    private Button btchange;
+    
+    @FXML
+    void accchange(ActionEvent event) {
+
+    	if(btchange.getText().equals("거래중")) {
+    		btchange.setText("판매완료");
+    		txtcondition.setText("거래중");
+    	}
+    	else if(btchange.getText().equals("판매중")) {
+    		btchange.setText("거래중");
+    		txtcondition.setText("판매중");
+    	}
+    	else if(btchange.getText().equals("판매완료")) {
+    		btchange.setText("판매중");
+    		txtcondition.setText("판매완료");
+    	}
+    }
+    
     public static Reply_Product reply_Product;
     
     @FXML
@@ -219,6 +239,7 @@ public class ProductView implements Initializable{
     	replyshow();
     	btreupdate.setVisible(false);
     	btredel.setVisible(false);
+    	
     	retalbe.setOnMouseClicked( e -> {
 			try {
 				reply_Product = retalbe.getSelectionModel().getSelectedItem();
@@ -240,9 +261,9 @@ public class ProductView implements Initializable{
 		});
     	
     	img.setImage(new Image(product.getP_img()) );
-    	txtpname.setText(product.getP_name());
+    	txtpname.setText("작성자 "+product.getP_name());
     	txtpcontents.setText(product.getP_contents());
-    	txtdate.setText(product.getP_date());
+    	txtdate.setText("작성일 "+product.getP_date());
     	DecimalFormat df2 = new DecimalFormat("#,##0원");
     	String aa = df2.format(product.getP_money());
     	txtprise.setText(aa);
@@ -252,19 +273,24 @@ public class ProductView implements Initializable{
     	
     	if(product.getP_condition() == 1) {
     		txtcondition.setText("판매중");
+    		btchange.setText("거래중");
     	}
     	if(product.getP_condition() == 2) {
     		txtcondition.setText("거래중");
+    		btchange.setText("판매완료");
     	}
     	if(product.getP_condition() == 3) {
     		txtcondition.setText("판매완료");
+    		btchange.setText("판매중");
     	}
+    	
     	// * 회원 번호를 이용한 회원 id 찾기 
     	String writer = MemberDao.dao.getM_id(product.getM_num());
     	txtmid.setText(writer);
     	if(!(Login.member.getM_num() == product.getM_num())) {
     		btdelete.setVisible(false);
     		btupdate.setVisible(false);
+    		btchange.setVisible(false);
     	}
     	
     }
