@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controllor.login.Login;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -28,6 +30,14 @@ public class Myinfo implements Initializable{
 
     @FXML
     private Label my_email;
+    
+    @FXML
+    private Button btok;
+
+    @FXML
+    void accchange(ActionEvent event) {
+    	Home.home.loadpage("/view/home/changeinfo");
+    }
     
     @FXML
     private MediaView homeview;

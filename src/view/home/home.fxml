@@ -18,7 +18,7 @@
                   <Image url="@../../img/flower.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbloginid" layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="199.0" text="아이디">
+            <Label fx:id="lbloginid"  onMouseClicked="#accid" layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="199.0" text="아이디">
                <font>
                   <Font size="18.0" />
                </font>

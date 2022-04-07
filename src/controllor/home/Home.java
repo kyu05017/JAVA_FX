@@ -96,6 +96,10 @@ public class Home implements Initializable{
 	@FXML
 	private Label lblmc;
 	@FXML
+	public void accid(MouseEvent event) {
+		loadpage("/view/home/myinfo");
+	}
+	@FXML
 	public void accmc(MouseEvent event) {
 		category = "남성의류";
 		loadpage("/view/product/product");
