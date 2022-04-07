@@ -10,7 +10,7 @@ public class Client {
 	// 서버에 접속된 클라이언트의 클래스
 	
 	// 1. 소켓
-	Socket socket;
+	public Socket socket;
 	// 2. 생성자
 	public Client(Socket socket) {
 		this.socket = socket;
