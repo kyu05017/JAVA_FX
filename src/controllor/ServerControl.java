@@ -3,6 +3,7 @@ package controllor;
 import java.net.ServerSocket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class ServerControl implements Initializable{
     private TextArea txtserver;
     
     // * 서버에 연결된 클라이언트를 저장하는 리스트
+    public static Vector< > client = new Vector<>();
     // * 멀티스레드를 관리해주는 스레드풀
     
     // 1. 서버 소켓 맨둘기
