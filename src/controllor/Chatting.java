@@ -91,8 +91,9 @@ public class Chatting implements Initializable{
 	}
     
     @FXML
-    void acsend(ActionEvent event) {
-
+    void acsend(ActionEvent event) { // 전송 버튼 눌렀을때ㅑ
+    	String msg = txt.getText() + "\n";
+    	send(msg);
     }
 
     @FXML
