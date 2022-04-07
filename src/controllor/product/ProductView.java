@@ -29,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 public class ProductView implements Initializable{
 	
@@ -81,6 +82,9 @@ public class ProductView implements Initializable{
     
     @FXML
     private Button btchange;
+    
+    @FXML
+    private Text txtproname;
     
     @FXML
     void accchange(ActionEvent event) {
@@ -248,7 +252,7 @@ public class ProductView implements Initializable{
     	replyshow();
     	btreupdate.setVisible(false);
     	btredel.setVisible(false);
-    	
+    	txtproname.setText(product.getP_name());
     	retalbe.setOnMouseClicked( e -> {
 			try {
 				reply_Product = retalbe.getSelectionModel().getSelectedItem();

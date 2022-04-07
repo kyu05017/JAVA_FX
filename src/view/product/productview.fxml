@@ -79,5 +79,10 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Text fx:id="txtproname" layoutX="569.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 이름" wrappingWidth="415.390625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
