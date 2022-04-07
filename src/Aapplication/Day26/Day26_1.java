@@ -18,17 +18,27 @@ public class Day26_1 {
 			//					경기도 ㅇㅇ시 ㅇㅇ구
 			// 컴퓨터 < --[ 접속 ]-- > 네이버[ 홈페이지 ] 
 			//					www.naver.com [ 도메인 주소 ] : 문자이기 때문에 사람이 외우기 쉬움
-	
+			//					223.130.195.200 [ 아이피 주소 ] 
+			//					IP주소 -> 문자주소 ( DNS )
 	public static void main(String[] args) {
 		
 		// 1. 현재 pc의 ip주소 확인
 			// cmd -> ipconfig 입력시 네트워크 정보를 알수 있다.
-		// 2. 자바에서 ip주소 확인하는 법
+		
 		try {
-			
+			// 2. 자바에서 ip주소 확인하는 법
+			// 자바 외 통신하게 되는 경우 예외처리 발생
 			InetAddress address = InetAddress.getLocalHost();
-			
+			//InetAddress.getLocalHost(); // 로컬호스트의 정보를 호출
 			System.out.println("현재 pc의 네트워크 객체정보 : "+ address);
+			System.out.println("현재 pc의 이름 " + address.getHostName());
+			System.out.println("현재 pc의 아이피 " + address.getHostAddress());
+			
+			// 3. 네이버의 아이피를 찾아보자
+			InetAddress address2 = InetAddress.getByName("www.naver.com");
+			System.out.println("네이버 pc의 정보 "+address2);
+			System.out.println("네이버 pc의 이름 "+address2.getHostName());
+			System.out.println("네이버 pc의 아이피 "+address2.getHostAddress());
 		} catch (UnknownHostException e) {}
 		
 	}
