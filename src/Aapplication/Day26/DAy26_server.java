@@ -1,8 +1,11 @@
 package Aapplication.Day26;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class DAy26_server {
 	
@@ -19,6 +22,7 @@ public class DAy26_server {
 	
 	public static void main(String[] args) {
 		
+		Scanner scanner = new Scanner(System.in);
 		
 		try {
 			// 1. 서버 소켓 만들기
@@ -33,6 +37,21 @@ public class DAy26_server {
 				// 5. 수락된 소켓의 정보 확인
 				InetSocketAddress inetSocketAddress = (InetSocketAddress)socket.getRemoteSocketAddress();
 				System.out.println("[ 클라이언트와 연결이 되었습니다. 연결된 정보 "+ inetSocketAddress + " ]");
+				
+				// 6. 클라이언트에게 데이터 수집 [ 받기 ]
+				
+				InputStream inputStream = socket.getInputStream();
+				byte[] bytes = new byte[1000];
+				inputStream.read(bytes);
+				System.out.println("클라이언트가 보낸 메세지 " + new String(bytes));
+				
+				// 7. 클라이언트에게 데이터 송싱
+				System.out.println("클라이언트에게 보낼 메세지 : ");
+				String text = scanner.next();
+				
+				OutputStream outputStream = socket.getOutputStream();
+				outputStream.write(text.getBytes());
+				
 			}
 		}
 		catch(Exception e) {
