@@ -101,20 +101,27 @@ public class Chatting implements Initializable{
     @FXML
     void actcon(ActionEvent event) {
     	if(btcon.getText().equals("채팅방 입장")){
-    		
     		clientstart();
     		txtcontents.appendText("---채팅방 입장 ---\n");
     		btcon.setText("채팅방 나가기");
+    		txt.setDisable(false);	// 채팅입력창 잠금
+        	txtcontents.setDisable(false); // 채팅창 잠금
+        	btcon.setDisable(false); // 버특 사용 막음
     	}
     	else {
     		clientstop();
     		txtcontents.appendText("---채팅방 퇴장 ---\n");
     		btcon.setText("채팅방 입장");
+    		txt.setDisable(true);	// 채팅입력창 잠금
+        	txtcontents.setDisable(true); // 채팅창 잠금
+        	btcon.setDisable(true); // 버특 사용 막음
     	}
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	// TODO Auto-generated method stub
-    	
+    	txt.setDisable(true);	// 채팅입력창 잠금
+    	txtcontents.setDisable(true); // 채팅창 잠금
+    	btcon.setDisable(true); // 버특 사용 막음
+    	txt.setText("채팅방 입장후 사용 가능합니다.");
     }
 }
