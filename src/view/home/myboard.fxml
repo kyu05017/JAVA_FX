@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.MyBoard">
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.MyBoard">
    <children>
-      <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내가 쓴글">
+      <Text fill="DARKGREEN" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내가 쓴글">
          <font>
             <Font size="36.0" />
          </font>
@@ -24,12 +24,12 @@
             <TableColumn prefWidth="94.0" text="조회수" />
         </columns>
       </TableView>
-      <Text layoutX="16.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내가 쓴글">
+      <Text fill="DARKGREEN" layoutX="16.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내가 쓴글">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="16.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내 상품">
+      <Text fill="DARKGREEN" layoutX="16.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="내 상품">
          <font>
             <Font size="18.0" />
          </font>
