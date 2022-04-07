@@ -85,7 +85,6 @@ public class MyBoard implements Initializable{
 		for( int row = 0 ; row < productlist.size() /3; row++ ) { // 행
 			for( int col = 0 ; col<3 ; col++ ) { // 열
 				// 1. 이미지
-				System.out.println(productlist.get(i).getP_img());
 				ImageView imageView = new ImageView( new Image(productlist.get(i).getP_img()));
 					// *이미지 사이즈 
 					imageView.setFitWidth(250);		// 이미지 가로길이 
@@ -99,7 +98,6 @@ public class MyBoard implements Initializable{
 					// *버튼 클릭이벤트
 						//	button.setOnAction( e -> { } ); // 람다식 : 인수 -> { 실행코드 }
 					button.setOnAction( e -> { 
-						System.out.println( e.toString() );
 						// 1. 클릭한 버튼의 id 가져오기
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						// 2. 클릭한 제품 번호 저장 
