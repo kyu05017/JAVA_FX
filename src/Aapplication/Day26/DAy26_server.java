@@ -47,7 +47,7 @@ public class DAy26_server {
 				
 				// 7. 클라이언트에게 데이터 송싱
 				System.out.println("클라이언트에게 보낼 메세지 : ");
-				String text = scanner.next();
+				String text = scanner.nextLine();
 				
 				OutputStream outputStream = socket.getOutputStream();
 				outputStream.write(text.getBytes());
