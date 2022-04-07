@@ -64,6 +64,12 @@ public class Home implements Initializable{
 	@FXML
 	private Label lblInfoChange;
 	
+	@FXML
+	private Label chattng;
+	@FXML
+    void actchat(MouseEvent event) {
+		loadpage("/view/chatting");
+    }
 	public static String category;
 	//여성의류
 	@FXML
@@ -210,6 +216,7 @@ public class Home implements Initializable{
 		MemberDao.dao.todaylogin(Login.member.getM_id());
 		lbloginid.setText("ID : "+Login.member.getM_id());
 		lbloginpt.setText("point : " + Login.member.getM_point() + "점");
+		
 	}
 	
 	public void loadpage( String page ) { // loadpage ( 파일경로 )
