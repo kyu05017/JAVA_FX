@@ -10,7 +10,13 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.home.Home">
-   <left>
+   <center>
+      <BorderPane fx:id="mainpane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <MediaView fx:id="homeview" fitHeight="720.0" fitWidth="1064.0" BorderPane.alignment="CENTER" />
+         </center></BorderPane>
+   </center>
+   <right>
       <AnchorPane prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #f3e8dc;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="bthome" fitHeight="216.0" fitWidth="220.0" onMouseClicked="#tohome" pickOnBounds="true" preserveRatio="true">
@@ -18,7 +24,7 @@
                   <Image url="@../../img/flower.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbloginid"  onMouseClicked="#accid" layoutX="8.0" layoutY="244.0" prefHeight="29.0" prefWidth="199.0" text="아이디">
+            <Label fx:id="lbloginid" layoutX="8.0" layoutY="244.0" onMouseClicked="#accid" prefHeight="29.0" prefWidth="199.0" text="아이디">
                <font>
                   <Font size="18.0" />
                </font>
@@ -47,22 +53,22 @@
                </font>
             </Label>
             <Line endX="100.0" layoutX="108.0" layoutY="299.0" startX="-100.0" />
-            <Label fx:id="lblproduct"  onMouseClicked="#accproduct"  layoutX="8.0" layoutY="375.0" text="중고">
+            <Label fx:id="lblproduct" layoutX="8.0" layoutY="375.0" onMouseClicked="#accproduct" text="중고">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="bthome2"  onMouseClicked="#tohome2"  graphicTextGap="6.0" layoutX="8.0" layoutY="312.0" prefHeight="21.0" prefWidth="83.0" text="홈">
+            <Label fx:id="bthome2" graphicTextGap="6.0" layoutX="8.0" layoutY="312.0" onMouseClicked="#tohome2" prefHeight="21.0" prefWidth="83.0" text="홈">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lblmc" onMouseClicked="#accmc"  layoutX="13.0" layoutY="402.0" text="의류(남)">
+            <Label fx:id="lblmc" layoutX="13.0" layoutY="402.0" onMouseClicked="#accmc" text="의류(남)">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lbldg"  onMouseClicked="#accdg" layoutX="71.0" layoutY="403.0" text="전자제품">
+            <Label fx:id="lbldg" layoutX="71.0" layoutY="403.0" onMouseClicked="#accdg" text="전자제품">
                <font>
                   <Font size="13.0" />
                </font>
@@ -91,12 +97,12 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lbladdp" onMouseClicked="#addp"  layoutX="135.0" layoutY="402.0" text="상품등록">
+            <Label fx:id="lbladdp" layoutX="135.0" layoutY="402.0" onMouseClicked="#addp" text="상품등록">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lblmyboard" onMouseClicked="#myboard"  layoutX="13.0" layoutY="526.0" text="내가쓴글">
+            <Label fx:id="lblmyboard" layoutX="13.0" layoutY="526.0" onMouseClicked="#myboard" text="내가쓴글">
                <font>
                   <Font size="13.0" />
                </font>
@@ -131,23 +137,17 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label  fx:id="lblli" onMouseClicked="#accli"  layoutX="71.0" layoutY="378.0" text="생활용품">
+            <Label fx:id="lblli" layoutX="71.0" layoutY="378.0" onMouseClicked="#accli" text="생활용품">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label  fx:id="lblwc" onMouseClicked="#accwc"  layoutX="138.0" layoutY="378.0" text="의류(여)">
+            <Label fx:id="lblwc" layoutX="138.0" layoutY="378.0" onMouseClicked="#accwc" text="의류(여)">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-   </left>
-   <center>
-      <BorderPane fx:id="mainpane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <MediaView fx:id="homeview" fitHeight="720.0" fitWidth="1064.0" BorderPane.alignment="CENTER" />
-         </center></BorderPane>
-   </center>
+   </right>
 </BorderPane>
