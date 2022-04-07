@@ -88,14 +88,23 @@ public class ProductView implements Initializable{
     	if(btchange.getText().equals("거래중")) {
     		btchange.setText("판매완료");
     		txtcondition.setText("거래중");
+    		ProductDao.dao.change_condition(product.getP_num());
+    		product.setP_condition(2);
+    		return;
     	}
-    	else if(btchange.getText().equals("판매중")) {
+    	if(btchange.getText().equals("판매중")) {
     		btchange.setText("거래중");
     		txtcondition.setText("판매중");
+    		ProductDao.dao.change_condition(product.getP_num());
+    		product.setP_condition(3);
+    		return;
     	}
-    	else if(btchange.getText().equals("판매완료")) {
+    	if(btchange.getText().equals("판매완료")) {
     		btchange.setText("판매중");
     		txtcondition.setText("판매완료");
+    		ProductDao.dao.change_condition(product.getP_num());
+    		product.setP_condition(1);
+    		return;
     	}
     }
     
@@ -261,7 +270,7 @@ public class ProductView implements Initializable{
 		});
     	
     	img.setImage(new Image(product.getP_img()) );
-    	txtpname.setText("작성자 "+product.getP_name());
+    	txtpname.setText(product.getP_name());
     	txtpcontents.setText(product.getP_contents());
     	txtdate.setText("작성일 "+product.getP_date());
     	DecimalFormat df2 = new DecimalFormat("#,##0원");
@@ -286,7 +295,7 @@ public class ProductView implements Initializable{
     	
     	// * 회원 번호를 이용한 회원 id 찾기 
     	String writer = MemberDao.dao.getM_id(product.getM_num());
-    	txtmid.setText(writer);
+    	txtmid.setText("작성자 "+writer);
     	if(!(Login.member.getM_num() == product.getM_num())) {
     		btdelete.setVisible(false);
     		btupdate.setVisible(false);

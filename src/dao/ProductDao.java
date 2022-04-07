@@ -53,27 +53,49 @@ public class ProductDao {
 		return false;
 	}
 	// 2. 제품 풀력
-	public ArrayList<Product> plist(){
-		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
-		try {
-			String sql = "select * from product";	// SQL 작성
-			ps = con.prepareStatement(sql);			// SQL 연결 
-			rs = ps.executeQuery();					// SQL 실행  
-			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
-				Product product = new Product(  	// 해당 레코드를 객체화
-						rs.getInt(1) ,
-						rs.getString(2),
-						rs.getString(3), 
-						rs.getString(4), 
-						rs.getString(5),
-						rs.getInt(6),
-						rs.getInt(7),
-						rs.getString(8),
-						rs.getInt(9));
-				productlist.add(product);			// 리스트에 객체 담기 
-			}	
-			return productlist;						// 리스트 반환
-		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+	public ArrayList<Product> plist(String category,String search){
+
+			ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
+			try {
+				String sql = null;
+				if(category == null) {
+					if(search == null) {
+						sql = "select * from product order by p_num desc";	// SQL 작성
+						ps = con.prepareStatement(sql);// SQL 연결 
+					}
+					else {
+						sql = "select * from product where p_name like '%"+search+"%' order by p_num desc";	// SQL 작성
+						ps = con.prepareStatement(sql);// SQL 연결 
+					}
+				}
+				else  {
+					if(search ==  null) {
+						sql = "select * from product where p_category = ? order by p_num desc";	// SQL 작성
+						ps = con.prepareStatement(sql);// SQL 연결 
+						ps.setString(1, category);
+					}
+					else {
+						sql = "select * from product where p_category = ? and p_name like '%"+search+"%' order by p_num desc";	// SQL 작성
+						ps = con.prepareStatement(sql);// SQL 연결 
+						ps.setString(1, category);
+					}
+				}
+				rs = ps.executeQuery();					// SQL 실행  
+				while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
+					Product product = new Product(  	// 해당 레코드를 객체화
+							rs.getInt(1) ,
+							rs.getString(2),
+							rs.getString(3), 
+							rs.getString(4), 
+							rs.getString(5),
+							rs.getInt(6),
+							rs.getInt(7),
+							rs.getString(8),
+							rs.getInt(9));
+					productlist.add(product);			// 리스트에 객체 담기 
+				}	
+				return productlist;						// 리스트 반환
+			}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return null; // 만약에 실패시 NULL 반환
 	}
 	// 3. 제품 조회
@@ -159,7 +181,6 @@ public class ProductDao {
 		return false;// * 실패시
 	}
 	public ObservableList<Reply_Product> reply_list(int p_num) {
-		
 		try {
 			// *
 			ObservableList<Reply_Product> replylist = FXCollections.observableArrayList();
@@ -240,6 +261,36 @@ public class ProductDao {
 		}
 		catch(Exception e) {
 			System.out.println("수정오료 " + e);
+		}
+		return false;
+	}
+	// 상태변경
+	public boolean change_condition(int p_num) {
+		try {
+			String sql = "select p_condition from product where p_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, p_num);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				String upsql = null;
+				if(rs.getInt(1) == 1) {
+					upsql = "UPDATE product SET p_condition=2 where p_num=?";
+				}
+				else if(rs.getInt(1) == 2) {
+					upsql = "UPDATE product SET p_condition=3 where p_num=?";
+				}
+				else if(rs.getInt(1) == 3) {
+					upsql = "UPDATE product SET p_condition=1 where p_num=?";
+				}
+				ps = con.prepareStatement(upsql);
+				ps.setInt(1, p_num);
+				ps.executeUpdate(); 
+				return true;
+			}
+		}
+		catch(Exception e) {
+			System.out.println("[SQL 제품 수정 실패 ]" + e);
 		}
 		return false;
 	}

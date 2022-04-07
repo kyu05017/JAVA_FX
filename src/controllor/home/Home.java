@@ -38,6 +38,9 @@ public class Home implements Initializable{
 	private Label lbladdp;
 	
 	@FXML
+	private Label bthome2;
+	
+	@FXML
 	private Label lblproduct;
 	
 	@FXML
@@ -61,6 +64,43 @@ public class Home implements Initializable{
 	@FXML
 	private Label lblInfoChange;
 	
+	public static String category;
+	//여성의류
+	@FXML
+	private Label lblwc;
+	@FXML
+	public void accwc(MouseEvent event) {
+		category = "여성의류";
+		loadpage("/view/product/product");
+		
+	}
+	// 생활용훔
+	@FXML
+	private Label lblli;
+	@FXML
+	public void accli(MouseEvent event) {
+		category = "생활용품";
+		loadpage("/view/product/product");
+		
+	}
+	// 전자기기
+	@FXML
+	private Label lbldg;
+	@FXML
+	public void accdg(MouseEvent event) {
+		category = "전자제품";
+		loadpage("/view/product/product");
+		
+	}
+	// 남성의류
+	@FXML
+	private Label lblmc;
+	@FXML
+	public void accmc(MouseEvent event) {
+		category = "남성의류";
+		loadpage("/view/product/product");
+		
+	}
     @FXML
     private MediaView homeview;
 	
@@ -68,14 +108,19 @@ public class Home implements Initializable{
     private Label lblboard;
     @FXML
     private Label lblmyboard;
+    @FXML // 
+    public void myboard(MouseEvent event) {loadpage("/view/home/myboard");}
+    @FXML // 
+    public void addp(MouseEvent event) {loadpage("/view/product/productadd");}
     @FXML // 남자의류 이동
-    void myboard(MouseEvent event) {loadpage("/view/home/myboard");}
-    @FXML // 남자의류 이동
-    void addp(MouseEvent event) {loadpage("/view/product/productadd");}
-    @FXML // 남자의류 이동
-    void accproduct(MouseEvent event) {loadpage("/view/product/product");}
+    public void accproduct(MouseEvent event) {
+    	category = null;
+    	loadpage("/view/product/product");
+    }
     @FXML // 홈화면 이동
-    void tohome(MouseEvent event) {Main.main.loadpage("/view/home/home");}
+    public void tohome(MouseEvent event) {Main.main.loadpage("/view/home/home");}
+    @FXML // 홈화면 이동
+    public void tohome2(MouseEvent event) {Main.main.loadpage("/view/home/home");}
     @FXML // 내정보 이동
 	public void myinfo(MouseEvent e ) {loadpage("/view/home/myinfo");}
 	@FXML // 정보수정 이동

@@ -52,17 +52,17 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label graphicTextGap="6.0" layoutX="8.0" layoutY="312.0" prefHeight="21.0" prefWidth="83.0" text="홈">
+            <Label fx:id="bthome2"  onMouseClicked="#tohome2"  graphicTextGap="6.0" layoutX="8.0" layoutY="312.0" prefHeight="21.0" prefWidth="83.0" text="홈">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label  layoutX="13.0" layoutY="402.0" text="의류(남)">
+            <Label fx:id="lblmc" onMouseClicked="#accmc"  layoutX="13.0" layoutY="402.0" text="의류(남)">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="403.0" text="전자제품">
+            <Label fx:id="lbldg"  onMouseClicked="#accdg" layoutX="71.0" layoutY="403.0" text="전자제품">
                <font>
                   <Font size="13.0" />
                </font>
@@ -131,12 +131,12 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="378.0" text="생활용품">
+            <Label  fx:id="lblli" onMouseClicked="#accli"  layoutX="71.0" layoutY="378.0" text="생활용품">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="378.0" text="의류(여)">
+            <Label  fx:id="lblwc" onMouseClicked="#accwc"  layoutX="138.0" layoutY="378.0" text="의류(여)">
                <font>
                   <Font size="13.0" />
                </font>

@@ -1,5 +1,6 @@
 package app;
 
+import controllor.home.Home;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,7 @@ public class Start extends Application{ // 20220406 09 01
 		
 		// 5. 컨테이너 불러오기
 		Parent parent = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
-		
+
 		// 6. 신 객체 -> 컨테이너 연결
 		Scene scene = new Scene(parent);
 		
