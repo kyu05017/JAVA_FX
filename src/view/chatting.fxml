@@ -17,10 +17,10 @@
          </font>
       </Text>
       <Line endX="162.0" endY="-1.52587890625E-5" layoutX="115.0" layoutY="70.0" startX="-100.0" stroke="STEELBLUE" />
-      <TextArea fx:id="txtcontents" layoutX="108.0" layoutY="242.0" prefHeight="318.0" prefWidth="849.0" />
-      <Button fx:id="btcon" layoutX="108.0" layoutY="188.0" mnemonicParsing="false" onAction="#actcon" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #CD853F;" text="채팅방 입장" textFill="DARKGREEN" />
-      <TextField fx:id="txt" layoutX="110.0" layoutY="584.0" prefHeight="93.0" prefWidth="689.0" promptText="내용 입력" />
-      <Button fx:id="btsend" layoutX="832.0" layoutY="584.0" mnemonicParsing="false" onAction="#acsend" prefHeight="93.0" prefWidth="125.0" style="-fx-background-color: #CD853F;" text="전송" textFill="DARKGREEN" />
+      <TextArea fx:id="txtcontent" layoutX="108.0" layoutY="242.0" prefHeight="318.0" prefWidth="849.0" />
+      <Button fx:id="btnconnect" layoutX="108.0" layoutY="188.0" mnemonicParsing="false" onAction="#connect" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #CD853F;" text="채팅방 입장" textFill="DARKGREEN" />
+      <TextField fx:id="txtmsg" layoutX="110.0" layoutY="584.0" prefHeight="93.0" prefWidth="689.0" promptText="내용 입력" />
+      <Button fx:id="btnsend" layoutX="832.0" layoutY="584.0" mnemonicParsing="false" onAction="#send" prefHeight="93.0" prefWidth="125.0" style="-fx-background-color: #CD853F;" text="전송" textFill="DARKGREEN" />
       <TextField fx:id="txtname" layoutX="742.0" layoutY="71.0" prefHeight="35.0" prefWidth="263.0" />
       <TextField fx:id="txtipadd" layoutX="742.0" layoutY="132.0" prefHeight="35.0" prefWidth="263.0" />
       <TextField fx:id="txtport" layoutX="742.0" layoutY="195.0" prefHeight="35.0" prefWidth="263.0" />
