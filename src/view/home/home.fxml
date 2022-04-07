@@ -147,7 +147,7 @@
             <Line endX="100.0" layoutX="106.0" layoutY="413.0" startX="-100.0" />
             <Line endX="100.0" layoutX="106.0" layoutY="492.0" startX="-100.0" />
             <Line endX="100.0" layoutX="106.0" layoutY="635.0" startX="-100.0" />
-            <Label fx:id="chattng" layoutX="89.0" layoutY="256.0" onMouseClicked="#actchat" text="채팅">
+            <Label fx:id="chattng" layoutX="89.0" layoutY="258.0" onMouseClicked="#actchat" text="채팅">
                <font>
                   <Font size="12.0" />
                </font>
