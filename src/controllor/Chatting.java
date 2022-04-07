@@ -95,6 +95,7 @@ public class Chatting implements Initializable{
     	String msg = txt.getText() + "\n";
     	send(msg);
     	txt.setText("");
+    	txt.requestFocus(); // 보내기후 메세지입력창으로 포커스 ( 커서 ) 이동
     }
 
     @FXML
