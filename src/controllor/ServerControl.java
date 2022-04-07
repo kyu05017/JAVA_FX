@@ -4,6 +4,7 @@ import java.net.ServerSocket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
 
 import dto.Client;
 import javafx.event.ActionEvent;
@@ -21,8 +22,11 @@ public class ServerControl implements Initializable{
     private TextArea txtserver;
     
     // * 서버에 연결된 클라이언트를 저장하는 리스트
-    public static Vector<Client> client = new Vector<>();
+    public static Vector<Client> clientlist = new Vector<>();
     // * 멀티스레드를 관리해주는 스레드풀
+    	// ExecutorService : 스레드풀 지원 해주는 인터페이스
+    
+    public static ExecutorService threadpool;
     
     // 1. 서버 소켓 맨둘기
     ServerSocket serverSocket;
