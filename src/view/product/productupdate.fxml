@@ -12,14 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.product.ProductUpdate">
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.product.ProductUpdate">
    <children>
-      <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제품 수정">
+      <Text fill="DARKGREEN" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제품 수정">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="btback" layoutX="921.0" layoutY="635.0" mnemonicParsing="false" onAction="#accback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="취소">
+      <Button fx:id="btback" layoutX="921.0" layoutY="635.0" mnemonicParsing="false" onAction="#accback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="취소" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
@@ -28,25 +28,25 @@
       <TextField fx:id="txtpname" layoutX="96.0" layoutY="210.0" prefHeight="29.0" prefWidth="433.0" promptText="제품명" />
       <TextArea fx:id="txtpcontents" layoutX="96.0" layoutY="325.0" prefHeight="278.0" prefWidth="433.0" promptText="제품설명" />
       <TextField fx:id="txtpprise" layoutX="96.0" layoutY="268.0" prefHeight="29.0" prefWidth="433.0" promptText="가격" />
-      <Button fx:id="btimg" layoutX="561.0" layoutY="261.0" mnemonicParsing="false" onAction="#imgadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="이미지 등록" />
-      <RadioButton fx:id="opt1" layoutX="570.0" layoutY="215.0" mnemonicParsing="false" text="남성의류 ">
+      <Button fx:id="btimg" layoutX="561.0" layoutY="261.0" mnemonicParsing="false" onAction="#imgadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="이미지 등록" textFill="DARKGREEN" />
+      <RadioButton fx:id="opt1" layoutX="570.0" layoutY="215.0" mnemonicParsing="false" text="남성의류 " textFill="DARKGREEN">
          <toggleGroup>
             <ToggleGroup fx:id="category" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="opt4" layoutX="900.0" layoutY="215.0" mnemonicParsing="false" text="생활용품" toggleGroup="$category" />
-      <RadioButton fx:id="opt2" layoutX="681.0" layoutY="215.0" mnemonicParsing="false" text="여성의류" toggleGroup="$category" />
-      <RadioButton fx:id="opt3" layoutX="786.0" layoutY="215.0" mnemonicParsing="false" text="전자기기" toggleGroup="$category" />
+      <RadioButton fx:id="opt4" layoutX="900.0" layoutY="215.0" mnemonicParsing="false" text="생활용품" textFill="DARKGREEN" toggleGroup="$category" />
+      <RadioButton fx:id="opt2" layoutX="681.0" layoutY="215.0" mnemonicParsing="false" text="여성의류" textFill="DARKGREEN" toggleGroup="$category" />
+      <RadioButton fx:id="opt3" layoutX="786.0" layoutY="215.0" mnemonicParsing="false" text="전자기기" textFill="DARKGREEN" toggleGroup="$category" />
       <ImageView fx:id="img" fitHeight="278.0" fitWidth="433.0" layoutX="561.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btaddp" layoutX="778.0" layoutY="635.0" mnemonicParsing="false" onAction="#accadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="수정완료">
+      <Button fx:id="btaddp" layoutX="778.0" layoutY="635.0" mnemonicParsing="false" onAction="#accadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="수정완료" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="96.0" layoutY="184.0" text="제품 명" />
-      <Label layoutX="566.0" layoutY="184.0" text="카테고리" />
-      <Label layoutX="96.0" layoutY="242.0" text="제품 가격" />
-      <Label layoutX="96.0" layoutY="303.0" text="제품 설명" />
-      <Label layoutX="561.0" layoutY="303.0" text="미리보기" />
-      <Label fx:id="txtpath" layoutX="631.0" layoutY="303.0" prefHeight="19.0" prefWidth="375.0" text="경로" />
+      <Label layoutX="96.0" layoutY="184.0" text="제품 명" textFill="DARKGREEN" />
+      <Label layoutX="566.0" layoutY="184.0" text="카테고리" textFill="DARKGREEN" />
+      <Label layoutX="96.0" layoutY="242.0" text="제품 가격" textFill="DARKGREEN" />
+      <Label layoutX="96.0" layoutY="303.0" text="제품 설명" textFill="DARKGREEN" />
+      <Label layoutX="561.0" layoutY="303.0" text="미리보기" textFill="DARKGREEN" />
+      <Label fx:id="txtpath" layoutX="631.0" layoutY="303.0" prefHeight="19.0" prefWidth="375.0" text="경로" textFill="DARKGREEN" />
    </children>
 </AnchorPane>

@@ -12,14 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.product.ProductView">
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.product.ProductView">
    <children>
-      <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제품 페이지">
+      <Text fill="DARKGREEN" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제품 페이지">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="btback" layoutX="865.0" layoutY="461.0" mnemonicParsing="false" onAction="#accback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="뒤로가기">
+      <Button fx:id="btback" layoutX="865.0" layoutY="461.0" mnemonicParsing="false" onAction="#accback" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="뒤로가기" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
@@ -28,24 +28,24 @@
       <TextField fx:id="txtpname" layoutX="569.0" layoutY="210.0" prefHeight="29.0" prefWidth="433.0" promptText="제품명" />
       <TextArea fx:id="txtpcontents" layoutX="569.0" layoutY="253.0" prefHeight="192.0" prefWidth="433.0" promptText="제품설명" />
       <ImageView fx:id="img" fitHeight="378.0" fitWidth="433.0" layoutX="77.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btdelete" layoutX="725.0" layoutY="461.0" mnemonicParsing="false" onAction="#accdelete" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="삭제">
+      <Button fx:id="btdelete" layoutX="725.0" layoutY="461.0" mnemonicParsing="false" onAction="#accdelete" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="삭제" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btupdate" layoutX="584.0" layoutY="461.0" mnemonicParsing="false" onAction="#accupdate" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="수정">
+      <Button fx:id="btupdate" layoutX="584.0" layoutY="461.0" mnemonicParsing="false" onAction="#accupdate" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="수정" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="txtcondition" layoutX="899.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="제품 상태">
+      <Label fx:id="txtcondition" layoutX="899.0" layoutY="98.0" prefHeight="21.0" prefWidth="80.0" text="제품 상태" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="txtdate" layoutX="569.0" layoutY="174.0" prefHeight="19.0" prefWidth="191.0" text="제품 등록일" />
-      <Label fx:id="txtmid" layoutX="805.0" layoutY="175.0" prefHeight="19.0" prefWidth="191.0" text="제품 등록회원" />
-      <Label fx:id="txtprise" layoutX="569.0" layoutY="102.0" prefHeight="56.0" prefWidth="287.0" text="희망 가격">
+      <Label fx:id="txtdate" layoutX="569.0" layoutY="174.0" prefHeight="19.0" prefWidth="191.0" text="제품 등록일" textFill="DARKGREEN" />
+      <Label fx:id="txtmid" layoutX="805.0" layoutY="175.0" prefHeight="19.0" prefWidth="191.0" text="제품 등록회원" textFill="DARKGREEN" />
+      <Label fx:id="txtprise" layoutX="569.0" layoutY="102.0" prefHeight="56.0" prefWidth="287.0" text="희망 가격" textFill="DARKGREEN">
          <font>
             <Font size="24.0" />
          </font>
@@ -59,27 +59,27 @@
         </columns>
       </TableView>
       <TextArea fx:id="txtrefiled" layoutX="48.0" layoutY="519.0" prefHeight="56.0" prefWidth="810.0" promptText="댓글" />
-      <Button fx:id="btredel" layoutX="865.0" layoutY="502.0" mnemonicParsing="false" onAction="#accredel" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="삭제">
+      <Button fx:id="btredel" layoutX="865.0" layoutY="502.0" mnemonicParsing="false" onAction="#accredel" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="삭제" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btreadd" layoutX="865.0" layoutY="543.0" mnemonicParsing="false" onAction="#accreadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="등록">
+      <Button fx:id="btreadd" layoutX="865.0" layoutY="543.0" mnemonicParsing="false" onAction="#accreadd" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="등록" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btreupdate" layoutX="865.0" layoutY="543.0" mnemonicParsing="false" onAction="#accreupdate" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="수정">
+      <Button fx:id="btreupdate" layoutX="865.0" layoutY="543.0" mnemonicParsing="false" onAction="#accreupdate" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="수정" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btchange" layoutX="865.0" layoutY="129.0" mnemonicParsing="false" onAction="#accchange" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #4682B4;" text="상태변경">
+      <Button fx:id="btchange" layoutX="865.0" layoutY="129.0" mnemonicParsing="false" onAction="#accchange" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="상태변경" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Text fx:id="txtproname" layoutX="569.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 이름" wrappingWidth="415.390625">
+      <Text fx:id="txtproname" fill="DARKGREEN" layoutX="569.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="상품 이름" wrappingWidth="415.390625">
          <font>
             <Font size="24.0" />
          </font>
