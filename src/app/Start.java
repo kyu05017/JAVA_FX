@@ -15,14 +15,10 @@ public class Start extends Application{ // 20220406 09 01
 		
 		// 5. 컨테이너 불러오기
 		Parent parent = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
-
 		// 6. 신 객체 -> 컨테이너 연결
 		Scene scene = new Scene(parent);
-		
-		
 		// 7. 씬 -> 스테이지
 		stage.setScene(scene);
-		
 		// 스테이지 로고 설정ㄷ
 			// 1. 이미지 불러오기 
 		Image image = new Image("img/logo.png"); // 상대 경로
@@ -34,19 +30,16 @@ public class Start extends Application{ // 20220406 09 01
 				// 생략 [ src폴더부터 ] img/파일명.확장자
 			// 2. 스테이지 설정 
 		stage.getIcons().add(image);
-		
 		// 외부 폰트 설정
 		// 1. 폰트 가져오기
-
 		Font.loadFont(getClass().getResourceAsStream("SuncheonB.ttf"), 15);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
-		
-		
-		
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		stage.setTitle("토끼 중고나라 "); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
+	}
+	public void start2(Stage stage) throws Exception {
+		
 	}
 	
 	

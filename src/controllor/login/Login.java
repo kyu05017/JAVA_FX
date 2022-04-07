@@ -16,16 +16,16 @@ import javafx.util.Duration;
 
 public class Login implements Initializable{
 	
-	// *  í•´ë‹¹ í´ë˜ìŠ¤ë¥¼ ë°˜í™˜ ë©”ëª¨ë¦¬ë¥¼ ë°˜í™˜ í•´ì£¼ëŠ” ë©”ì†Œë“œ 
+	// *  ÇØ´ç Å¬·¡½º¸¦ ¹İÈ¯ ¸Ş¸ğ¸®¸¦ ¹İÈ¯ ÇØÁÖ´Â ¸Ş¼Òµå 
 	public static Login login;
-	// * ìƒì„±ì
+	// * »ı¼ºÀÚ
 	public Login() {login = this;}
 
-	// ë¡œê·¸ì¸ ì„±ê³µí•œ ê°ì²´ [ ë‹¤ë¥¸ í´ë˜ìŠ¤ì—ì„œ í˜¸ì¶œí•˜ê¸° ìœ„í•´ ]
+	// ·Î±×ÀÎ ¼º°øÇÑ °´Ã¼ [ ´Ù¸¥ Å¬·¡½º¿¡¼­ È£ÃâÇÏ±â À§ÇØ ]
 	public static Member member;
 	
 	
-	@FXML
+	@FXML 
 	private MediaView mediaview;
 	 
 	@FXML
@@ -34,14 +34,14 @@ public class Login implements Initializable{
 	 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// 1. ë™ì˜ìƒ ì‚½ì…í•˜ê¸°
-			// 1. ë™ì˜ìƒ íŒŒì¼ ê°ì²´í™”
+		// 1. µ¿¿µ»ó »ğÀÔÇÏ±â
+			// 1. µ¿¿µ»ó ÆÄÀÏ °´Ã¼È­
 		Media media = new Media(getClass().getResource("/img/login5.mp4").toString());
-			// 2. ë¯¸ë””ì–´í”Œë ˆì´ì–´ ê°ì²´ì— ë™ì˜ìƒ ë„£ê¸°
+			// 2. ¹Ìµğ¾îÇÃ·¹ÀÌ¾î °´Ã¼¿¡ µ¿¿µ»ó ³Ö±â
 		MediaPlayer mediaPlayer = new MediaPlayer(media);
-			// 3. ë¯¸ì´ë” í”Œë ˆì´ì–´ì— ë¯¸ë””ì–´ ë„£ê¸°
+			// 3. ¹ÌÀÌ´õ ÇÃ·¹ÀÌ¾î¿¡ ¹Ìµğ¾î ³Ö±â
 		mediaview.setMediaPlayer(mediaPlayer); 
-		// ë¬´í•œë°˜ë³µ [ ë¯¸ë””ì–´ê°€ ëë‚¬ì„ë•Œ ] 
+		// ¹«ÇÑ¹İº¹ [ ¹Ìµğ¾î°¡ ³¡³µÀ»¶§ ] 
 		mediaPlayer.setOnEndOfMedia(new Runnable() {
 			
 			@Override
@@ -50,7 +50,7 @@ public class Login implements Initializable{
 				
 			}
 		});
-			// ë¯¸ë””ì–´ í”Œë ˆì´ì–´ ì‹œì‘
+		// ¹Ìµğ¾î ÇÃ·¹ÀÌ¾î ½ÃÀÛ
 		mediaPlayer.play();
 		
 		 
@@ -59,15 +59,15 @@ public class Login implements Initializable{
 	}
 	
 	
-	public void loadpage( String page ) { // loadpage ( íŒŒì¼ê²½ë¡œ )
+	public void loadpage( String page ) { // loadpage ( ÆÄÀÏ°æ·Î )
 		
 		try {
-			// í˜ì´ì§€(fxml) ê°ì²´í™” 
-			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // ë¬´ì¡°ê±´ ì˜ˆì™¸ì²˜ë¦¬
-			boaderpane.setCenter(parent); // ì»¨í…Œì´ë„ˆ(fxml) ê°€ìš´ë°ì— í˜ì´ì§€ ë„£ê¸° 
+			// ÆäÀÌÁö(fxml) °´Ã¼È­ 
+			Parent parent = FXMLLoader.load( getClass().getResource(page+".fxml") ); // ¹«Á¶°Ç ¿¹¿ÜÃ³¸®
+			boaderpane.setCenter(parent); // ÄÁÅ×ÀÌ³Ê(fxml) °¡¿îµ¥¿¡ ÆäÀÌÁö ³Ö±â 
 		}
-		catch( Exception e ) { // íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ê²½ìš° ì˜ˆì™¸ì²˜ë¦¬
-			System.out.println("í˜ì´ì§€ ì—°ê²° ì‹¤íŒ¨" + e);
+		catch( Exception e ) { // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ¿¹¿ÜÃ³¸®
+			System.out.println("[·Î±×ÀÎ È­¸é ·Îµù ½ÇÆĞ] »çÀ¯ :  " + e);
 		}
 	}
 }

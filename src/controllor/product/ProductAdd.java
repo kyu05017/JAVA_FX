@@ -47,19 +47,19 @@ public class ProductAdd implements Initializable{
     private Button btimg;
 
     @FXML
-    private RadioButton opt1;
+    private  RadioButton opt1;
 
     @FXML
     private ToggleGroup category;
 
     @FXML
-    private RadioButton opt4;
+    private  RadioButton opt4;
 
     @FXML
-    private RadioButton opt2;
+    private  RadioButton opt2;
 
     @FXML
-    private RadioButton opt3;
+    private  RadioButton opt3;
 
     @FXML
     private ImageView img;
@@ -69,7 +69,32 @@ public class ProductAdd implements Initializable{
 
     @FXML
     private Label txtpath;
+    
+   
+    
+    public  void addctgr(String category) {
 
+    	if(category != null) {
+    		if(category.equals("남성의류")) {
+			opt1.setSelected(true);
+			return;
+	    	}
+	    	if(category.equals("여성의류")) {
+	    		opt2.setSelected(true);
+	    		return;
+	    	}
+	    	if(category.equals("전자제품")) {
+	    		opt3.setSelected(true);
+	    		return;
+	    	}
+	    	if(category.equals("생활용품")) {
+	    		opt4.setSelected(true);
+	    		return;
+	    	}
+    	}
+		
+    	
+    }
     @FXML
     void accadd(ActionEvent event) {
     	Alert alert = new Alert(AlertType.INFORMATION);
@@ -81,18 +106,18 @@ public class ProductAdd implements Initializable{
 	    	String contents = txtpcontents.getText();
 	    	
 	    	// * 카테고리 
-	    	String category = "";
+	    	String category2 = "";
 	    	if(opt1.isSelected()) {
-	    		category = "남성의류";
+	    		category2 = "남성의류";
 	    	}
 	    	else if(opt2.isSelected()){
-	    		category = "여성의류";
+	    		category2 = "여성의류";
 	    	}
 	    	else if(opt3.isSelected()){
-	    		category = "전자제품";
+	    		category2 = "전자제품";
 	    	}
 	    	else if(opt4.isSelected()){
-	    		category = "생활용품";
+	    		category2 = "생활용품";
 	    	}
 	    	int m_num = Login.member.getM_num();
 	    	// 2. 유효성 검사
@@ -114,7 +139,7 @@ public class ProductAdd implements Initializable{
 	    	}
 	    	else {
 	    		// 3. 객체화
-	        	Product product = new Product(0, name, pimage, contents, category, new_prise, 1, null, m_num);
+	        	Product product = new Product(0, name, pimage, contents, category2, new_prise, 1, null, m_num);
 	        	
 	        	// 4. DB처리
 	        	boolean result = ProductDao.dao.addproduct(product);
@@ -188,7 +213,7 @@ public class ProductAdd implements Initializable{
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	
-    	
+    	addctgr(Home.category);
+
     }
 }

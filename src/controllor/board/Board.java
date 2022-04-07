@@ -83,7 +83,7 @@ public class Board implements Initializable{
 			Home.home.loadpage("/view/board/boardview");
 			}
 			catch(Exception e2) {
-				System.out.println("게시물 없음" + e2);
+				System.out.println("[게시판 화면 로딩 실패] 사유 :  " + e);
 			}
 		});
 		

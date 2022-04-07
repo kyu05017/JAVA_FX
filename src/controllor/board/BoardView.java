@@ -116,11 +116,11 @@ public class BoardView implements Initializable{
 	    		alert2.showAndWait();
 			}
 			else {
-				System.out.println("삭제 실패했데");
+				System.out.println("[게시물 삭제 실패] ");
 			}
 		}
 		else if(optional.get() == ButtonType.CANCEL) {
-			System.out.println("취소");
+			System.out.println("[게시물 삭제 취소] ");
 		}
     }
     @FXML
@@ -145,11 +145,11 @@ public class BoardView implements Initializable{
 	    		alert2.showAndWait();
 			}
 			else {
-				System.out.println("삭제 실패했데");
+				System.out.println("[게시물 삭제 실패] ");
 			}
 		}
 		else if(optional.get() == ButtonType.CANCEL) {
-			System.out.println("취소");
+			System.out.println("[게시물 삭제 취소] ");
 		}
     }
 
@@ -265,7 +265,7 @@ public class BoardView implements Initializable{
 				}
 			}
 			catch(Exception e2) {
-				System.out.println("댓글없는 부분 누름");
+				System.out.println("[존재하지 않는 댓글] 사유 " + e);
 			}
 		});
 		

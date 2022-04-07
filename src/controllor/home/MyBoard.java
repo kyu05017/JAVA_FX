@@ -66,7 +66,7 @@ public class MyBoard implements Initializable{
 			Home.home.loadpage("/view/board/boardview");
 			}
 			catch(Exception e2) {
-				System.out.println("게시물 없음" + e2);
+				System.out.println("[게시물 로딩 실패] 사유 :  " + e);
 			}
 		});
 		
@@ -77,7 +77,7 @@ public class MyBoard implements Initializable{
 			// * 그리드 여백
 			gridPane.setPadding( new Insets(10) );
 			// * 그리드내 셀 여백 
-			gridPane.setHgap(20); // 세로여백 
+			gridPane.setHgap(30); // 세로여백 
 			gridPane.setVgap(20); // 가로여백
 			
 		// 3. 반복문 
