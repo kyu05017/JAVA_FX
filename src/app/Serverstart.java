@@ -18,7 +18,7 @@ public class Serverstart extends Application{
 			Scene scene = new Scene(parent);
 			Font.loadFont(getClass().getResourceAsStream("SuncheonB.ttf"), 15);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			Image image = new Image("img/logo.png"); 
+			Image image = new Image("img/tree.png"); 
 			stage.getIcons().add(image);
 			stage.setScene(scene);
 			stage.setResizable(false);
