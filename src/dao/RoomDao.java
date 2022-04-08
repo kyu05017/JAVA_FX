@@ -69,9 +69,12 @@ public class RoomDao {
 		try {
 			// *
 			ObservableList<Room> roomlist = FXCollections.observableArrayList();
-			String sql = "select * from room";
+			String sql = "select * from room order by ro_num desc";
 			ps = con.prepareStatement(sql);
 			rs =  ps.executeQuery();
+			// rs = Resultset 인터페이스 객체 : select의 결과 가져오기
+			// resultset ( 초기 값 null )
+			// rs.next : select 결과 레코드 1개 가져오기
 			while(rs.next()) {
 				Room temp = new Room(
 					rs.getInt(1), 
