@@ -38,15 +38,8 @@ public class Start extends Application{ // 20220408 1019
 		stage.setTitle("토끼 중고나라 "); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
 	}
-	public void start2(Stage stage) throws Exception {
-		
-	}
-	
-	
 	public static void main(String[] args) {
 		
 		launch(args);
 	}
-	
-	
 }

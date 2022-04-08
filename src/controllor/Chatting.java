@@ -64,12 +64,12 @@ public class Chatting implements Initializable {
     Socket socket;   // 1. 클라이언트 소켓 선언 
     
     // 2. 클라이언트 실행 메소드
-    public void clientstart() {
+    public void clientstart(String ip,int port) {
     	Thread thread = new Thread() { // 멀티스레드 
     		@Override
     		public void run() {
     			try {
-    				socket = new Socket("127.0.0.1",1234); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
+    				socket = new Socket(ip,port); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
     				send(Login.member.getM_id()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
     				receive(); // 접속과 동시에 받기 메소드는 무한루프
     			}catch(Exception e ) {}
@@ -148,7 +148,7 @@ public class Chatting implements Initializable {
     void connect(ActionEvent event) {
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
     		
-    		clientstart(); // 클라이언트 실행 메소드 
+    		clientstart(selectRoom.getRo_ip(),selectRoom.getRo_num()); // 클라이언트 실행 메소드 
     		
     		txtcontent.appendText("---[채팅방 입장]---\n");
     		btnconnect.setText("채팅방 나가기");
