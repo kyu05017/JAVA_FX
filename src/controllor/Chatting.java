@@ -6,15 +6,21 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controllor.home.Home;
 import controllor.login.Login;
+import dao.MemberDao;
+import dao.RoomDao;
+import dto.Room;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class Chatting implements Initializable {
 
@@ -100,9 +106,33 @@ public class Chatting implements Initializable {
 	    	}
     	}catch( Exception e ) {}
     }
+    public Server server;
     @FXML
-    void add(ActionEvent event) {
-
+    void add(ActionEvent event) { // 방개설 버튼을 눌렀을때
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	// 1. 컨트롤에 입력된 방 이름 가져오기
+    	String roomname = txtroomname.getText();
+    	if(roomname.length() < 4) {
+    		alert.setHeaderText("채팅방 이름이 4글자 이상이여야 합니다.");
+    		alert.showAndWait();
+    		return;
+    	}
+    	else {
+    		// 2. 방 객체
+        	Room room = new Room(0, roomname, "127.0.0.1",0);
+        	// 3. db 철이
+        	boolean result =  RoomDao.dao.roomadd(room);
+        	// 4. 해당 방 서버 실행
+        	server = new Server();
+        	// 5. 서버실행 [ 인수 아이피 포트번호 넘기기 ]
+        	server.serverstart(room.getRo_ip(),RoomDao.dao.getRoomNum());
+        	if(result) {
+        		alert.setHeaderText("채팅방이 개설 되었습니다.");
+        		alert.showAndWait();
+        		txtroomname.setText("");
+        	}
+    	}
+    	
     }
 
     @FXML
@@ -154,6 +184,8 @@ public class Chatting implements Initializable {
     	txtmsg.setDisable(true); 		// 채팅입력창 사용금지 
     	txtcontent.setDisable(true); 	// 채팅창 목록 사용금지
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
+    	btnconnect.setDisable(true);
+    	txtmidlist.setDisable(true);
     }
 	
 }
