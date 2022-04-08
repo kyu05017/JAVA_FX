@@ -13,7 +13,7 @@
    <children>
       <VBox layoutX="20.0" layoutY="13.0" prefHeight="341.0" prefWidth="360.0" style="-fx-background-color: #F4A460;" />
       <TextField fx:id="textid" layoutX="73.0" layoutY="110.0" prefHeight="42.0" prefWidth="266.0" promptText="아이디" />
-      <PasswordField fx:id="textpw" layoutX="73.0" layoutY="168.0" prefHeight="42.0" prefWidth="266.0" promptText="비밀번호" />
+      <PasswordField fx:id="textpw" layoutX="73.0" layoutY="168.0" onAction="#actlogin" prefHeight="42.0" prefWidth="266.0" promptText="비밀번호" />
       <Button fx:id="btlogin" layoutX="244.0" layoutY="236.0" mnemonicParsing="false" onAction="#login" prefHeight="29.0" prefWidth="85.0" style="-fx-background-color: #6B8E23#6B8E23;" text="로그인" textFill="#e5ff00" />
       <Button fx:id="btsignup" layoutX="14.0" layoutY="438.0" mnemonicParsing="false" onAction="#accsignup" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="회원가입" textFill="#e5ff00" />
       <Button fx:id="btfindpw" layoutX="272.0" layoutY="438.0" mnemonicParsing="false" onAction="#accfindpw" prefHeight="29.0" prefWidth="115.0" style="-fx-background-color: #34502B;" text="비밀번호 찾기" textFill="#e5ff00" />

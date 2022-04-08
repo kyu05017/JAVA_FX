@@ -64,7 +64,35 @@ public class Loginpane implements Initializable{
     	System.out.println("회원가입");
     	Login.login.loadpage("/view/login/signuppane");
     }
+    @FXML
+    void actlogin(ActionEvent event) {
+    	System.out.println("로그인");
+    	// 1. 컨트롤에 입력된 값 가져오기
+    	String id = textid.getText(); // 해당 fxid에 입력된 값 가져오디
+    	String pw = textpw.getText(); // 해당 fxid에 입력된 값 가져오디
+    	
+   	
+    	// 2. db 객체내 메소드 호출
+    	boolean result = MemberDao.dao.login(id, pw);
+    	
+ 
+    
+    	// 3. 결과확인
+    	if(result) {
+    		// 페이지 전환 [ 다음주 ]
+    		// * 테스트
+    		
+    		// 로그인 성공시 성공한 회원정보 저장 / 로그아웃시 초기화
+    		Login.member = MemberDao.dao.getmember(id);
+    		
+    		lbnconform.setText("로그인성공");
+    		Main.main.loadpage("/view/home/home");
 
+    	}
+    	else {
+    		lbnconform.setText("로그인실패");
+    	}
+    }
     @FXML
     void login(ActionEvent event) {
     	System.out.println("로그인");
