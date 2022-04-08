@@ -30,7 +30,7 @@
             <TableColumn prefWidth="58.0" text="인원" />
         </columns>
       </TableView>
-      <TextField fx:id="txtroomname" layoutX="565.0" layoutY="192.0" prefHeight="42.0" prefWidth="301.0" />
+      <TextField fx:id="txtroomname" layoutX="565.0" layoutY="192.0" prefHeight="42.0" prefWidth="301.0" promptText="채팅방 이름" />
       <Button fx:id="btnadd" layoutX="881.0" layoutY="191.0" mnemonicParsing="false" onAction="#add" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #CD853F;" text="채팅방 개설" textFill="DARKGREEN" />
       <Label fx:id="lblselect" layoutX="565.0" layoutY="237.0" prefHeight="42.0" prefWidth="441.0" text="선택된 채팅방 : ">
          <font>

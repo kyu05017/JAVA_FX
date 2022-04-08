@@ -131,6 +131,7 @@ public class Chatting implements Initializable {
         		alert.setHeaderText("채팅방이 개설 되었습니다.");
         		alert.showAndWait();
         		txtroomname.setText("");
+        		show();
         	}
     	}
     	
@@ -189,7 +190,7 @@ public class Chatting implements Initializable {
     	txtmidlist.setDisable(true);
     	show();
     }
-	
+	public Room selectRoom;
     public void show() {
     	ObservableList<Room> roomlist = RoomDao.dao.room_list();
     	
@@ -203,9 +204,16 @@ public class Chatting implements Initializable {
 		tc.setCellValueFactory(new PropertyValueFactory<>("m_count"));
 		
 		roomtable.setItems(roomlist);
+		
 		roomtable.setOnMouseClicked( e -> {
-			btnconnect.setDisable(false);
-			
+			try {
+				btnconnect.setDisable(false);
+				selectRoom = roomtable.getSelectionModel().getSelectedItem();
+				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
+			}
+			catch (Exception e2) {
+				System.out.println("채팅방이 존재하지 않습니다. " + e2);
+			}
 		});
     }
 }
