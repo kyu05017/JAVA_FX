@@ -7,7 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.controls.jar"/>
 	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.fxml.jar"/>
 	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.graphics.jar"/>
 	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.media.jar"/>
@@ -17,5 +16,6 @@
 	<classpathentry kind="lib" path="D:/KKS/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar"/>
 	<classpathentry kind="lib" path="D:/KKS/activation.jar"/>
 	<classpathentry kind="lib" path="D:/KKS/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="D:/KKS/javafx-sdk-11/lib/javafx.controls.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
