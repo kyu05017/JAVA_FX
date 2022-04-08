@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import controllor.Server;
-import controllor.Server.Client;
-import dto.Reply;
 import dto.Room;
 import dto.RoomLive;
 import javafx.collections.FXCollections;
@@ -78,11 +74,18 @@ public class RoomDao {
 			// resultset ( 초기 값 null )
 			// rs.next : select 결과 레코드 1개 가져오기
 			while(rs.next()) {
+				String sql2 = "select count(*) from roomlive where ro_num =" + rs.getInt(1);
+				ps = con.prepareStatement(sql2);
+				ResultSet rs2 = ps.executeQuery();
+				int count = 0;
+				if(rs2.next()) {
+					count = rs2.getInt(1);
+				}
 				Room temp = new Room(
 					rs.getInt(1), 
 					rs.getString(2), 
 					rs.getString(3),
-					0
+					count
 					); 
 				roomlist.add(temp);
 			}
@@ -119,6 +122,7 @@ public class RoomDao {
 			ps.setInt(1, ro_num);
 			rs =  ps.executeQuery();
 			while(rs.next()) {
+				
 				RoomLive live = new RoomLive(rs.getInt(1), rs.getInt(2), rs.getString(3));
 				livelist.add(live);
 			}
@@ -128,6 +132,48 @@ public class RoomDao {
 			System.out.println("룸라이브 가져오기 실패 " + e);
 		}
 		return null;
+	}
+	
+	public boolean deletelist(String mid) {
+		try {
+			String sql = "delete from roomlive where m_id=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mid);
+			
+			ps.executeUpdate(); 
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("채팅방 삭제 실패 " + e);
+		}
+		
+		return false;
+	}
+	// 7. 채팅방 삭제 [ 조걵 : 해당 채팅방에 접속명단이 0 이면 ]
+	public boolean deleteroom(int ro_num) {
+		
+		try {
+			String sql = "select * from roomlive where ro_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ro_num);
+			
+			rs =  ps.executeQuery();
+			if(rs.next()) { 	// 결과가 존재할 경우
+				return false;
+			}
+			else { // 
+				String sql2 = "delete from room where ro_num=?";
+				ps = con.prepareStatement(sql2);
+				ps.setInt(1, ro_num);
+				ps.executeUpdate(); 
+				return true;
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("채팅방 삭제 실패 " + e);
+		}
+		return false;
 	}
 }
 

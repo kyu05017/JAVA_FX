@@ -40,6 +40,7 @@ public class Server { // fxml 을 사용하는 클래스 [ 서버 컨트롤 사용 ]
 						}
 					}catch( Exception e ) {
 						System.out.println("서버가 메세지 받기 실패 " + e);
+						return;
 					}
 				}
 			}; // 멀티스레드 구현 끝 
@@ -55,6 +56,7 @@ public class Server { // fxml 을 사용하는 클래스 [ 서버 컨트롤 사용 ]
 						outputStream.write( msg.getBytes() ); 					// 2. 내보내기
 					}catch( Exception e ) {
 						System.out.println("서버가 메세지 보내기 실패 " + e);
+						return;
 					}
 				}
 			}; // 멀티스레드  구현 끝 
@@ -93,6 +95,7 @@ public class Server { // fxml 을 사용하는 클래스 [ 서버 컨트롤 사용 ]
 					}
 				}catch( Exception e ) {
 					System.out.println("서버가 클라이언트 연결 실패 " + e);
+					return;
 				}
 			}
 		};// 멀티스레드 구현 끝
@@ -103,16 +106,18 @@ public class Server { // fxml 을 사용하는 클래스 [ 서버 컨트롤 사용 ]
     // 3. 서버종료 메소드
     public void serverstop() { 
     	try {
+    		// 2. 서버소켓 닫기
+	    	serverSocket.close();
 	    	// 1. 접속된 모든 클라이언트들의 소켓 닫기 
 	    	for( Client client :  clientlist) {
 	    		client.socket.close();
 	    	}
-	    	// 2. 서버소켓 닫기
-	    	serverSocket.close();
+	    	
 	    	// 3. 스레드풀 닫기
 	    	threadpool.shutdown();
     	}catch( Exception e ) {
     		System.out.println("서버가 닫기 실패 " + e);
+    		return;
     	}
     }
 }

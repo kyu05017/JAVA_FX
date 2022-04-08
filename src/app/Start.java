@@ -1,5 +1,8 @@
 package app;
 
+import controllor.Chatting;
+import controllor.login.Login;
+import dao.RoomDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,6 +40,17 @@ public class Start extends Application{ // 20220408 1019
 		stage.setResizable(false);	// 3. 스테이지 크기 고정
 		stage.setTitle("토끼 중고나라 "); // 2. 스테이지 창 이름
 		stage.show(); // 스테이지 열기
+		
+		// * 윈도우 창에 x버튼 눌렀을때
+		stage.setOnCloseRequest(e -> {
+			if(Login.member != null) {
+				RoomDao.dao.deletelist(Login.member.getM_id());
+				if(Chatting.selectRoom != null) {
+					RoomDao.dao.deleteroom(Chatting.selectRoom.getRo_num());
+				}
+				Chatting.selectRoom = null;
+			}
+		});
 	}
 	public static void main(String[] args) {
 		

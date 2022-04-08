@@ -64,9 +64,13 @@ public class Chatting implements Initializable {
     private TextField txtport;
     
     Socket socket;   // 1. 클라이언트 소켓 선언 
-    public Room selectRoom;
+    public static Room selectRoom;
+    
     public void show() {
+    	
+    	
     	ObservableList<Room> roomlist = RoomDao.dao.room_list();
+    	
     	
     	TableColumn<?, ?> tc = roomtable.getColumns().get(0); // 첫번째 열 호출
 		tc.setCellValueFactory(new PropertyValueFactory<>("ro_num"));
@@ -84,11 +88,15 @@ public class Chatting implements Initializable {
 				btnconnect.setDisable(false);
 				selectRoom = roomtable.getSelectionModel().getSelectedItem();
 				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
+				midshow();
 			}
 			catch (Exception e2) {
 				System.out.println("채팅방이 존재하지 않습니다. " + e2);
 			}
 		});
+		for(Room temp : roomlist) {
+    		System.out.println(temp.getRo_name() +" "+ temp.getM_count());
+    	}
     }
     // 2. 클라이언트 실행 메소드
     public void clientstart(String ip,int port) {
@@ -164,12 +172,13 @@ public class Chatting implements Initializable {
         		alert.setHeaderText("채팅방이 개설 되었습니다.");
         		alert.showAndWait();
         		txtroomname.setText("");
-        		show();
+        		
         	}
     	}
     	
     }
     public void midshow() {
+    	
     	ArrayList<RoomLive> roomlivelist 
 			= RoomDao.dao.getlivelist( selectRoom.getRo_num() );
 		txtmidlist.setText("");
@@ -185,10 +194,17 @@ public class Chatting implements Initializable {
     	send( msg ); // 메시지 보내기 
     	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
     	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
-    	midshow();
+    }
+    @FXML
+    void send(ActionEvent event) { // 전송 버튼을 눌렀을때
+    	String msg = txtmsg.getText()+"\n"; // 보낼 메시지
+    	send( msg ); // 메시지 보내기 
+    	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
+    	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
     }
     @FXML
     void connect(ActionEvent event) {
+    	Alert alert = new Alert(AlertType.INFORMATION);
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
     		
     		clientstart(selectRoom.getRo_ip(),selectRoom.getRo_num()); // 클라이언트 실행 메소드 
@@ -196,7 +212,6 @@ public class Chatting implements Initializable {
     		RoomLive live = new RoomLive(0, selectRoom.getRo_num(), Login.member.getM_id());
     		
     		RoomDao.dao.roomlive_add(live);
-    		midshow();
     		txtcontent.appendText("---[채팅방 입장]---\n");
     		btnconnect.setText("채팅방 나가기");
     		
@@ -205,7 +220,11 @@ public class Chatting implements Initializable {
         	txtcontent.setDisable(false); 	// 채팅창 목록 사용가능
         	btnsend.setDisable(false); 		// 전송버튼 사용가능
         	txtmsg.requestFocus();  		// 채팅입력창으로 포커스[커서] 이동
-    		
+        	
+        	txtroomname.setDisable(true); // 채팅방 이름 입력금지
+        	btnadd.setDisable(true);	// 채팅방 개설 금지
+        	roomtable.setDisable(true);	// 채팅방 목록 사용금지
+        	
     	}else {
     		clientstop(); // 클라이언트 종료 메소드 
     		
@@ -216,15 +235,35 @@ public class Chatting implements Initializable {
         	txtmsg.setDisable(true); 		// 채팅입력창 사용금지 
         	txtcontent.setDisable(true); 	// 채팅창 목록 사용금지
         	btnsend.setDisable(true); 		// 전송버튼 사용금지
+        	
+        	txtroomname.setDisable(false); // 채팅방 이름 입력금지
+        	btnadd.setDisable(false);	// 채팅방 개설 금지
+        	roomtable.setDisable(false);	// 채팅방 목록 사용금지
+        	txtmidlist.setText("");
+        	
+        	// 1. 방 접속 명단에서 지외 [ 삭제 ] 하기
+        	boolean result = RoomDao.dao.deletelist(Login.member.getM_id());
+        	
+        	if(result) {
+        		alert.setHeaderText("채팅방을 나오셨습니다.");
+        		alert.showAndWait();
+        	}
+        	// 2. 만약에 방 접속 명단이 0 명이면 방삭제
+        	boolean result2 = RoomDao.dao.deleteroom(selectRoom.getRo_num());
+        	if(result2) {
+        		server.serverstop();
+        		System.out.println("채팅방 삭제됨");
+        		
+        	}
+        	else {
+        		System.out.println("채딩방 삭제안됨");
+        	}
+        	// 3. 만약에 방이 삭제된 서버소켓 종료
+        	// * 테이블뷰에서 선택된 방 초기화
+        	selectRoom = null;
+        	// * 선택된 방 레이블도 초기화
+        	lblselect.setText("현재 선택된 채팅방 : ");
     	}
-    }
-    @FXML
-    void send(ActionEvent event) { // 전송 버튼을 눌렀을때
-    	String msg = txtmsg.getText()+"\n"; // 보낼 메시지
-    	send( msg ); // 메시지 보내기 
-    	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
-    	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
-    	midshow();
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -236,7 +275,34 @@ public class Chatting implements Initializable {
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
     	btnconnect.setDisable(true);
     	txtmidlist.setDisable(true);
-    	show();
+    	Thread thread = new Thread() {
+    		@Override
+    		public void run() {
+    			try {
+    				while(true) {
+    					show();
+    					Thread.sleep(500);
+    				}
+    				
+    			}
+    			catch (Exception e) {}
+    		}
+    	};
+    	thread.start();
+    	Thread thread2 = new Thread() {
+    		@Override
+    		public void run() {
+    			try {
+    				while(true) {
+    					midshow();
+    					Thread.sleep(500);
+    				}
+    				
+    			}
+    			catch (Exception e) {}
+    		}
+    	};
+    	thread2.start();
     }
 	
 }
