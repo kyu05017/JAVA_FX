@@ -60,11 +60,12 @@ public class Chatting implements Initializable {
     // 4. 서버에게 메시지 보내기 메소드 
     public void send( String msg ) {
     	Thread thread = new Thread() { 
+    		String new_msg = Login.member.getM_id() + " : " + msg;
     		@Override
     		public void run() {
     			try {
     				OutputStream outputStream = socket.getOutputStream(); // 1. 출력 스트림
-    				outputStream.write( msg.getBytes() ); // 2. 내보내기
+    				outputStream.write(new_msg.getBytes() ); // 2. 내보내기
     				outputStream.flush(); // 3. 스트림 초기화 [ 스트림 내 바이트 지우기 ]
     			}catch( Exception e ) {} 
     		}
@@ -79,7 +80,7 @@ public class Chatting implements Initializable {
 	    		byte[] bytes = new byte[1000]; 	// 2. 바이트배열 선언 
 	    		inputStream.read(bytes);		// 3. 읽어오기 
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
-	    		txtcontent.appendText(Login.member.getM_id()+" : "+msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
+	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
 	    	}
     	}catch( Exception e ) {}
     }
