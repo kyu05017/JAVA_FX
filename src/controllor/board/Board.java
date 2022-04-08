@@ -70,17 +70,19 @@ public class Board implements Initializable{
 		//boardtable.setOnMouseClicked( e -> { 실행 코드 });; 클릭 했을때 
 		boardtable.setOnMouseClicked( e -> {
 			try {
-			// 0. 클릭한 객체 객체로 저장
-			board = boardtable.getSelectionModel().getSelectedItem();
-			// 1. 조회수 증가
-			
-			MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),"yyyy-MM-dd");
-			m_view.add(view);
+				if(board != null) {
+					// 0. 클릭한 객체 객체로 저장
+					board = boardtable.getSelectionModel().getSelectedItem();
+					// 1. 조회수 증가
+					
+					MemberView view = new MemberView(Login.member.getM_id(),Board.board.getB_num(),"yyyy-MM-dd");
+					m_view.add(view);
 
-			BoardDao.dao.view(board.getB_num(), board.getB_view(),Login.member.getM_id());
-			// 2. 페이지 저장 
-			// 3. 페이지 전환
-			Home.home.loadpage("/view/board/boardview");
+					BoardDao.dao.view(board.getB_num(), board.getB_view(),Login.member.getM_id());
+					// 2. 페이지 저장 
+					// 3. 페이지 전환
+					Home.home.loadpage("/view/board/boardview");
+				}
 			}
 			catch(Exception e2) {
 				System.out.println("[게시판 화면 로딩 실패] 사유 :  " + e);

@@ -85,10 +85,12 @@ public class Chatting implements Initializable {
 		
 		roomtable.setOnMouseClicked( e -> {
 			try {
-				btnconnect.setDisable(false);
-				selectRoom = roomtable.getSelectionModel().getSelectedItem();
-				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
-				midshow();
+				if(selectRoom != null) {
+					btnconnect.setDisable(false);
+					selectRoom = roomtable.getSelectionModel().getSelectedItem();
+					lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
+				}
+				
 			}
 			catch (Exception e2) {
 				System.out.println("채팅방이 존재하지 않습니다. " + e2);

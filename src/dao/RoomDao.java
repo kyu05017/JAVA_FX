@@ -86,7 +86,7 @@ public class RoomDao {
 					rs.getString(2), 
 					rs.getString(3),
 					count
-					); 
+				); 
 				roomlist.add(temp);
 			}
 			return roomlist;
