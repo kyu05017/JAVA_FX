@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import controllor.Server;
 import controllor.Server.Client;
 import dto.Reply;
 import dto.Room;
+import dto.RoomLive;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -92,4 +94,40 @@ public class RoomDao {
 		// 실패시 
 		return null;
 	}
+	// 4. 접속 명단 추가
+	public boolean roomlive_add(RoomLive live) {
+		try {
+			String sql = "insert into roomlive (ro_num,m_id) values(?,?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, live.getRo_num());
+			ps.setString(2, live.getM_id());
+			ps.executeUpdate(); 
+			return true;
+		}
+		catch (Exception e) {
+			System.out.println("룸라이브 추가 실패 " + e);
+		}
+		return false;
+	}
+	// 2. 방 번호 호출 메소드 [ 방번호 포트번호로 사용할 예정 ]
+	public ArrayList<RoomLive> getlivelist(int ro_num) {
+		ArrayList<RoomLive> livelist = new ArrayList<>();
+		try {
+			
+			String sql = "select * from roomlive where ro_num = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ro_num);
+			rs =  ps.executeQuery();
+			while(rs.next()) {
+				RoomLive live = new RoomLive(rs.getInt(1), rs.getInt(2), rs.getString(3));
+				livelist.add(live);
+			}
+			return livelist;
+		}
+		catch (Exception e) {
+			System.out.println("룸라이브 가져오기 실패 " + e);
+		}
+		return null;
+	}
 }
+

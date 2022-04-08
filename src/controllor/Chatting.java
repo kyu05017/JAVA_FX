@@ -4,11 +4,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import controllor.login.Login;
 import dao.BoardDao;
 import dao.RoomDao;
 import dto.Room;
+import dto.RoomLive;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +64,32 @@ public class Chatting implements Initializable {
     private TextField txtport;
     
     Socket socket;   // 1. 클라이언트 소켓 선언 
-    
+    public Room selectRoom;
+    public void show() {
+    	ObservableList<Room> roomlist = RoomDao.dao.room_list();
+    	
+    	TableColumn<?, ?> tc = roomtable.getColumns().get(0); // 첫번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("ro_num"));
+		
+		tc = roomtable.getColumns().get(1); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("ro_name"));
+		
+		tc = roomtable.getColumns().get(2); // 세번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("m_count"));
+		
+		roomtable.setItems(roomlist);
+		
+		roomtable.setOnMouseClicked( e -> {
+			try {
+				btnconnect.setDisable(false);
+				selectRoom = roomtable.getSelectionModel().getSelectedItem();
+				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
+			}
+			catch (Exception e2) {
+				System.out.println("채팅방이 존재하지 않습니다. " + e2);
+			}
+		});
+    }
     // 2. 클라이언트 실행 메소드
     public void clientstart(String ip,int port) {
     	Thread thread = new Thread() { // 멀티스레드 
@@ -72,13 +99,15 @@ public class Chatting implements Initializable {
     				socket = new Socket(ip,port); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
     				send(Login.member.getM_id()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
     				receive(); // 접속과 동시에 받기 메소드는 무한루프
-    			}catch(Exception e ) {}
+    			}catch(Exception e ) {
+    				System.out.println("클라이언트 시작 오류" + e);
+    			}
     		};
     	};// 멀티스레드 구현 끝
     	thread.start(); // 멀티스레드 실행
     }
     // 3. 클라이언트 종료 메소드 
-    public void clientstop() {  try{ socket.close(); }catch(Exception e ) {} }
+    public void clientstop() {  try{ socket.close(); }catch(Exception e ) {System.out.println("클라이언트 종료 실패" + e);} }
     
     // 4. 서버에게 메시지 보내기 메소드 
     public void send( String msg ) {
@@ -90,7 +119,9 @@ public class Chatting implements Initializable {
     				OutputStream outputStream = socket.getOutputStream(); // 1. 출력 스트림
     				outputStream.write(new_msg.getBytes() ); // 2. 내보내기
     				outputStream.flush(); // 3. 스트림 초기화 [ 스트림 내 바이트 지우기 ]
-    			}catch( Exception e ) {} 
+    			}catch( Exception e ) {
+    				System.out.println("메세지 받기 실패 " + e);
+    			} 
     		}
     	};// 멀티스레드 구현 끝 
     	thread.start();
@@ -105,7 +136,9 @@ public class Chatting implements Initializable {
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
 	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
 	    	}
-    	}catch( Exception e ) {}
+    	}catch( Exception e ) {
+    		System.out.println("채팅 받기 실패 " + e);
+    	}
     }
     public Server server;
     @FXML
@@ -136,20 +169,34 @@ public class Chatting implements Initializable {
     	}
     	
     }
-
+    public void midshow() {
+    	ArrayList<RoomLive> roomlivelist 
+			= RoomDao.dao.getlivelist( selectRoom.getRo_num() );
+		txtmidlist.setText("");
+		int i = 1; 
+		for( RoomLive temp : roomlivelist ) {
+			txtmidlist.appendText( i +"번 "+ temp.getM_id() +"\n");
+			i++;
+		}
+    }
     @FXML
     void msg(ActionEvent event) {
     	String msg = txtmsg.getText()+"\n"; // 보낼 메시지
     	send( msg ); // 메시지 보내기 
     	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
     	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    	midshow();
     }
     @FXML
     void connect(ActionEvent event) {
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
     		
     		clientstart(selectRoom.getRo_ip(),selectRoom.getRo_num()); // 클라이언트 실행 메소드 
+    			// 현재 방 접속 명단 추가
+    		RoomLive live = new RoomLive(0, selectRoom.getRo_num(), Login.member.getM_id());
     		
+    		RoomDao.dao.roomlive_add(live);
+    		midshow();
     		txtcontent.appendText("---[채팅방 입장]---\n");
     		btnconnect.setText("채팅방 나가기");
     		
@@ -177,6 +224,7 @@ public class Chatting implements Initializable {
     	send( msg ); // 메시지 보내기 
     	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
     	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    	midshow();
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -190,30 +238,5 @@ public class Chatting implements Initializable {
     	txtmidlist.setDisable(true);
     	show();
     }
-	public Room selectRoom;
-    public void show() {
-    	ObservableList<Room> roomlist = RoomDao.dao.room_list();
-    	
-    	TableColumn<?, ?> tc = roomtable.getColumns().get(0); // 첫번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("ro_num"));
-		
-		tc = roomtable.getColumns().get(1); // 두번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("ro_name"));
-		
-		tc = roomtable.getColumns().get(2); // 세번째 열 호출
-		tc.setCellValueFactory(new PropertyValueFactory<>("m_count"));
-		
-		roomtable.setItems(roomlist);
-		
-		roomtable.setOnMouseClicked( e -> {
-			try {
-				btnconnect.setDisable(false);
-				selectRoom = roomtable.getSelectionModel().getSelectedItem();
-				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
-			}
-			catch (Exception e2) {
-				System.out.println("채팅방이 존재하지 않습니다. " + e2);
-			}
-		});
-    }
+	
 }
