@@ -5,7 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import controllor.Server;
+import controllor.Server.Client;
+import dto.Reply;
 import dto.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class RoomDao {
 	
@@ -58,7 +63,32 @@ public class RoomDao {
 		}
 		return 0;
 	}
-	
+	// 7 . 불러오시
+		public ObservableList<Room> room_list() {
+			
+			try {
+				// *
+				ObservableList<Room> roomlist = FXCollections.observableArrayList();
+				String sql = "select * from room";
+				ps = con.prepareStatement(sql);
+				rs =  ps.executeQuery();
+				while(rs.next()) {
+					Room temp = new Room(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3),
+						0
+						); 
+					roomlist.add(temp);
+				}
+				return roomlist;
+			}
+			catch (Exception e) {
+				System.out.println("[sql 채팅방 로딩 실패] : 사유 " + e);
+			}
+			// 실패시 
+			return null;
+		}
 	
 	
 }

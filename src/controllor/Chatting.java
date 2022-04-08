@@ -5,27 +5,28 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import controllor.home.Home;
 import controllor.login.Login;
-import dao.MemberDao;
+import dao.BoardDao;
 import dao.RoomDao;
 import dto.Room;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Chatting implements Initializable {
 
     @FXML
-    private TableView<?> roomtable;
+    private TableView<Room> roomtable;
 
     @FXML
     private TextField txtroomname;
@@ -186,6 +187,25 @@ public class Chatting implements Initializable {
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
     	btnconnect.setDisable(true);
     	txtmidlist.setDisable(true);
+    	show();
     }
 	
+    public void show() {
+    	ObservableList<Room> roomlist = RoomDao.dao.room_list();
+    	
+    	TableColumn<?, ?> tc = roomtable.getColumns().get(0); // 첫번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("ro_num"));
+		
+		tc = roomtable.getColumns().get(1); // 두번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("ro_name"));
+		
+		tc = roomtable.getColumns().get(2); // 세번째 열 호출
+		tc.setCellValueFactory(new PropertyValueFactory<>("m_count"));
+		
+		roomtable.setItems(roomlist);
+		roomtable.setOnMouseClicked( e -> {
+			btnconnect.setDisable(false);
+			
+		});
+    }
 }
