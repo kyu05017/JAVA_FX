@@ -7,15 +7,31 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controllor.login.Login;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class Chatting implements Initializable {
+
+    @FXML
+    private TableView<?> roomtable;
+
+    @FXML
+    private TextField txtroomname;
+
+    @FXML
+    private Button btnadd;
+
+    @FXML
+    private Label lblselect;
+
+    @FXML
+    private TextArea txtmidlist;
 
     @FXML
     private Button btnconnect;
@@ -84,7 +100,18 @@ public class Chatting implements Initializable {
 	    	}
     	}catch( Exception e ) {}
     }
-    
+    @FXML
+    void add(ActionEvent event) {
+
+    }
+
+    @FXML
+    void msg(ActionEvent event) {
+    	String msg = txtmsg.getText()+"\n"; // 보낼 메시지
+    	send( msg ); // 메시지 보내기 
+    	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
+    	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    }
     @FXML
     void connect(ActionEvent event) {
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
