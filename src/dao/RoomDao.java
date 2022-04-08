@@ -63,32 +63,30 @@ public class RoomDao {
 		}
 		return 0;
 	}
-	// 7 . 불러오시
-		public ObservableList<Room> room_list() {
-			
-			try {
-				// *
-				ObservableList<Room> roomlist = FXCollections.observableArrayList();
-				String sql = "select * from room";
-				ps = con.prepareStatement(sql);
-				rs =  ps.executeQuery();
-				while(rs.next()) {
-					Room temp = new Room(
-						rs.getInt(1), 
-						rs.getString(2), 
-						rs.getString(3),
-						0
-						); 
-					roomlist.add(temp);
-				}
-				return roomlist;
+	// 2. 방 불러오기
+	public ObservableList<Room> room_list() {
+		
+		try {
+			// *
+			ObservableList<Room> roomlist = FXCollections.observableArrayList();
+			String sql = "select * from room";
+			ps = con.prepareStatement(sql);
+			rs =  ps.executeQuery();
+			while(rs.next()) {
+				Room temp = new Room(
+					rs.getInt(1), 
+					rs.getString(2), 
+					rs.getString(3),
+					0
+					); 
+				roomlist.add(temp);
 			}
-			catch (Exception e) {
-				System.out.println("[sql 채팅방 로딩 실패] : 사유 " + e);
-			}
-			// 실패시 
-			return null;
+			return roomlist;
 		}
-	
-	
+		catch (Exception e) {
+			System.out.println("[sql 채팅방 로딩 실패] : 사유 " + e);
+		}
+		// 실패시 
+		return null;
+	}
 }
