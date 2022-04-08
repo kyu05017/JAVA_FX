@@ -152,7 +152,7 @@ public class BoardView implements Initializable{
 			System.out.println("[게시물 삭제 취소] ");
 		}
     }
-
+   
     @FXML
     void rewrite(ActionEvent event) {
     	
