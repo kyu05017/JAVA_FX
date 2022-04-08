@@ -63,7 +63,7 @@ public class RoomDao {
 		}
 		return 0;
 	}
-	// 2. 방 불러오기
+	// 3. 방 불러오기
 	public ObservableList<Room> room_list() {
 		
 		try {
