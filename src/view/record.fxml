@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1064.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllor.Record">
+   <children>
+      <Text fill="DARKGREEN" layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="실시간 채팅">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Line endX="162.0" endY="-1.52587890625E-5" layoutX="115.0" layoutY="70.0" startX="-100.0" stroke="STEELBLUE" />
+      <Accordion layoutX="26.0" layoutY="180.0" prefHeight="518.0" prefWidth="1012.0">
+        <panes>
+          <TitledPane animated="false" prefHeight="62.0" prefWidth="972.0" text="회원 추세">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart layoutX="14.0" layoutY="79.0" prefHeight="343.0" prefWidth="982.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="104.0" text="회원 수" textFill="DARKGREEN">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Line endX="-12.0" layoutX="115.0" layoutY="63.0" startX="-100.0" stroke="STEELBLUE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="제품 추세">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart layoutX="14.0" layoutY="78.0" prefHeight="342.0" prefWidth="986.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </BarChart>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="81.0" text="제품 수" textFill="DARKGREEN">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Line endX="-12.0" layoutX="115.0" layoutY="63.0" startX="-100.0" stroke="STEELBLUE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="게시판 추세">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="153.0" text="게시물 수" textFill="DARKGREEN">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-12.0" layoutX="115.0" layoutY="63.0" startX="-100.0" stroke="STEELBLUE" />
+                           </children>
+                        </AnchorPane>
+                        <Line endX="-12.0" startX="-100.0" stroke="STEELBLUE" />
+                        <BarChart layoutX="14.0" layoutY="83.0" prefHeight="340.0" prefWidth="985.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Text fill="DARKGREEN" layoutX="26.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="회원수" wrappingWidth="251.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="162.0" endY="-1.52587890625E-5" layoutX="127.0" layoutY="160.0" startX="-100.0" stroke="STEELBLUE" />
+      <Text fill="DARKGREEN" layoutX="368.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제품수 " wrappingWidth="251.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="162.0" endY="-1.52587890625E-5" layoutX="469.0" layoutY="163.0" startX="-100.0" stroke="STEELBLUE" />
+      <Text fill="DARKGREEN" layoutX="728.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="게시물 수" wrappingWidth="251.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="162.0" endY="-1.52587890625E-5" layoutX="829.0" layoutY="163.0" startX="-100.0" stroke="STEELBLUE" />
+      <Label layoutX="110.0" layoutY="84.0" prefHeight="65.0" prefWidth="165.0" text="29명" textFill="DARKGREEN">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="84.0" prefHeight="65.0" prefWidth="165.0" text="37개" textFill="DARKGREEN">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="827.0" layoutY="84.0" prefHeight="65.0" prefWidth="165.0" text="11개" textFill="DARKGREEN">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -65,6 +65,12 @@ public class Home implements Initializable{
 	private Label lblInfoChange;
 	
 	@FXML
+	private Label lblrecord;
+	@FXML
+    void record(MouseEvent event) {
+		loadpage("/view/record");
+    }
+	@FXML
 	private Label chattng;
 	@FXML
     void actchat(MouseEvent event) {
