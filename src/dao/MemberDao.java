@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import controllor.login.Login;
 import dto.Member;
@@ -316,5 +318,25 @@ public class MemberDao {	// DB 접근 객체
 			System.out.println("회원수 불러오기 오류 " + e);
 		}
 		return 0;
+	}
+	
+	// 10. 날짜별로 회원가입순을 반환
+	public Map<String, Integer> date_total() {
+		try {
+			Map<String ,Integer> total = new HashMap<>();
+			
+			String sql = "select m_since,count(*) from member group by m_since";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				total.put(rs.getString(1), rs.getInt(2));
+			}
+			return total;
+		}
+		catch (Exception e) {
+			System.out.println("날짜 회원수 조회 실패" + e);
+		}
+		return null;
 	}
 }

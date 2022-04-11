@@ -1,6 +1,7 @@
 package controllor;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import dao.BoardDao;
@@ -8,6 +9,8 @@ import dao.MemberDao;
 import dao.ProductDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
 public class Record implements Initializable{
@@ -21,7 +24,8 @@ public class Record implements Initializable{
     @FXML
     private Label lblboards;
 
-	
+    @FXML
+    private BarChart<?, ?> mbc;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -44,6 +48,22 @@ public class Record implements Initializable{
 		else {
 			lblboards.setText(total_board+"개");
 		}
+
+		// 날짜별 회원 가입수'
+		XYChart.Series series = new XYChart.Series<>();
+		// XYChart.Series = 계열 클래스
+			//  XYChart.Data  = 계열 데이터 클래스 [ x 축의 값 , y 축의 값 ] 
+			// 날짜별로 회원가입수 수 체크 [ 2022-04-11 , 3 ]
+			// map 컬렉션 => 키와 값으로 하나의 엔트리 구성
+			// 키 = 날짜 \\ 값 가입수
+			
+		Map<String, Integer> total = MemberDao.dao.date_total();
 		
+		for(String temp : total.keySet()) {
+			XYChart.Data data = new XYChart.Data(temp,total.get(temp));
+			series.getData().add(data);
+		}
+		
+		mbc.getData().add(series);
 	}
 }
