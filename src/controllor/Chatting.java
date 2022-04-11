@@ -96,9 +96,6 @@ public class Chatting implements Initializable {
 				System.out.println("채팅방이 존재하지 않습니다. " + e2);
 			}
 		});
-		for(Room temp : roomlist) {
-    		System.out.println(temp.getRo_name() +" "+ temp.getM_count());
-    	}
     }
     // 2. 클라이언트 실행 메소드
     public void clientstart(String ip,int port) {
