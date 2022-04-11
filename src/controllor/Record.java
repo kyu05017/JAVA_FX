@@ -72,7 +72,7 @@ public class Record implements Initializable{
 		mbc.getData().add(series);
 		
 		XYChart.Series series2 = new XYChart.Series<>();
-		Map<String, Integer> b_total = BoardDao.dao.date_Btotal();
+		Map<String, Integer> b_total = BoardDao.dao.date_Btotal("board");
 		for(String temp : b_total.keySet()) {
 			XYChart.Data data = new XYChart.Data(temp,b_total.get(temp));
 			series2.getData().add(data);
@@ -80,7 +80,7 @@ public class Record implements Initializable{
 		bbc.getData().add(series2);
 		
 		XYChart.Series series3 = new XYChart.Series<>();
-		Map<String, Integer> p_total = ProductDao.dao.date_Ptotal();
+		Map<String, Integer> p_total = BoardDao.dao.date_Btotal("product");
 		for(String temp : p_total.keySet()) {
 			XYChart.Data data = new XYChart.Data(temp,p_total.get(temp));
 			series3.getData().add(data);

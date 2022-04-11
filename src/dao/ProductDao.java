@@ -311,22 +311,4 @@ public class ProductDao {
 		}
 		return 0;
 	}
-	public Map<String, Integer> date_Ptotal() {
-		try {
-			Map<String ,Integer> ptotal = new HashMap<>();
-			
-			String sql = "SELECT substring_index(p_date,' ', 1), count(*) FROM product group by substring_index(p_date, ' ' , 1)  ";
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				ptotal.put(rs.getString(1), rs.getInt(2));
-			}
-			return ptotal;
-		}
-		catch (Exception e) {
-			System.out.println("제품 회원수 조회 실패" + e);
-		}
-		return null;
-	}
 }
