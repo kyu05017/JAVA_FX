@@ -296,19 +296,4 @@ public class ProductDao {
 		}
 		return false;
 	}
-	public int total_product() {
-		try {
-			String sql = "select count(*) from product";
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			
-			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
-				return rs.getInt(1); // 해당 아이디는 중복이 존재
-			}
-		}
-		catch (Exception e) {
-			System.out.println("제품수 불러오기 오류 " + e);
-		}
-		return 0;
-	}
 }

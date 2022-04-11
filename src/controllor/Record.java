@@ -36,10 +36,10 @@ public class Record implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// 전체 회원수 
-		int total_member  = MemberDao.dao.total_member();
+		int total_member  = MemberDao.dao.total_member("member");
 		lblmembers.setText(total_member+"명");
 		// 전체 제품수
-		int total_product = ProductDao.dao.total_product();
+		int total_product = MemberDao.dao.total_member("product");
 		if(total_product == 0) {
 			lblitems.setText("제품없음");
 		}
@@ -47,7 +47,7 @@ public class Record implements Initializable{
 			lblitems.setText(total_product+"개");
 		}
 		// 전체 게시물수
-		int total_board = BoardDao.dao.total_board();
+		int total_board = MemberDao.dao.total_member("board");
 		if(total_board == 0) {
 			lblboards.setText("게시물 없음.");
 		}

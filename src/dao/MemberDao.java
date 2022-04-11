@@ -304,9 +304,16 @@ public class MemberDao {	// DB 접근 객체
 	
 	// 9. 전체회쉉수를 반환하는 메소드
 	
-	public int total_member() {
+	public int total_member(String name) {
 		try {
-			String sql = "select count(m_id) from member";
+			String sql = null;
+			if(name.equals("member")) {
+				sql = "select count(m_id) from member";
+			}else if(name.equals("board")) {
+				sql = "select count(*) from board";
+			}else if(name.equals("product")) {
+				sql = "select count(*) from product";
+			}			
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
