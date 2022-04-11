@@ -58,7 +58,7 @@
             <TableColumn prefWidth="100.0" text="작성일" />
         </columns>
       </TableView>
-      <TextArea fx:id="txtrefiled" layoutX="48.0" layoutY="519.0" prefHeight="56.0" prefWidth="810.0" promptText="댓글" />
+      <TextArea fx:id="txtrefiled" layoutX="48.0" layoutY="519.0" prefHeight="56.0" prefWidth="810.0" promptText="쪽지" />
       <Button fx:id="btredel" layoutX="865.0" layoutY="502.0" mnemonicParsing="false" onAction="#accredel" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CD853F;" text="삭제" textFill="DARKGREEN">
          <font>
             <Font size="18.0" />
