@@ -27,6 +27,12 @@ public class Record implements Initializable{
     @FXML
     private BarChart<?, ?> mbc;
 	
+    @FXML
+    private BarChart<?, ?> pbc;
+
+    @FXML
+    private BarChart<?, ?> bbc;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// 전체 회원수 
@@ -63,7 +69,22 @@ public class Record implements Initializable{
 			XYChart.Data data = new XYChart.Data(temp,total.get(temp));
 			series.getData().add(data);
 		}
-		
 		mbc.getData().add(series);
+		
+		XYChart.Series series2 = new XYChart.Series<>();
+		Map<String, Integer> b_total = BoardDao.dao.date_Btotal();
+		for(String temp : b_total.keySet()) {
+			XYChart.Data data = new XYChart.Data(temp,b_total.get(temp));
+			series2.getData().add(data);
+		}
+		bbc.getData().add(series2);
+		
+		XYChart.Series series3 = new XYChart.Series<>();
+		Map<String, Integer> p_total = ProductDao.dao.date_Ptotal();
+		for(String temp : p_total.keySet()) {
+			XYChart.Data data = new XYChart.Data(temp,p_total.get(temp));
+			series3.getData().add(data);
+		}
+		pbc.getData().add(series3);
 	}
 }

@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import dto.Board;
 import dto.MemberView;
@@ -387,5 +389,23 @@ public class BoardDao { // 2022 04 06 06 12
 			System.out.println("게시물수 불러오기 오류 " + e);
 		}
 		return 0;
+	}
+	public Map<String, Integer> date_Btotal() {
+		try {
+			Map<String ,Integer> btotal = new HashMap<>();
+			
+			String sql = "SELECT substring_index(b_date,' ', 1), count(*) FROM board group by substring_index(b_date, ' ' , 1)  ";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				btotal.put(rs.getString(1), rs.getInt(2));
+			}
+			return btotal;
+		}
+		catch (Exception e) {
+			System.out.println("날짜 회원수 조회 실패" + e);
+		}
+		return null;
 	}
 }

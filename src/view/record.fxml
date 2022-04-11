@@ -47,7 +47,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart layoutX="14.0" layoutY="78.0" prefHeight="342.0" prefWidth="986.0">
+                        <BarChart fx:id="pbc" layoutX="14.0" layoutY="78.0" prefHeight="342.0" prefWidth="986.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -80,7 +80,7 @@
                            </children>
                         </AnchorPane>
                         <Line endX="-12.0" startX="-100.0" stroke="STEELBLUE" />
-                        <BarChart layoutX="14.0" layoutY="83.0" prefHeight="340.0" prefWidth="985.0">
+                        <BarChart fx:id="bbc" layoutX="14.0" layoutY="83.0" prefHeight="340.0" prefWidth="985.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
