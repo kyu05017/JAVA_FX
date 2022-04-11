@@ -83,19 +83,7 @@ public class Chatting implements Initializable {
 		
 		roomtable.setItems(roomlist);
 		
-		roomtable.setOnMouseClicked( e -> {
-			try {
-				if(selectRoom != null) {
-					btnconnect.setDisable(false);
-					selectRoom = roomtable.getSelectionModel().getSelectedItem();
-					lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
-				}
-				
-			}
-			catch (Exception e2) {
-				System.out.println("채팅방이 존재하지 않습니다. " + e2);
-			}
-		});
+		
     }
     // 2. 클라이언트 실행 메소드
     public void clientstart(String ip,int port) {
@@ -268,6 +256,17 @@ public class Chatting implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// 채팅fxml 열렸을때 초기값 메소드 
     		// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
+    	roomtable.setOnMouseClicked( e -> {
+			try {
+				btnconnect.setDisable(false);
+				selectRoom = roomtable.getSelectionModel().getSelectedItem();
+				lblselect.setText("현재 선택된 채팅방 : " + selectRoom.getRo_name());
+
+			}
+			catch (Exception e2) {
+				System.out.println("채팅방이 존재하지 않습니다. " + e2);
+			}
+		});
     	txtmsg.setText("채팅방 입장후 사용가능");
     	txtmsg.setDisable(true); 		// 채팅입력창 사용금지 
     	txtcontent.setDisable(true); 	// 채팅창 목록 사용금지
@@ -280,7 +279,7 @@ public class Chatting implements Initializable {
     			try {
     				while(true) {
     					show();
-    					Thread.sleep(500);
+    					Thread.sleep(1500);
     				}
     				
     			}
@@ -288,20 +287,20 @@ public class Chatting implements Initializable {
     		}
     	};
     	thread.start();
-    	Thread thread2 = new Thread() {
-    		@Override
-    		public void run() {
-    			try {
-    				while(true) {
-    					midshow();
-    					Thread.sleep(500);
-    				}
-    				
-    			}
-    			catch (Exception e) {}
-    		}
-    	};
-    	thread2.start();
+//    	Thread thread2 = new Thread() {
+//    		@Override
+//    		public void run() {
+//    			try {
+//    				while(true) {
+//    					midshow();
+//    					Thread.sleep(500);
+//    				}
+//    				
+//    			}
+//    			catch (Exception e) {}
+//    		}
+//    	};
+//    	thread2.start();
     }
 	
 }
