@@ -342,6 +342,9 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 			else if(name.equals("product")){
 				sql = "SELECT substring_index(p_date,' ', 1), count(*) FROM "+name+" group by substring_index(p_date, ' ' , 1)  ";
 			}
+			else if(name.equals("category")){
+				sql =  "select p_category,count(*) from product group by p_category";
+			}
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			

@@ -1,15 +1,18 @@
 package controllor;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
-import dao.BoardDao;
 import dao.MemberDao;
 import dao.ProductDao;
+import dto.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
@@ -23,7 +26,10 @@ public class Record implements Initializable{
 
     @FXML
     private Label lblboards;
-
+    
+    @FXML
+    private PieChart ppc;
+    
     @FXML
     private BarChart<?, ?> mbc;
 	
@@ -86,5 +92,18 @@ public class Record implements Initializable{
 			series3.getData().add(data);
 		}
 		pbc.getData().add(series3);
+		
+		// 원차트 제품 카테고리 개수 [ ObservableList 밖에 안들어감 ] 
+		Map<String, Integer> c_list = MemberDao.dao.date_total("category");
+		// 1. ObservableList < 원형 차트 데이터 자료형 > 리스트명 선언
+		ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
+		// 2. PieChart.Data 객체 선언 
+		// 3. 데이터를 리스트에 추가
+		for(String temp : c_list.keySet()) {
+			PieChart.Data temp2 = new PieChart.Data(temp, c_list.get(temp));
+			pielist.add(temp2);
+		}
+		// 4. 리스트에 원형차트에 추가
+		ppc.setData(pielist);
 	}
 }

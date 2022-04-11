@@ -3,6 +3,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
@@ -47,7 +48,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart fx:id="pbc" layoutX="14.0" layoutY="78.0" prefHeight="342.0" prefWidth="986.0">
+                        <BarChart fx:id="pbc" layoutX="548.0" layoutY="78.0" prefHeight="342.0" prefWidth="452.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -61,6 +62,7 @@
                            </font>
                         </Label>
                         <Line endX="-12.0" layoutX="115.0" layoutY="63.0" startX="-100.0" stroke="STEELBLUE" />
+                        <PieChart fx:id="ppc" layoutX="15.0" layoutY="87.0" prefHeight="328.0" prefWidth="507.0" />
                      </children>
                   </AnchorPane>
             </content>

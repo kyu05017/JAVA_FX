@@ -296,4 +296,7 @@ public class ProductDao {
 		}
 		return false;
 	}
+	// 2. 제품 풀력
+
+	
 }
