@@ -63,7 +63,7 @@ public class Record implements Initializable{
 			// map 컬렉션 => 키와 값으로 하나의 엔트리 구성
 			// 키 = 날짜 \\ 값 가입수
 			
-		Map<String, Integer> total = MemberDao.dao.date_total();
+		Map<String, Integer> total = MemberDao.dao.date_total("member");
 		
 		for(String temp : total.keySet()) {
 			XYChart.Data data = new XYChart.Data(temp,total.get(temp));
@@ -72,7 +72,7 @@ public class Record implements Initializable{
 		mbc.getData().add(series);
 		
 		XYChart.Series series2 = new XYChart.Series<>();
-		Map<String, Integer> b_total = BoardDao.dao.date_Btotal("board");
+		Map<String, Integer> b_total = MemberDao.dao.date_total("board");
 		for(String temp : b_total.keySet()) {
 			XYChart.Data data = new XYChart.Data(temp,b_total.get(temp));
 			series2.getData().add(data);
@@ -80,7 +80,7 @@ public class Record implements Initializable{
 		bbc.getData().add(series2);
 		
 		XYChart.Series series3 = new XYChart.Series<>();
-		Map<String, Integer> p_total = BoardDao.dao.date_Btotal("product");
+		Map<String, Integer> p_total = MemberDao.dao.date_total("product");
 		for(String temp : p_total.keySet()) {
 			XYChart.Data data = new XYChart.Data(temp,p_total.get(temp));
 			series3.getData().add(data);

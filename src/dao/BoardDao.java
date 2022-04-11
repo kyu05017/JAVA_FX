@@ -390,27 +390,4 @@ public class BoardDao { // 2022 04 06 06 12
 		}
 		return 0;
 	}
-	public Map<String, Integer> date_Btotal(String name) {
-		try {
-			Map<String ,Integer> btotal = new HashMap<>();
-			String sql = null;
-			if(name.equals("board")) {
-				sql = "SELECT substring_index(b_date,' ', 1), count(*) FROM "+name+" group by substring_index(b_date, ' ' , 1)  ";
-			}
-			else if(name.equals("product")){
-				sql = "SELECT substring_index(p_date,' ', 1), count(*) FROM "+name+" group by substring_index(p_date, ' ' , 1)  ";
-			}
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				btotal.put(rs.getString(1), rs.getInt(2));
-			}
-			return btotal;
-		}
-		catch (Exception e) {
-			System.out.println("날짜 회원수 조회 실패" + e);
-		}
-		return null;
-	}
 }

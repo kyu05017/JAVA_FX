@@ -321,18 +321,27 @@ public class MemberDao {	// DB 접근 객체
 	}
 	
 	// 10. 날짜별로 회원가입순을 반환
-	public Map<String, Integer> date_total() {
+	public Map<String, Integer> date_total(String name) {
 		try {
-			Map<String ,Integer> total = new HashMap<>();
+			Map<String ,Integer> btotal = new HashMap<>();
+			String sql = null;
 			
-			String sql = "select m_since,count(*) from member group by m_since";
+			if(name.equals("member")) {
+				sql = "SELECT substring_index(m_since,' ', 1), count(*) FROM "+name+" group by substring_index(m_since, ' ' , 1)  ";
+			}
+			else if(name.equals("board")) {
+				sql = "SELECT substring_index(b_date,' ', 1), count(*) FROM "+name+" group by substring_index(b_date, ' ' , 1)  ";
+			}
+			else if(name.equals("product")){
+				sql = "SELECT substring_index(p_date,' ', 1), count(*) FROM "+name+" group by substring_index(p_date, ' ' , 1)  ";
+			}
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				total.put(rs.getString(1), rs.getInt(2));
+				btotal.put(rs.getString(1), rs.getInt(2));
 			}
-			return total;
+			return btotal;
 		}
 		catch (Exception e) {
 			System.out.println("날짜 회원수 조회 실패" + e);
