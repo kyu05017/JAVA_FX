@@ -299,4 +299,22 @@ public class MemberDao {	// DB 접근 객체
 		}
 		return null;
 	}
+	
+	// 9. 전체회쉉수를 반환하는 메소드
+	
+	public int total_member() {
+		try {
+			String sql = "select count(m_id) from member";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) { // 만약에 다음 결과물이 존재하면 => 해당아이디가 존재 => 중복
+				return rs.getInt(1); // 해당 아이디는 중복이 존재
+			}
+		}
+		catch (Exception e) {
+			System.out.println("회원수 불러오기 오류 " + e);
+		}
+		return 0;
+	}
 }
