@@ -204,13 +204,13 @@ public class Home implements Initializable{
 		mediaPlayer.play();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	String since = sdf.format(new Date());
-    	
 		if(Login.member.getM_today().equals(since)) {
-			
+
 		}
 		else {
 			boolean result2 = MemberDao.dao.todayPoint(Login.member.getM_num(),Login.member.getM_point());
 			if(result2) {
+				Login.member.setM_today(since);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				System.out.println("로그인 포인트");
 	    		alert.setTitle("방문 포인트 적립");

@@ -87,6 +87,8 @@ public class Loginpane implements Initializable{
     		
     		lbnconform.setText("로그인성공");
     		Main.main.loadpage("/view/home/home");
+    		System.out.println(Login.member.getM_today());
+    		System.out.println(Login.member.getM_since());
 
     	}
     	else {
@@ -116,6 +118,8 @@ public class Loginpane implements Initializable{
     		
     		lbnconform.setText("로그인성공");
     		Main.main.loadpage("/view/home/home");
+    		System.out.println(Login.member.getM_today());
+    		System.out.println(Login.member.getM_since());
 
     	}
     	else {
