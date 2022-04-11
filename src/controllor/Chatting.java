@@ -287,20 +287,20 @@ public class Chatting implements Initializable {
     		}
     	};
     	thread.start();
-//    	Thread thread2 = new Thread() {
-//    		@Override
-//    		public void run() {
-//    			try {
-//    				while(true) {
-//    					midshow();
-//    					Thread.sleep(500);
-//    				}
-//    				
-//    			}
-//    			catch (Exception e) {}
-//    		}
-//    	};
-//    	thread2.start();
+    	Thread thread2 = new Thread() {
+    		@Override
+    		public void run() {
+    			try {
+    				while(true) {
+    					midshow();
+    					Thread.sleep(500);
+    				}
+    				
+    			}
+    			catch (Exception e) {}
+    		}
+    	};
+    	thread2.start();
     }
 	
 }

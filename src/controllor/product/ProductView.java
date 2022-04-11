@@ -304,6 +304,10 @@ public class ProductView implements Initializable{
     		btdelete.setVisible(false);
     		btupdate.setVisible(false);
     		btchange.setVisible(false);
+    		retalbe.setVisible(false);
+    	}
+    	else {
+    		retalbe.setVisible(true);
     	}
     	
     }
