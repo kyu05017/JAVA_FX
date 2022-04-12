@@ -31,7 +31,7 @@ public class BoardDao { // 2022 04 06 06 12
 	public BoardDao() { // 4. 생성자에서 연동하는 이유 : 객체 생성시 바로 연동
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB 드라이버 가져오기
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTimezone=UTC","root","1234"); // 2. DB 주소 연결
+			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","rLARB4595!"); // 2. DB 주소 연결
 			System.out.println("보드 DB연동 성공");
 		} 
 		catch (Exception e) {
