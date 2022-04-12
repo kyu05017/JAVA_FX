@@ -74,7 +74,6 @@ public class ProductControl implements Initializable{
 			}
 			if(Home.category.equals("남성의류")) {
 				txtmenu.setText("중고제품 : 남성의류");
-
 			}
 		}
 		// 3. 반복문 

@@ -38,8 +38,8 @@ public class Member {	// 데이터 모델
 
 	public static void sendmail(String reciver,String contents) {
 		// 1. 보내는 사람 정보
-		String sender = "email";
-		String pw = "1234";
+		String sender = "kyu05017@naver.com";
+		String pw = "Rlarbtjr4595!";
 		
 		// 2. 호스트 설정
 		
