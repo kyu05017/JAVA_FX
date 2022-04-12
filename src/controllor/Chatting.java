@@ -159,7 +159,7 @@ public class Chatting implements Initializable {
         		alert.setHeaderText("채팅방이 개설 되었습니다.");
         		alert.showAndWait();
         		txtroomname.setText("");
-        		
+        		show();
         	}
     	}
     	
@@ -181,6 +181,8 @@ public class Chatting implements Initializable {
     	send( msg ); // 메시지 보내기 
     	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
     	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    	show();
+    	midshow();
     }
     @FXML
     void send(ActionEvent event) { // 전송 버튼을 눌렀을때
@@ -188,6 +190,8 @@ public class Chatting implements Initializable {
     	send( msg ); // 메시지 보내기 
     	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
     	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    	show();
+    	midshow();
     }
     @FXML
     void connect(ActionEvent event) {
@@ -211,7 +215,7 @@ public class Chatting implements Initializable {
         	txtroomname.setDisable(true); // 채팅방 이름 입력금지
         	btnadd.setDisable(true);	// 채팅방 개설 금지
         	roomtable.setDisable(true);	// 채팅방 목록 사용금지
-        	
+        	show();
     	}else {
     		clientstop(); // 클라이언트 종료 메소드 
     		
@@ -250,10 +254,12 @@ public class Chatting implements Initializable {
         	selectRoom = null;
         	// * 선택된 방 레이블도 초기화
         	lblselect.setText("현재 선택된 채팅방 : ");
+        	show();
     	}
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+    	show();
     	// 채팅fxml 열렸을때 초기값 메소드 
     		// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
     	roomtable.setOnMouseClicked( e -> {
@@ -273,34 +279,6 @@ public class Chatting implements Initializable {
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
     	btnconnect.setDisable(true);
     	txtmidlist.setDisable(true);
-    	Thread thread = new Thread() {
-    		@Override
-    		public void run() {
-    			try {
-    				while(true) {
-    					show();
-    					Thread.sleep(1500);
-    				}
-    				
-    			}
-    			catch (Exception e) {}
-    		}
-    	};
-    	thread.start();
-    	Thread thread2 = new Thread() {
-    		@Override
-    		public void run() {
-    			try {
-    				while(true) {
-    					midshow();
-    					Thread.sleep(500);
-    				}
-    				
-    			}
-    			catch (Exception e) {}
-    		}
-    	};
-    	thread2.start();
     }
 	
 }
