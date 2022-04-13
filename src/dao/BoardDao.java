@@ -22,24 +22,24 @@ import javafx.event.EventHandler;
 
 public class BoardDao { // 2022 04 06 06 12
 	
-	private Connection con; // 1 .DB ¿¬µ¿½Ã »ç¿ëµÇ´Â Å¬·¡½º : DB ¿¬µ¿Å¬·¡½º
-	private PreparedStatement ps; // 2. ¿¬°áµÈ DB³» SQL Á¶ÀÛ ÇÒ¶§ »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º : DB Á¶ÀÛ
-	private ResultSet rs; // 3. sql °á°ú 
+	private Connection con; // 1 .DB ì—°ë™ì‹œ ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤ : DB ì—°ë™í´ë˜ìŠ¤
+	private PreparedStatement ps; // 2. ì—°ê²°ëœ DBë‚´ SQL ì¡°ì‘ í• ë•Œ ì‚¬ìš©í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤ : DB ì¡°ì‘
+	private ResultSet rs; // 3. sql ê²°ê³¼ 
 	
-	public static BoardDao dao = new BoardDao();	// db ¿¬µ¿ °´Ã¼
+	public static BoardDao dao = new BoardDao();	// db ì—°ë™ ê°ì²´
 	
-	public BoardDao() { // 4. »ı¼ºÀÚ¿¡¼­ ¿¬µ¿ÇÏ´Â ÀÌÀ¯ : °´Ã¼ »ı¼º½Ã ¹Ù·Î ¿¬µ¿
+	public BoardDao() { // 4. ìƒì„±ìì—ì„œ ì—°ë™í•˜ëŠ” ì´ìœ  : ê°ì²´ ìƒì„±ì‹œ ë°”ë¡œ ì—°ë™
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB µå¶óÀÌ¹ö °¡Á®¿À±â
-			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","rLARB4595!"); // 2. DB ÁÖ¼Ò ¿¬°á
-			System.out.println("º¸µå DB¿¬µ¿ ¼º°ø");
+			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB ë“œë¼ì´ë²„ ê°€ì ¸ì˜¤ê¸°
+			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","ë¹„ë°€ë²ˆí˜¸"); // 2. DB ì£¼ì†Œ ì—°ê²°
+			System.out.println("ë³´ë“œ DBì—°ë™ ì„±ê³µ");
 		} 
 		catch (Exception e) {
-			System.out.println("[SQL ¸ğµå ¿¬µ¿ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ëª¨ë“œ ì—°ë™ ì‹¤íŒ¨ ] "+ e);
 		}
 	}
 	
-	// ¸Ş¼Òµå
+	// ë©”ì†Œë“œ
 	public static void viewSave() {
 		try {
 			FileOutputStream outputStream = new FileOutputStream("D:/viewlist.txt");
@@ -75,55 +75,55 @@ public class BoardDao { // 2022 04 06 06 12
 		}
 	}
 	
-	//1. ±Û¾²±â
+	//1. ê¸€ì“°ê¸°
 	public boolean write(Board board) {
 		try {
-			// 1. SQL ÀÛ¼º [ È¸¿ø¹øÈ£ ( ÀÚµ¿ )Á¦¿ÜÇÑ ¸ğµç ÇÊµå »ğÀÔ  ]
+			// 1. SQL ì‘ì„± [ íšŒì›ë²ˆí˜¸ ( ìë™ )ì œì™¸í•œ ëª¨ë“  í•„ë“œ ì‚½ì…  ]
 			String sql = "insert into board(b_title,b_contents,b_writer) values(?,?,?)";
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board.getB_title());
 			ps.setString(2, board.getB_contents());
 			ps.setString(3, board.getB_writer());
 			
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 	
 			
-			// * ¼º°ø½Ã 
+			// * ì„±ê³µì‹œ 
 			return true;
 		} 
 		catch (SQLException e) {
-			System.out.println("[SQL °Ô½ÃÆÇ ÀúÀå ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ê²Œì‹œíŒ ì €ì¥ ì‹¤íŒ¨ ]" + e);
 		}
-		return false;// * ½ÇÆĞ½Ã
+		return false;// * ì‹¤íŒ¨ì‹œ
 	}
 	
-	// 2. ±Û¸ñ·Ï 
+	// 2. ê¸€ëª©ë¡ 
 	public ObservableList<Board> list() {
 		
 		try {
 			// *
 			ObservableList<Board> boardlist = FXCollections.observableArrayList();
 			
-			// 1. sql  ÀÛ¼º [ µ¥ÀÌÅÍ È£Ãâ ]
-				//select * (¸ğµç ÇÊµå) from Å×ÀÌºí¸í
-			 	// ¿À¸§Â÷¼ø by b_num asc = b_num±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
-				// ³»¸²Â÷¼ø by b_num desc = b_num±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+			// 1. sql  ì‘ì„± [ ë°ì´í„° í˜¸ì¶œ ]
+				//select * (ëª¨ë“  í•„ë“œ) from í…Œì´ë¸”ëª…
+			 	// ì˜¤ë¦„ì°¨ìˆœ by b_num asc = b_numê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+				// ë‚´ë¦¼ì°¨ìˆœ by b_num desc = b_numê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 			String sql = "select * from board order by b_num desc";
-			// 2. SQL Á¶ÀÛ [ DB ¿Í ¿¬°áµÈ °´Ã¼¿Í Á¶ÀÛ¤¡ÀÎÅÍÆäÀÌ½º ¿¬°á ]
+			// 2. SQL ì¡°ì‘ [ DB ì™€ ì—°ê²°ëœ ê°ì²´ì™€ ì¡°ì‘ã„±ì¸í„°í˜ì´ìŠ¤ ì—°ê²° ]
 			ps = con.prepareStatement(sql);
 			
-			// 3. sql ½ÇÇà [ ResultSet ÀÎÅÍÆäÀÌ½º java.sql ÆĞÅ°Áö ]
+			// 3. sql ì‹¤í–‰ [ ResultSet ì¸í„°í˜ì´ìŠ¤ java.sql íŒ¨í‚¤ì§€ ]
 			rs =  ps.executeQuery();
 			
-			// * °á°ú¹° ÇÏ³ª°¡ ¾Æ´Ï°í ¿©·¯°³ ÀÌ¹Ç·Î ¹İº¹¹® »ç¿ëÇØ¼­
-				// ÇÑÁÙ¾¿[·¹ÄÚµå] °´Ã¼È­ -> ¸®½ºÆ®¿¡ ÀúÀå
+			// * ê²°ê³¼ë¬¼ í•˜ë‚˜ê°€ ì•„ë‹ˆê³  ì—¬ëŸ¬ê°œ ì´ë¯€ë¡œ ë°˜ë³µë¬¸ ì‚¬ìš©í•´ì„œ
+				// í•œì¤„ì”©[ë ˆì½”ë“œ] ê°ì²´í™” -> ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 			
-			// rs.next() °Ë»ö°á°úÀÇ ´ÙÀ½ ·¹ÄÚµå
-			// rs.getint() °Ë»ö°á°ú¸¦ Á¤¼öÇüÀÏ °æ¿ì
-			// rs.getstring() °Ë»ö°á°ú¸¦ ¹®ÀÚÇüÀÏ °æ¿ì
+			// rs.next() ê²€ìƒ‰ê²°ê³¼ì˜ ë‹¤ìŒ ë ˆì½”ë“œ
+			// rs.getint() ê²€ìƒ‰ê²°ê³¼ë¥¼ ì •ìˆ˜í˜•ì¼ ê²½ìš°
+			// rs.getstring() ê²€ìƒ‰ê²°ê³¼ë¥¼ ë¬¸ìí˜•ì¼ ê²½ìš°
 			while(rs.next()) {
-				// 1. ÇÑÁÙ½Ä [ ·¹ÄÚµå ] ´ÜÀ§ °´Ã¼È­
+				// 1. í•œì¤„ì‹ [ ë ˆì½”ë“œ ] ë‹¨ìœ„ ê°ì²´í™”
 				Board temp = new Board(
 					rs.getInt(1), 
 					rs.getString(2), 
@@ -134,58 +134,58 @@ public class BoardDao { // 2022 04 06 06 12
 					); 
 				boardlist.add(temp);
 			}
-			// ¹İº¹¹®ÀÌ Á¾·áµÇ¸é ¸®½ºÆ® ¹İÈ¯
-			// ¼º°ø½Ã µ¥ÀÌÅÍ ¸ñ·Ï ¹İÈ¯
+			// ë°˜ë³µë¬¸ì´ ì¢…ë£Œë˜ë©´ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+			// ì„±ê³µì‹œ ë°ì´í„° ëª©ë¡ ë°˜í™˜
 			return boardlist;
 		}
 		catch (Exception e) {
-			System.out.println("[SQL ±Û¸ñ·Ï ·Îµå ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ê¸€ëª©ë¡ ë¡œë“œ ì‹¤íŒ¨ ] "+ e);
 		}
-		// ½ÇÆĞ½Ã 
+		// ì‹¤íŒ¨ì‹œ 
 		return null;
 	}
 
-	// 3. ±Û»èÁ¦
+	// 3. ê¸€ì‚­ì œ
 	public boolean delete(int b_num) {
 		try {
-			// 1. sql ÀÛ¼º
+			// 1. sql ì‘ì„±
 			String sql = "delete from board where b_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, b_num);
 			
-			// 3. sql ½ÇÇà
+			// 3. sql ì‹¤í–‰
 			ps.executeUpdate();
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 			
 		} catch (SQLException e) {
-			System.out.println("[SQL °Ô½Ã±Û »èÁ¦ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ê²Œì‹œê¸€ ì‚­ì œ ì‹¤íŒ¨ ] "+ e);
 			}
 		
 		return false;
 	}
-	// 4. ±Û¼öÁ¤
+	// 4. ê¸€ìˆ˜ì •
 	public boolean updaete(int b_num, String title, String contents) {
 		try {
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "UPDATE board SET b_title=?,b_contents=? where b_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, title);
 			ps.setString(2, contents);
 			ps.setInt(3, b_num);
 
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 			
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("¼öÁ¤¿À·á " + e);
+			System.out.println("ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 		return false;
 	}
@@ -197,86 +197,86 @@ public class BoardDao { // 2022 04 06 06 12
 			for(MemberView temp : controllor.board.Board.m_view) {
 				if(temp.getId().equals(id) && temp.getB_num() == num) {
 					if(temp.getDate().equals(today)) {
-						System.out.println("Á¶È¸¼ö ¹ÌÁõ°¡");
+						System.out.println("ì¡°íšŒìˆ˜ ë¯¸ì¦ê°€");
 						break;
 					}
 					else if((!temp.getDate().equals(today))){
-						System.out.println("Á¶È¸¼ö Áõ°¡");
+						System.out.println("ì¡°íšŒìˆ˜ ì¦ê°€");
 						temp.setDate(today);
 						String sql = "UPDATE board SET b_view=? where b_num=?";
-						// 2. sql Á¶ÀÛ
+						// 2. sql ì¡°ì‘
 						ps = con.prepareStatement(sql);
 						int new_view = view + 1;
 						controllor.board.Board.board.setB_view(new_view);
 						ps.setInt(1, new_view);
 						System.out.println(new_view);
 						ps.setInt(2, num);
-						// 3. SQL ½ÇÇà
+						// 3. SQL ì‹¤í–‰
 						ps.executeUpdate();
 						BoardDao.viewSave();
 						break;
 					}
 				}
 			}
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			
 			
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¶È¸¼ö ÀúÀå ] "+ e);
+			System.out.println("[SQL ì¡°íšŒìˆ˜ ì €ì¥ ] "+ e);
 		}
 		return false;
 	}
-	// 6. ´ñ±Û ÀÛ¼º
+	// 6. ëŒ“ê¸€ ì‘ì„±
 	public boolean reply_write(Reply reply) {
 		try {
-			// 1. SQL ÀÛ¼º [ È¸¿ø¹øÈ£ ( ÀÚµ¿ )Á¦¿ÜÇÑ ¸ğµç ÇÊµå »ğÀÔ  ]
+			// 1. SQL ì‘ì„± [ íšŒì›ë²ˆí˜¸ ( ìë™ )ì œì™¸í•œ ëª¨ë“  í•„ë“œ ì‚½ì…  ]
 			String sql = "insert into reply(r_contents,r_writerr,b_num) values(?,?,?)";
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, reply.getR_contents());
 			ps.setString(2, reply.getR_writerr());
 			ps.setInt(3, reply.getB_num());
 			
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 	
 			
-			// * ¼º°ø½Ã 
+			// * ì„±ê³µì‹œ 
 			return true;
 		} 
 		catch (SQLException e) {
-			System.out.println("[SQL °Ô½ÃÆÇ ÀúÀå ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ê²Œì‹œíŒ ì €ì¥ ì‹¤íŒ¨ ]" + e);
 		}
-		return false;// * ½ÇÆĞ½Ã
+		return false;// * ì‹¤íŒ¨ì‹œ
 	}
-	// 7 . ºÒ·¯¿À½Ã
+	// 7 . ë¶ˆëŸ¬ì˜¤ì‹œ
 	public ObservableList<Reply> reply_list(int b_num) {
 		
 		try {
 			// *
 			ObservableList<Reply> replylist = FXCollections.observableArrayList();
 			
-			// 1. sql  ÀÛ¼º [ µ¥ÀÌÅÍ È£Ãâ ]
-				//select * (¸ğµç ÇÊµå) from Å×ÀÌºí¸í
-			 	// ¿À¸§Â÷¼ø by b_num asc = b_num±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
-				// ³»¸²Â÷¼ø by b_num desc = b_num±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+			// 1. sql  ì‘ì„± [ ë°ì´í„° í˜¸ì¶œ ]
+				//select * (ëª¨ë“  í•„ë“œ) from í…Œì´ë¸”ëª…
+			 	// ì˜¤ë¦„ì°¨ìˆœ by b_num asc = b_numê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+				// ë‚´ë¦¼ì°¨ìˆœ by b_num desc = b_numê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 			String sql = "select * from reply where b_num=?";
-			// 2. SQL Á¶ÀÛ [ DB ¿Í ¿¬°áµÈ °´Ã¼¿Í Á¶ÀÛ¤¡ÀÎÅÍÆäÀÌ½º ¿¬°á ]
+			// 2. SQL ì¡°ì‘ [ DB ì™€ ì—°ê²°ëœ ê°ì²´ì™€ ì¡°ì‘ã„±ì¸í„°í˜ì´ìŠ¤ ì—°ê²° ]
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, b_num);
-			// 3. sql ½ÇÇà [ ResultSet ÀÎÅÍÆäÀÌ½º java.sql ÆĞÅ°Áö ]
+			// 3. sql ì‹¤í–‰ [ ResultSet ì¸í„°í˜ì´ìŠ¤ java.sql íŒ¨í‚¤ì§€ ]
 			rs =  ps.executeQuery();
 			
-			// * °á°ú¹° ÇÏ³ª°¡ ¾Æ´Ï°í ¿©·¯°³ ÀÌ¹Ç·Î ¹İº¹¹® »ç¿ëÇØ¼­
-				// ÇÑÁÙ¾¿[·¹ÄÚµå] °´Ã¼È­ -> ¸®½ºÆ®¿¡ ÀúÀå
+			// * ê²°ê³¼ë¬¼ í•˜ë‚˜ê°€ ì•„ë‹ˆê³  ì—¬ëŸ¬ê°œ ì´ë¯€ë¡œ ë°˜ë³µë¬¸ ì‚¬ìš©í•´ì„œ
+				// í•œì¤„ì”©[ë ˆì½”ë“œ] ê°ì²´í™” -> ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 			
-			// rs.next() °Ë»ö°á°úÀÇ ´ÙÀ½ ·¹ÄÚµå
-			// rs.getint() °Ë»ö°á°ú¸¦ Á¤¼öÇüÀÏ °æ¿ì
-			// rs.getstring() °Ë»ö°á°ú¸¦ ¹®ÀÚÇüÀÏ °æ¿ì
+			// rs.next() ê²€ìƒ‰ê²°ê³¼ì˜ ë‹¤ìŒ ë ˆì½”ë“œ
+			// rs.getint() ê²€ìƒ‰ê²°ê³¼ë¥¼ ì •ìˆ˜í˜•ì¼ ê²½ìš°
+			// rs.getstring() ê²€ìƒ‰ê²°ê³¼ë¥¼ ë¬¸ìí˜•ì¼ ê²½ìš°
 			while(rs.next()) {
-				// 1. ÇÑÁÙ½Ä [ ·¹ÄÚµå ] ´ÜÀ§ °´Ã¼È­
+				// 1. í•œì¤„ì‹ [ ë ˆì½”ë“œ ] ë‹¨ìœ„ ê°ì²´í™”
 				Reply temp = new Reply(
 					rs.getInt(1), 
 					rs.getString(2), 
@@ -286,60 +286,60 @@ public class BoardDao { // 2022 04 06 06 12
 					); 
 				replylist.add(temp);
 			}
-			// ¹İº¹¹®ÀÌ Á¾·áµÇ¸é ¸®½ºÆ® ¹İÈ¯
-			// ¼º°ø½Ã µ¥ÀÌÅÍ ¸ñ·Ï ¹İÈ¯
+			// ë°˜ë³µë¬¸ì´ ì¢…ë£Œë˜ë©´ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+			// ì„±ê³µì‹œ ë°ì´í„° ëª©ë¡ ë°˜í™˜
 			return replylist;
 		}
 		catch (Exception e) {
-			System.out.println("[sql ¿¬°á ½ÇÆĞ] : »çÀ¯ " + e);
+			System.out.println("[sql ì—°ê²° ì‹¤íŒ¨] : ì‚¬ìœ  " + e);
 		}
-		// ½ÇÆĞ½Ã 
+		// ì‹¤íŒ¨ì‹œ 
 		return null;
 	}
-	// 8. ´ñ±Û »èÁ¦
+	// 8. ëŒ“ê¸€ ì‚­ì œ
 	public boolean reply_delete(int r_num) {
 		try {
-			// 1. sql ÀÛ¼º
+			// 1. sql ì‘ì„±
 			String sql = "delete from reply where r_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, r_num);
 			
-			// 3. sql ½ÇÇà
+			// 3. sql ì‹¤í–‰
 			ps.executeUpdate();
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 			
 		} catch (SQLException e) {
-			System.out.println("[SQL ´ñ±Û »èÁ¦ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ëŒ“ê¸€ ì‚­ì œ ì‹¤íŒ¨ ] "+ e);
 			}
 		
 		return false;
 	}
-	// 9. ´ñ±Û ¼öÁ¤
+	// 9. ëŒ“ê¸€ ìˆ˜ì •
 	public boolean re_updaete(int r_num,String contents) {
 		try {
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "UPDATE reply SET r_contents=? where r_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, contents);
 			ps.setInt(2, r_num);
 
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 			
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("¼öÁ¤¿À·á " + e);
+			System.out.println("ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 		return false;
 	}
-	// 9.³» ±ÛÈ®ÀÎ
+	// 9.ë‚´ ê¸€í™•ì¸
 	public ObservableList<Board> my_boardlist(String id) {
 		
 		try {
@@ -354,7 +354,7 @@ public class BoardDao { // 2022 04 06 06 12
 			rs =  ps.executeQuery();
 
 			while(rs.next()) {
-				// 1. ÇÑÁÙ½Ä [ ·¹ÄÚµå ] ´ÜÀ§ °´Ã¼È­
+				// 1. í•œì¤„ì‹ [ ë ˆì½”ë“œ ] ë‹¨ìœ„ ê°ì²´í™”
 				Board temp = new Board(
 						rs.getInt(1), 
 						rs.getString(2), 
@@ -365,14 +365,14 @@ public class BoardDao { // 2022 04 06 06 12
 						); 
 				myboardlist.add(temp);
 			}
-			// ¹İº¹¹®ÀÌ Á¾·áµÇ¸é ¸®½ºÆ® ¹İÈ¯
-			// ¼º°ø½Ã µ¥ÀÌÅÍ ¸ñ·Ï ¹İÈ¯
+			// ë°˜ë³µë¬¸ì´ ì¢…ë£Œë˜ë©´ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+			// ì„±ê³µì‹œ ë°ì´í„° ëª©ë¡ ë°˜í™˜
 			return myboardlist;
 		}
 		catch (Exception e) {
-			System.out.println("[sql ¿¬°á ½ÇÆĞ] : »çÀ¯ " + e);
+			System.out.println("[sql ì—°ê²° ì‹¤íŒ¨] : ì‚¬ìœ  " + e);
 		}
-		// ½ÇÆĞ½Ã 
+		// ì‹¤íŒ¨ì‹œ 
 		return null;
 	}
 }
