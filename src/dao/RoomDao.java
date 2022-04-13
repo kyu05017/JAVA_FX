@@ -20,20 +20,20 @@ public class RoomDao {
 	
 	public RoomDao() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB µå¶óÀÌ¹ö °¡Á®¿À±â
-			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","rLARB4595!"); // 2. DB ÁÖ¼Ò ¿¬°á
-			System.out.println("Ã¤ÆÃ DB¿¬µ¿ ¼º°ø");
+			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB ë“œë¼ì´ë²„ ê°€ì ¸ì˜¤ê¸°
+			con = DriverManager.getConnection("jdbc:mysql://ì£¼ì†Œ","admin","ë¹„ë°€ë²ˆí˜¸"); // 2. DB ì£¼ì†Œ ì—°ê²°
+			System.out.println("ì±„íŒ… DBì—°ë™ ì„±ê³µ");
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Ã¤ÆÃ ¿¬µ¿ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ì±„íŒ… ì—°ë™ ì‹¤íŒ¨ ] "+ e);
 		}
 	}
 	
-	// 1. ¹æ ÀúÀå
+	// 1. ë°© ì €ì¥
 	public boolean roomadd(Room room) {
 		try {
 			String sql = "insert into room(ro_name,ro_ip) values(?,?)";
-			// Å×ÀÌºí¿¡ ·¹ÄÚµå Ãß°¡ ÇÏ´Â¹ı : insert into Å×ÀÌºí¸í (ÇÊµå¸í1,2) values(°ª1,2)
+			// í…Œì´ë¸”ì— ë ˆì½”ë“œ ì¶”ê°€ í•˜ëŠ”ë²• : insert into í…Œì´ë¸”ëª… (í•„ë“œëª…1,2) values(ê°’1,2)
 			ps = con.prepareStatement(sql);
 			ps.setString(1, room.getRo_name());
 			ps.setString(2, room.getRo_ip());
@@ -41,14 +41,14 @@ public class RoomDao {
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("[SQL Ã¤ÆÃ »ı¼º ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ì±„íŒ… ìƒì„± ì‹¤íŒ¨ ] "+ e);
 		}
 		return false;
 	}
 	
-	// 2. ¹æ ¹øÈ£ È£Ãâ ¸Ş¼Òµå [ ¹æ¹øÈ£ Æ÷Æ®¹øÈ£·Î »ç¿ëÇÒ ¿¹Á¤ ]
+	// 2. ë°© ë²ˆí˜¸ í˜¸ì¶œ ë©”ì†Œë“œ [ ë°©ë²ˆí˜¸ í¬íŠ¸ë²ˆí˜¸ë¡œ ì‚¬ìš©í•  ì˜ˆì • ]
 	public int getRoomNum() {
-		try {			// max( ÇÊµå¸í ) ÇØ´ç ÇÊµåÀÇ °¡Àå Å« °ª
+		try {			// max( í•„ë“œëª… ) í•´ë‹¹ í•„ë“œì˜ ê°€ì¥ í° ê°’
 			String sql = "select max(ro_num) from room";
 			ps = con.prepareStatement(sql);
 			rs =  ps.executeQuery();
@@ -57,11 +57,11 @@ public class RoomDao {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("[SQL Ã¤ÆÃ¹æ ¹øÈ£ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ì±„íŒ…ë°© ë²ˆí˜¸ ì‹¤íŒ¨ ] "+ e);
 		}
 		return 0;
 	}
-	// 3. ¹æ ºÒ·¯¿À±â
+	// 3. ë°© ë¶ˆëŸ¬ì˜¤ê¸°
 	public ObservableList<Room> room_list() {
 		
 		try {
@@ -70,9 +70,9 @@ public class RoomDao {
 			String sql = "select * from room order by ro_num desc";
 			ps = con.prepareStatement(sql);
 			rs =  ps.executeQuery();
-			// rs = Resultset ÀÎÅÍÆäÀÌ½º °´Ã¼ : selectÀÇ °á°ú °¡Á®¿À±â
-			// resultset ( ÃÊ±â °ª null )
-			// rs.next : select °á°ú ·¹ÄÚµå 1°³ °¡Á®¿À±â
+			// rs = Resultset ì¸í„°í˜ì´ìŠ¤ ê°ì²´ : selectì˜ ê²°ê³¼ ê°€ì ¸ì˜¤ê¸°
+			// resultset ( ì´ˆê¸° ê°’ null )
+			// rs.next : select ê²°ê³¼ ë ˆì½”ë“œ 1ê°œ ê°€ì ¸ì˜¤ê¸°
 			while(rs.next()) {
 				String sql2 = "select count(*) from roomlive where ro_num =" + rs.getInt(1);
 				ps = con.prepareStatement(sql2);
@@ -92,12 +92,12 @@ public class RoomDao {
 			return roomlist;
 		}
 		catch (Exception e) {
-			System.out.println("[sql Ã¤ÆÃ¹æ ·Îµù ½ÇÆĞ] : »çÀ¯ " + e);
+			System.out.println("[sql ì±„íŒ…ë°© ë¡œë”© ì‹¤íŒ¨] : ì‚¬ìœ  " + e);
 		}
-		// ½ÇÆĞ½Ã 
+		// ì‹¤íŒ¨ì‹œ 
 		return null;
 	}
-	// 4. Á¢¼Ó ¸í´Ü Ãß°¡
+	// 4. ì ‘ì† ëª…ë‹¨ ì¶”ê°€
 	public boolean roomlive_add(RoomLive live) {
 		try {
 			String sql = "insert into roomlive (ro_num,m_id) values(?,?)";
@@ -108,11 +108,11 @@ public class RoomDao {
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("·ë¶óÀÌºê Ãß°¡ ½ÇÆĞ " + e);
+			System.out.println("ë£¸ë¼ì´ë¸Œ ì¶”ê°€ ì‹¤íŒ¨ " + e);
 		}
 		return false;
 	}
-	// 2. ¹æ ¹øÈ£ È£Ãâ ¸Ş¼Òµå [ ¹æ¹øÈ£ Æ÷Æ®¹øÈ£·Î »ç¿ëÇÒ ¿¹Á¤ ]
+	// 2. ë°© ë²ˆí˜¸ í˜¸ì¶œ ë©”ì†Œë“œ [ ë°©ë²ˆí˜¸ í¬íŠ¸ë²ˆí˜¸ë¡œ ì‚¬ìš©í•  ì˜ˆì • ]
 	public ArrayList<RoomLive> getlivelist(int ro_num) {
 		ArrayList<RoomLive> livelist = new ArrayList<>();
 		try {
@@ -129,7 +129,7 @@ public class RoomDao {
 			return livelist;
 		}
 		catch (Exception e) {
-			System.out.println("·ë¶óÀÌºê °¡Á®¿À±â ½ÇÆĞ " + e);
+			System.out.println("ë£¸ë¼ì´ë¸Œ ê°€ì ¸ì˜¤ê¸° ì‹¤íŒ¨ " + e);
 		}
 		return null;
 	}
@@ -144,12 +144,12 @@ public class RoomDao {
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Ã¤ÆÃ¹æ »èÁ¦ ½ÇÆĞ " + e);
+			System.out.println("ì±„íŒ…ë°© ì‚­ì œ ì‹¤íŒ¨ " + e);
 		}
 		
 		return false;
 	}
-	// 7. Ã¤ÆÃ¹æ »èÁ¦ [ Á¶› : ÇØ´ç Ã¤ÆÃ¹æ¿¡ Á¢¼Ó¸í´ÜÀÌ 0 ÀÌ¸é ]
+	// 7. ì±„íŒ…ë°© ì‚­ì œ [ ì¡°ÂÂ› : í•´ë‹¹ ì±„íŒ…ë°©ì— ì ‘ì†ëª…ë‹¨ì´ 0 ì´ë©´ ]
 	public boolean deleteroom(int ro_num) {
 		
 		try {
@@ -158,7 +158,7 @@ public class RoomDao {
 			ps.setInt(1, ro_num);
 			
 			rs =  ps.executeQuery();
-			if(rs.next()) { 	// °á°ú°¡ Á¸ÀçÇÒ °æ¿ì
+			if(rs.next()) { 	// ê²°ê³¼ê°€ ì¡´ì¬í•  ê²½ìš°
 				return false;
 			}
 			else { // 
@@ -171,7 +171,7 @@ public class RoomDao {
 			
 		}
 		catch (Exception e) {
-			System.out.println("Ã¤ÆÃ¹æ »èÁ¦ ½ÇÆĞ " + e);
+			System.out.println("ì±„íŒ…ë°© ì‚­ì œ ì‹¤íŒ¨ " + e);
 		}
 		return false;
 	}
