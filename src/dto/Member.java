@@ -12,9 +12,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Member {	// µ¥ÀÌÅÍ ¸ğµ¨
+public class Member {	// ë°ì´í„° ëª¨ë¸
 	
-	private int m_num; // È¸¿ø¹øÈ£
+	private int m_num; // íšŒì›ë²ˆí˜¸
 	private String m_id;
 	private String m_pw;
 	private String m_email;
@@ -37,11 +37,11 @@ public class Member {	// µ¥ÀÌÅÍ ¸ğµ¨
 	}
 
 	public static void sendmail(String reciver,String contents) {
-		// 1. º¸³»´Â »ç¶÷ Á¤º¸
-		String sender = "kyu05017@naver.com";
-		String pw = "Rlarbtjr4595!";
+		// 1. ë³´ë‚´ëŠ” ì‚¬ëŒ ì •ë³´
+		String sender = "ì´ë©”ì¼";
+		String pw = "ë¹„ë°€ë²ˆí˜¸";
 		
-		// 2. È£½ºÆ® ¼³Á¤
+		// 2. í˜¸ìŠ¤íŠ¸ ì„¤ì •
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.naver.com");
@@ -49,8 +49,8 @@ public class Member {	// µ¥ÀÌÅÍ ¸ğµ¨
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		
-		// 3. ÀÎÁõÃ³¸® [ ¼¼¼Ç : javafx.mail ÆĞÅ°Áö ]
-			//Session.getDefaultInstance ( ¼³Á¤°´Ã¼ , ÀÎÁõ )
+		// 3. ì¸ì¦ì²˜ë¦¬ [ ì„¸ì…˜ : javafx.mail íŒ¨í‚¤ì§€ ]
+			//Session.getDefaultInstance ( ì„¤ì •ê°ì²´ , ì¸ì¦ )
 		Session session = Session.getDefaultInstance(properties, new Authenticator() {
 			
 			@Override
@@ -60,18 +60,18 @@ public class Member {	// µ¥ÀÌÅÍ ¸ğµ¨
 			
 		});
 		
-		// 4. ¸ŞÀÏ º¸³»±â 
+		// 4. ë©”ì¼ ë³´ë‚´ê¸° 
 		MimeMessage message = new MimeMessage(session);
 		try {
-			message.setFrom(new InternetAddress(sender)); 	// º¸³»´Â »ç¶÷
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(reciver)); // ¹Ş´Â »ç¶÷ ÀÌ¸ŞÀÏ
+			message.setFrom(new InternetAddress(sender)); 	// ë³´ë‚´ëŠ” ì‚¬ëŒ
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(reciver)); // ë°›ëŠ” ì‚¬ëŒ ì´ë©”ì¼
 			
-			message.setSubject("¾çµéµµ Ä§¹¬ ºñ¹Ğ¹øÈ£ Ã£±â");
-			message.setText("È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£ " + contents);
+			message.setSubject("ì–‘ë“¤ë„ ì¹¨ë¬µ ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
+			message.setText("íšŒì›ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ " + contents);
 			Transport.send(message);
 			
 		} catch (MessagingException e) {
-			System.out.println("Àü¼Û½ÇÆĞ " + e);
+			System.out.println("ì „ì†¡ì‹¤íŒ¨ " + e);
 		}
 	}
 	
