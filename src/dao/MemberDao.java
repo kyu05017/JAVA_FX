@@ -13,62 +13,62 @@ import java.util.Map;
 import controllor.login.Login;
 import dto.Member;
 
-public class MemberDao {	// DB Á¢±Ù °´Ã¼
+public class MemberDao {	// DB ì ‘ê·¼ ê°ì²´
 
-	private Connection con; // DB ¿¬µ¿½Ã »ç¿ëµÇ´Â Å¬·¡½º : DB ¿¬µ¿Å¬·¡½º
-	private PreparedStatement ps; // ¿¬°áµÈ DB³» SQL Á¶ÀÛ ÇÒ¶§ »ç¿ëÇÏ´Â ÀÎÅÍÆäÀÌ½º : DB Á¶ÀÛ
-	private ResultSet rs; // °Ë»ö [ select ]
+	private Connection con; // DB ì—°ë™ì‹œ ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤ : DB ì—°ë™í´ë˜ìŠ¤
+	private PreparedStatement ps; // ì—°ê²°ëœ DBë‚´ SQL ì¡°ì‘ í• ë•Œ ì‚¬ìš©í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤ : DB ì¡°ì‘
+	private ResultSet rs; // ê²€ìƒ‰ [ select ]
 	
-	// * DB ¿¬µ¿ÇÒ¶§¸¶´Ù °´Ã¼ ¼±¾ğ½Ã ºÒÇÊ¿äÇÑ ÄÚµå¸¦ ¹æÁö
+	// * DB ì—°ë™í• ë•Œë§ˆë‹¤ ê°ì²´ ì„ ì–¸ì‹œ ë¶ˆí•„ìš”í•œ ì½”ë“œë¥¼ ë°©ì§€
 	
-	public static MemberDao dao = new MemberDao(); // DB ¿¬µ¿ °´Ã¼;
+	public static MemberDao dao = new MemberDao(); // DB ì—°ë™ ê°ì²´;
 	
 	public MemberDao() {
 		
 		try {
-			// DB ¿¬µ¿ 
-			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB µå¶óÀÌ¹ö °¡Á®¿À±â
-			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","rLARB4595!"); // 2. DB ÁÖ¼Ò ¿¬°á
-			System.out.println("DB¿¬µ¿ ¼º°ø");
+			// DB ì—°ë™ 
+			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB ë“œë¼ì´ë²„ ê°€ì ¸ì˜¤ê¸°
+			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","ë¹„ë°€ë²ˆí˜¸"); // 2. DB ì£¼ì†Œ ì—°ê²°
+			System.out.println("DBì—°ë™ ì„±ê³µ");
 		} catch (Exception e) {
-			System.out.println("DB¿¬µ¿ ½ÇÆĞ" + e);
+			System.out.println("DBì—°ë™ ì‹¤íŒ¨" + e);
 		}
 
 	}
-	// ¸Ş¼Òµå
-		// * ¾ÆÀÌµğ Áßº¹ Ã¼Å© ¸Ş¼Òµå ( ÀÎ¼ö : ¾ÆÀÌµğ¸¦ ÀÎ¼ö·Î ¹Ş¾Æ db¿¡ Á¸ÀçÇÏÁöÁöÃ¼Å© ]
+	// ë©”ì†Œë“œ
+		// * ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ ë©”ì†Œë“œ ( ì¸ìˆ˜ : ì•„ì´ë””ë¥¼ ì¸ìˆ˜ë¡œ ë°›ì•„ dbì— ì¡´ì¬í•˜ì§€ì§€ì²´í¬ ]
 	public boolean idcheck(String id) {
 		try {
-			// 1. SQL ÀÛ¼º
-				// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+				// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "select * from member where m_id=?";
 			
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
-			// 3. SQL ½ÇÇà
-			rs = ps.executeQuery();//  select ½ÇÇàÀº °á°ú¹°ÀÌ Á¸Àç -> resulitSet O
-			// ResultSet Ã³À½ °á°ú¹°ÀÌ null -- next > °á°ú ·¹ÄÚµå
-			// 4. SQL °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return true; // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			// 3. SQL ì‹¤í–‰
+			rs = ps.executeQuery();//  select ì‹¤í–‰ì€ ê²°ê³¼ë¬¼ì´ ì¡´ì¬ -> resulitSet O
+			// ResultSet ì²˜ìŒ ê²°ê³¼ë¬¼ì´ null -- next > ê²°ê³¼ ë ˆì½”ë“œ
+			// 4. SQL ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return true; // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch (SQLException e) {
-			System.out.println("[SQL ¿À·ù ]" + e);
+			System.out.println("[SQL ì˜¤ë¥˜ ]" + e);
 		}
-		return false; // ÇØ´ç¾ÆÀÌµğ Áßº¹ ¾øÀ½
+		return false; // í•´ë‹¹ì•„ì´ë”” ì¤‘ë³µ ì—†ìŒ
 	}
 	
-		// 1. È¸¿ø°¡ÀÔ ¸Ş¼Òµå ( ÀÎ¼ö¸¦ DB¿¡ ³ÖÀ» ¾ÆÀÌµğ ºñ¹Ğ¹øÈ£ ÀÌ¸ŞÀÏ ÁÖ¼Ò )
+		// 1. íšŒì›ê°€ì… ë©”ì†Œë“œ ( ì¸ìˆ˜ë¥¼ DBì— ë„£ì„ ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ ì´ë©”ì¼ ì£¼ì†Œ )
 	public boolean signup(Member member){
 		
 		try {
-		// 1. SQL ÀÛ¼º [ È¸¿ø¹øÈ£ ( ÀÚµ¿ )Á¦¿ÜÇÑ ¸ğµç ÇÊµå »ğÀÔ  ]
+		// 1. SQL ì‘ì„± [ íšŒì›ë²ˆí˜¸ ( ìë™ )ì œì™¸í•œ ëª¨ë“  í•„ë“œ ì‚½ì…  ]
 		String sql = "insert into member(m_id,m_pw,m_email,m_address,m_point,m_since,m_today) values(?,?,?,?,?,?,?)";
 		
 		
-		// 2. SQL Á¶ÀÛ
+		// 2. SQL ì¡°ì‘
 		ps = con.prepareStatement(sql);
 		ps.setString(1, member.getM_id());
 		ps.setString(2, member.getM_pw());
@@ -77,101 +77,101 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 		ps.setInt(5, member.getM_point());
 		ps.setString(6, member.getM_since());
 		ps.setString(7, member.getM_today());
-		// 3. SQL ½ÇÇà
+		// 3. SQL ì‹¤í–‰
 		ps.executeUpdate(); 	
 		
-		// * ¼º°ø½Ã 
+		// * ì„±ê³µì‹œ 
 		return true;
 		
 		} catch (SQLException e) {
-			System.out.println("[SQL ÀúÀå ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ì €ì¥ ì‹¤íŒ¨ ]" + e);
 		}
-		// * ½ÇÆĞ½Ã
+		// * ì‹¤íŒ¨ì‹œ
 		return false;
 	}
-		// 2. ·Î±×ÀÎ ¸Ş¼Òµå ( ·Î±×ÀÎ¿¡ ÇÊ¿äÇÑ ¾ÆÀÌµğ ºñ¹Ğ¹øÈ£ )
+		// 2. ë¡œê·¸ì¸ ë©”ì†Œë“œ ( ë¡œê·¸ì¸ì— í•„ìš”í•œ ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ )
 	public boolean login(String id, String pw) {
 		try {
-			// 1. SQL ÀÛ¼º 
-					// and : Á¶°Ç1 && Á¶°Ç2
-					// or  : Á¶°Ç1 || Á¶°Ç2
+			// 1. SQL ì‘ì„± 
+					// and : ì¡°ê±´1 && ì¡°ê±´2
+					// or  : ì¡°ê±´1 || ì¡°ê±´2
 			String sql = "select * from member where m_id=? and m_pw=?";
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pw);
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			rs = ps.executeQuery();
-			// 4. °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return true; // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			// 4. ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return true; // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch (SQLException e) {
-			System.out.println("[SQL ¿À·ù]" + e);
+			System.out.println("[SQL ì˜¤ë¥˜]" + e);
 		}
 		return false;
 	}
-		// 3. ¾ÆÀÌµğ Ã£±â ¸Ş¼Òµå ( ¾ÆÀÌµğ Ã£±â¿¡ ÇÊ¿äÇÑ ÀÌ¸ŞÀÏ )
+		// 3. ì•„ì´ë”” ì°¾ê¸° ë©”ì†Œë“œ ( ì•„ì´ë”” ì°¾ê¸°ì— í•„ìš”í•œ ì´ë©”ì¼ )
 	public String findid(String email) {
 		try {
-			// 1. SQL ÀÛ¼º
-				// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+				// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "select * from member where m_email=?";
 			
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, email);
-			// 3. SQL ½ÇÇà
-			rs = ps.executeQuery();//  select ½ÇÇàÀº °á°ú¹°ÀÌ Á¸Àç -> resulitSet O
-			// ResultSet Ã³À½ °á°ú¹°ÀÌ null -- next > °á°ú ·¹ÄÚµå
-			// 4. SQL °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return rs.getString(2); // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			// 3. SQL ì‹¤í–‰
+			rs = ps.executeQuery();//  select ì‹¤í–‰ì€ ê²°ê³¼ë¬¼ì´ ì¡´ì¬ -> resulitSet O
+			// ResultSet ì²˜ìŒ ê²°ê³¼ë¬¼ì´ null -- next > ê²°ê³¼ ë ˆì½”ë“œ
+			// 4. SQL ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return rs.getString(2); // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch (SQLException e) {
-			System.out.println("[SQL ¿À·ù ]" + e);
+			System.out.println("[SQL ì˜¤ë¥˜ ]" + e);
 		}
-		return null; // ÇØ´ç¾ÆÀÌµğ Áßº¹ ¾øÀ½
+		return null; // í•´ë‹¹ì•„ì´ë”” ì¤‘ë³µ ì—†ìŒ
 	}
-		// 4. ºñ¹Ğ¹øÈ£ Ã£±â ¸Ş¼Òµå ( ºñ¹Ğ¹øÈ£ Ã£±â¿¡ ÇÊ¿äÇÑ ¾ÆÀÌµğ ÀÌ¸ŞÀÏ ) 
+		// 4. ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ë©”ì†Œë“œ ( ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°ì— í•„ìš”í•œ ì•„ì´ë”” ì´ë©”ì¼ ) 
 	public String findpw(String id ,String email) {
 		try {
-			// 1. SQL ÀÛ¼º
-				// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+				// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "select * from member where m_id=? and m_email=?";
 			
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, email);
-			// 3. SQL ½ÇÇà
-			rs = ps.executeQuery();//  select ½ÇÇàÀº °á°ú¹°ÀÌ Á¸Àç -> resulitSet O
-			// ResultSet Ã³À½ °á°ú¹°ÀÌ null -- next > °á°ú ·¹ÄÚµå
-			// 4. SQL °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return rs.getString(3); // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			// 3. SQL ì‹¤í–‰
+			rs = ps.executeQuery();//  select ì‹¤í–‰ì€ ê²°ê³¼ë¬¼ì´ ì¡´ì¬ -> resulitSet O
+			// ResultSet ì²˜ìŒ ê²°ê³¼ë¬¼ì´ null -- next > ê²°ê³¼ ë ˆì½”ë“œ
+			// 4. SQL ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return rs.getString(3); // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch (SQLException e) {
-			System.out.println("[SQL ¿À·ù ]" + e);
+			System.out.println("[SQL ì˜¤ë¥˜ ]" + e);
 		}
-		return null; // ÇØ´ç¾ÆÀÌµğ Áßº¹ ¾øÀ½
+		return null; // í•´ë‹¹ì•„ì´ë”” ì¤‘ë³µ ì—†ìŒ
 	}
 	
-	// 5. ¾ÆÀÌµğ·Î È¸¿øÁ¤º¸ È£Ãâ
+	// 5. ì•„ì´ë””ë¡œ íšŒì›ì •ë³´ í˜¸ì¶œ
 	public Member getmember (String id) {
 		try {
-			// 1. sql ÀÛ¼º
+			// 1. sql ì‘ì„±
 			String sql = "select * from member where m_id=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
-			// 3. sql ½ÇÇà
+			// 3. sql ì‹¤í–‰
 			rs = ps.executeQuery();
-			// 4. sql °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
+			// 4. sql ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
 				Member member = new Member(
 					rs.getInt(1),
 					rs.getString(2),
@@ -181,9 +181,9 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 					rs.getInt(6),
 					rs.getString(7),
 					rs.getString(8)
-					//rs.next() : °á°ú³» ´ÙÀ½ ·¹ÄÚµå ( ÁÙ, °¡·Î )
-					//rs.getint : ÇØ´ç ÇÊµåÀÇ ÀÚ·áÇüÀÌ Á¤¼öÇüÀ¸·Î °¡Á®¿È
-					//rs.getsttring : ÇØ´çÇÊµåÀÇ ÀÚ·áÇüÀ» ¹®ÀÚ¿­·Î °¡Á®¿È
+					//rs.next() : ê²°ê³¼ë‚´ ë‹¤ìŒ ë ˆì½”ë“œ ( ì¤„, ê°€ë¡œ )
+					//rs.getint : í•´ë‹¹ í•„ë“œì˜ ìë£Œí˜•ì´ ì •ìˆ˜í˜•ìœ¼ë¡œ ê°€ì ¸ì˜´
+					//rs.getsttring : í•´ë‹¹í•„ë“œì˜ ìë£Œí˜•ì„ ë¬¸ìì—´ë¡œ ê°€ì ¸ì˜´
 				);
 				return member;
 				
@@ -196,88 +196,88 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 		return null;
 		 
 	}
-	// 6. È¸¿øÅ»Åğ = È¸¿ø¹øÈ£¸¦ ÀÔ·Â¹Ş¾Æ ÀÎ¼ö·Î ¹Ş¾Æ ÇØ´ç È¸¿ø¹øÈ£ÀÇ ·¹ÄÚµå¸¦ »èÁ¦
+	// 6. íšŒì›íƒˆí‡´ = íšŒì›ë²ˆí˜¸ë¥¼ ì…ë ¥ë°›ì•„ ì¸ìˆ˜ë¡œ ë°›ì•„ í•´ë‹¹ íšŒì›ë²ˆí˜¸ì˜ ë ˆì½”ë“œë¥¼ ì‚­ì œ
 	public boolean signOut(int num) {
 		try {
-			// 1. sql ÀÛ¼º
+			// 1. sql ì‘ì„±
 			String sql = "delete from member where m_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, num);
 			
-			// 3. sql ½ÇÇà
+			// 3. sql ì‹¤í–‰
 			ps.executeUpdate();
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 			
-		} catch (SQLException e) {System.out.println("Å»Åğ¿À·ù"+e);}
+		} catch (SQLException e) {System.out.println("íƒˆí‡´ì˜¤ë¥˜"+e);}
 		
 		
 		
 		return false;
 	}
-	// 7. È¸¿ø¼öÁ¤
+	// 7. íšŒì›ìˆ˜ì •
 	public boolean changeInfo(int num,String add,String email) {
 		
 		try {
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "UPDATE member SET m_email=?,m_address=? where m_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, email);
 			ps.setString(2, add);
 			ps.setInt(3, num);
 
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 			
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("¼öÁ¤¿À·á " + e);
+			System.out.println("ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 		return false;
 	}
 	public boolean todayPoint(int num,int point) {
 		try {
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "UPDATE member SET m_point=? where m_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			int new_point = point + 10;
 			Login.member.setM_point(new_point);
 			ps.setInt(1, new_point);
 			System.out.println(new_point);
 			ps.setInt(2, num);
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 			
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("¼öÁ¤¿À·á " + e);
+			System.out.println("ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 		return false;
 	}
 	public void todaylogin(String id) {
 		try {
 			String sql2 = "UPDATE member SET m_today=? where m_id=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql2);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	    	String since = sdf.format(new Date());
 			ps.setString(1, since);
 			ps.setString(2, id);
 	
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 		}
 		catch(Exception e) {
-			System.out.println("Åõµ¥ÀÌ ¼öÁ¤¿À·á " + e);
+			System.out.println("íˆ¬ë°ì´ ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 	}
 	// 
@@ -285,24 +285,24 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 		try {
 			String sql = "select m_id from member where m_num=?";
 			
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, m_num);
-			// 3. SQL ½ÇÇà
-			rs = ps.executeQuery();//  select ½ÇÇàÀº °á°ú¹°ÀÌ Á¸Àç -> resulitSet O
-			// ResultSet Ã³À½ °á°ú¹°ÀÌ null -- next > °á°ú ·¹ÄÚµå
-			// 4. SQL °á°ú
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return rs.getString(1); // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			// 3. SQL ì‹¤í–‰
+			rs = ps.executeQuery();//  select ì‹¤í–‰ì€ ê²°ê³¼ë¬¼ì´ ì¡´ì¬ -> resulitSet O
+			// ResultSet ì²˜ìŒ ê²°ê³¼ë¬¼ì´ null -- next > ê²°ê³¼ ë ˆì½”ë“œ
+			// 4. SQL ê²°ê³¼
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return rs.getString(1); // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch(Exception e) {
-			System.out.println("¾ÆÀÌµğ Ã£±â ¿À·ù " + e);
+			System.out.println("ì•„ì´ë”” ì°¾ê¸° ì˜¤ë¥˜ " + e);
 		}
 		return null;
 	}
 	
-	// 9. ÀüÃ¼È¸šc¼ö¸¦ ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	// 9. ì „ì²´íšŒÂšcìˆ˜ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
 	
 	public int total_member(String name) {
 		try {
@@ -317,17 +317,17 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			
-			if(rs.next()) { // ¸¸¾à¿¡ ´ÙÀ½ °á°ú¹°ÀÌ Á¸ÀçÇÏ¸é => ÇØ´ç¾ÆÀÌµğ°¡ Á¸Àç => Áßº¹
-				return rs.getInt(1); // ÇØ´ç ¾ÆÀÌµğ´Â Áßº¹ÀÌ Á¸Àç
+			if(rs.next()) { // ë§Œì•½ì— ë‹¤ìŒ ê²°ê³¼ë¬¼ì´ ì¡´ì¬í•˜ë©´ => í•´ë‹¹ì•„ì´ë””ê°€ ì¡´ì¬ => ì¤‘ë³µ
+				return rs.getInt(1); // í•´ë‹¹ ì•„ì´ë””ëŠ” ì¤‘ë³µì´ ì¡´ì¬
 			}
 		}
 		catch (Exception e) {
-			System.out.println("È¸¿ø¼ö ºÒ·¯¿À±â ¿À·ù " + e);
+			System.out.println("íšŒì›ìˆ˜ ë¶ˆëŸ¬ì˜¤ê¸° ì˜¤ë¥˜ " + e);
 		}
 		return 0;
 	}
 	
-	// 10. ³¯Â¥º°·Î È¸¿ø°¡ÀÔ¼øÀ» ¹İÈ¯
+	// 10. ë‚ ì§œë³„ë¡œ íšŒì›ê°€ì…ìˆœì„ ë°˜í™˜
 	public Map<String, Integer> date_total(String name) {
 		try {
 			Map<String ,Integer> btotal = new HashMap<>();
@@ -354,7 +354,7 @@ public class MemberDao {	// DB Á¢±Ù °´Ã¼
 			return btotal;
 		}
 		catch (Exception e) {
-			System.out.println("³¯Â¥ È¸¿ø¼ö Á¶È¸ ½ÇÆĞ" + e);
+			System.out.println("ë‚ ì§œ íšŒì›ìˆ˜ ì¡°íšŒ ì‹¤íŒ¨" + e);
 		}
 		return null;
 	}
