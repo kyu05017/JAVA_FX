@@ -27,7 +27,7 @@ public class ProductDao {
 	public ProductDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB 드라이버 가져오기
-			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","비밀번호"); // 2. DB 주소 연결
+			con = DriverManager.getConnection("jdbc:mysql://주소","admin","비밀번호"); // 2. DB 주소 연결
 			System.out.println("상품 DB연동 성공");
 		}
 		catch(Exception e) {
