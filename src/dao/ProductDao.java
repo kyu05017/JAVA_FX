@@ -26,15 +26,15 @@ public class ProductDao {
 	
 	public ProductDao() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB µå¶óÀÌ¹ö °¡Á®¿À±â
-			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","rLARB4595!"); // 2. DB ÁÖ¼Ò ¿¬°á
-			System.out.println("»óÇ° DB¿¬µ¿ ¼º°ø");
+			Class.forName("com.mysql.cj.jdbc.Driver");// 1. DB ë“œë¼ì´ë²„ ê°€ì ¸ì˜¤ê¸°
+			con = DriverManager.getConnection("jdbc:mysql://database-1.cdocvkszhrus.us-west-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC","admin","ë¹„ë°€ë²ˆí˜¸"); // 2. DB ì£¼ì†Œ ì—°ê²°
+			System.out.println("ìƒí’ˆ DBì—°ë™ ì„±ê³µ");
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¦Ç° ¸ğµå ¿¬µ¿ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ì œí’ˆ ëª¨ë“œ ì—°ë™ ì‹¤íŒ¨ ] "+ e);
 		}
 	}
-	// 1. Á¦Ç° µî·Ï
+	// 1. ì œí’ˆ ë“±ë¡
 	public boolean addproduct(Product product) {
 		try {
 			String sql = "insert into product(p_name,p_img,p_contents,p_category,p_money,p_condition,m_num) values(?,?,?,?,?,?,?)";
@@ -50,41 +50,41 @@ public class ProductDao {
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¦Ç° ÀúÀå ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ì œí’ˆ ì €ì¥ ì‹¤íŒ¨ ]" + e);
 		}
 		return false;
 	}
-	// 2. Á¦Ç° Ç®·Â
+	// 2. ì œí’ˆ í’€ë ¥
 	public ArrayList<Product> plist(String category,String search){
 
-			ArrayList<Product> productlist = new ArrayList<>(); // ¸®½ºÆ® ¼±¾ğ 	
+			ArrayList<Product> productlist = new ArrayList<>(); // ë¦¬ìŠ¤íŠ¸ ì„ ì–¸ 	
 			try {
 				String sql = null;
 				if(category == null) {
 					if(search == null) {
-						sql = "select * from product order by p_num desc";	// SQL ÀÛ¼º
-						ps = con.prepareStatement(sql);// SQL ¿¬°á 
+						sql = "select * from product order by p_num desc";	// SQL ì‘ì„±
+						ps = con.prepareStatement(sql);// SQL ì—°ê²° 
 					}
 					else {
-						sql = "select * from product where p_name like '%"+search+"%' order by p_num desc";	// SQL ÀÛ¼º
-						ps = con.prepareStatement(sql);// SQL ¿¬°á 
+						sql = "select * from product where p_name like '%"+search+"%' order by p_num desc";	// SQL ì‘ì„±
+						ps = con.prepareStatement(sql);// SQL ì—°ê²° 
 					}
 				}
 				else  {
 					if(search ==  null) {
-						sql = "select * from product where p_category = ? order by p_num desc";	// SQL ÀÛ¼º
-						ps = con.prepareStatement(sql);// SQL ¿¬°á 
+						sql = "select * from product where p_category = ? order by p_num desc";	// SQL ì‘ì„±
+						ps = con.prepareStatement(sql);// SQL ì—°ê²° 
 						ps.setString(1, category);
 					}
 					else {
-						sql = "select * from product where p_category = ? and p_name like '%"+search+"%' order by p_num desc";	// SQL ÀÛ¼º
-						ps = con.prepareStatement(sql);// SQL ¿¬°á 
+						sql = "select * from product where p_category = ? and p_name like '%"+search+"%' order by p_num desc";	// SQL ì‘ì„±
+						ps = con.prepareStatement(sql);// SQL ì—°ê²° 
 						ps.setString(1, category);
 					}
 				}
-				rs = ps.executeQuery();					// SQL ½ÇÇà  
-				while( rs.next() ) {					// SQL °á°ú[ ·¹ÄÚµå ´ÜÀ§ ]
-					Product product = new Product(  	// ÇØ´ç ·¹ÄÚµå¸¦ °´Ã¼È­
+				rs = ps.executeQuery();					// SQL ì‹¤í–‰  
+				while( rs.next() ) {					// SQL ê²°ê³¼[ ë ˆì½”ë“œ ë‹¨ìœ„ ]
+					Product product = new Product(  	// í•´ë‹¹ ë ˆì½”ë“œë¥¼ ê°ì²´í™”
 							rs.getInt(1) ,
 							rs.getString(2),
 							rs.getString(3), 
@@ -94,15 +94,15 @@ public class ProductDao {
 							rs.getInt(7),
 							rs.getString(8),
 							rs.getInt(9));
-					productlist.add(product);			// ¸®½ºÆ®¿¡ °´Ã¼ ´ã±â 
+					productlist.add(product);			// ë¦¬ìŠ¤íŠ¸ì— ê°ì²´ ë‹´ê¸° 
 				}	
-				return productlist;						// ¸®½ºÆ® ¹İÈ¯
-			}catch(Exception e ) { System.out.println( "[SQL ¿À·ù]"+e  ); }
-		return null; // ¸¸¾à¿¡ ½ÇÆĞ½Ã NULL ¹İÈ¯
+				return productlist;						// ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+			}catch(Exception e ) { System.out.println( "[SQL ì˜¤ë¥˜]"+e  ); }
+		return null; // ë§Œì•½ì— ì‹¤íŒ¨ì‹œ NULL ë°˜í™˜
 	}
-	// 3. Á¦Ç° Á¶È¸
+	// 3. ì œí’ˆ ì¡°íšŒ
 	
-	// 4. Á¦Ç° »èÁ¦
+	// 4. ì œí’ˆ ì‚­ì œ
 	public boolean delete(int p_num) {
 		try {
 			String sql = "delete from product where p_num=?";
@@ -112,11 +112,11 @@ public class ProductDao {
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¦Ç° »èÁ¦ ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ì œí’ˆ ì‚­ì œ ì‹¤íŒ¨ ]" + e);
 		}
 		return false;
 	}
-	// 5. Á¦Ç° ¼öÁ¤
+	// 5. ì œí’ˆ ìˆ˜ì •
 	public boolean updaete(Product product) {
 		try {
 			String sql = "update product set p_name=? , p_img=? , p_contents=?,p_category=? , p_money=? where p_num=?";
@@ -132,20 +132,20 @@ public class ProductDao {
 			
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¦Ç° ¼öÁ¤ ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ì œí’ˆ ìˆ˜ì • ì‹¤íŒ¨ ]" + e);
 		}
 		return false;
 	}
 	public ArrayList<Product> my_itemlist(int num){
 		
-		ArrayList<Product> productlist = new ArrayList<>(); // ¸®½ºÆ® ¼±¾ğ 	
+		ArrayList<Product> productlist = new ArrayList<>(); // ë¦¬ìŠ¤íŠ¸ ì„ ì–¸ 	
 		try {
 			String sql = "select * from product where m_num=?";
 			ps = con.prepareStatement(sql);	
-			ps.setInt(1,num);// SQL ¿¬°á 
-			rs = ps.executeQuery();					// SQL ½ÇÇà  
-			while( rs.next() ) {					// SQL °á°ú[ ·¹ÄÚµå ´ÜÀ§ ]
-				Product product = new Product(  	// ÇØ´ç ·¹ÄÚµå¸¦ °´Ã¼È­
+			ps.setInt(1,num);// SQL ì—°ê²° 
+			rs = ps.executeQuery();					// SQL ì‹¤í–‰  
+			while( rs.next() ) {					// SQL ê²°ê³¼[ ë ˆì½”ë“œ ë‹¨ìœ„ ]
+				Product product = new Product(  	// í•´ë‹¹ ë ˆì½”ë“œë¥¼ ê°ì²´í™”
 						rs.getInt(1) ,
 						rs.getString(2),
 						rs.getString(3), 
@@ -155,57 +155,57 @@ public class ProductDao {
 						rs.getInt(7),
 						rs.getString(8),
 						rs.getInt(9));
-				productlist.add(product);			// ¸®½ºÆ®¿¡ °´Ã¼ ´ã±â 
+				productlist.add(product);			// ë¦¬ìŠ¤íŠ¸ì— ê°ì²´ ë‹´ê¸° 
 			}	
-			return productlist;						// ¸®½ºÆ® ¹İÈ¯
-		}catch(Exception e ) { System.out.println( "[SQL ¿À·ù]"+e  ); }
-		return null; // ¸¸¾à¿¡ ½ÇÆĞ½Ã NULL ¹İÈ¯
+			return productlist;						// ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+		}catch(Exception e ) { System.out.println( "[SQL ì˜¤ë¥˜]"+e  ); }
+		return null; // ë§Œì•½ì— ì‹¤íŒ¨ì‹œ NULL ë°˜í™˜
 	}
 	public boolean reply_write(Reply_Product reply) {
 		try {
-			// 1. SQL ÀÛ¼º [ È¸¿ø¹øÈ£ ( ÀÚµ¿ )Á¦¿ÜÇÑ ¸ğµç ÇÊµå »ğÀÔ  ]
+			// 1. SQL ì‘ì„± [ íšŒì›ë²ˆí˜¸ ( ìë™ )ì œì™¸í•œ ëª¨ë“  í•„ë“œ ì‚½ì…  ]
 			String sql = "insert into p_reply(r_content,r_write,p_num) values(?,?,?)";
-			// 2. SQL Á¶ÀÛ
+			// 2. SQL ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setString(1, reply.getR_contents());
 			ps.setString(2, reply.getR_writerr());
 			ps.setInt(3, reply.getP_num());
 			
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 	
 			
-			// * ¼º°ø½Ã 
+			// * ì„±ê³µì‹œ 
 			return true;
 		} 
 		catch (SQLException e) {
-			System.out.println("[SQL °Ô½ÃÆÇ ÀúÀå ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ê²Œì‹œíŒ ì €ì¥ ì‹¤íŒ¨ ]" + e);
 		}
-		return false;// * ½ÇÆĞ½Ã
+		return false;// * ì‹¤íŒ¨ì‹œ
 	}
 	public ObservableList<Reply_Product> reply_list(int p_num) {
 		try {
 			// *
 			ObservableList<Reply_Product> replylist = FXCollections.observableArrayList();
 			
-			// 1. sql  ÀÛ¼º [ µ¥ÀÌÅÍ È£Ãâ ]
-				//select * (¸ğµç ÇÊµå) from Å×ÀÌºí¸í
-			 	// ¿À¸§Â÷¼ø by b_num asc = b_num±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
-				// ³»¸²Â÷¼ø by b_num desc = b_num±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+			// 1. sql  ì‘ì„± [ ë°ì´í„° í˜¸ì¶œ ]
+				//select * (ëª¨ë“  í•„ë“œ) from í…Œì´ë¸”ëª…
+			 	// ì˜¤ë¦„ì°¨ìˆœ by b_num asc = b_numê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+				// ë‚´ë¦¼ì°¨ìˆœ by b_num desc = b_numê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 			String sql = "select * from p_reply where p_num=?";
-			// 2. SQL Á¶ÀÛ [ DB ¿Í ¿¬°áµÈ °´Ã¼¿Í Á¶ÀÛ¤¡ÀÎÅÍÆäÀÌ½º ¿¬°á ]
+			// 2. SQL ì¡°ì‘ [ DB ì™€ ì—°ê²°ëœ ê°ì²´ì™€ ì¡°ì‘ã„±ì¸í„°í˜ì´ìŠ¤ ì—°ê²° ]
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, p_num);
-			// 3. sql ½ÇÇà [ ResultSet ÀÎÅÍÆäÀÌ½º java.sql ÆĞÅ°Áö ]
+			// 3. sql ì‹¤í–‰ [ ResultSet ì¸í„°í˜ì´ìŠ¤ java.sql íŒ¨í‚¤ì§€ ]
 			rs =  ps.executeQuery();
 			
-			// * °á°ú¹° ÇÏ³ª°¡ ¾Æ´Ï°í ¿©·¯°³ ÀÌ¹Ç·Î ¹İº¹¹® »ç¿ëÇØ¼­
-				// ÇÑÁÙ¾¿[·¹ÄÚµå] °´Ã¼È­ -> ¸®½ºÆ®¿¡ ÀúÀå
+			// * ê²°ê³¼ë¬¼ í•˜ë‚˜ê°€ ì•„ë‹ˆê³  ì—¬ëŸ¬ê°œ ì´ë¯€ë¡œ ë°˜ë³µë¬¸ ì‚¬ìš©í•´ì„œ
+				// í•œì¤„ì”©[ë ˆì½”ë“œ] ê°ì²´í™” -> ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 			
-			// rs.next() °Ë»ö°á°úÀÇ ´ÙÀ½ ·¹ÄÚµå
-			// rs.getint() °Ë»ö°á°ú¸¦ Á¤¼öÇüÀÏ °æ¿ì
-			// rs.getstring() °Ë»ö°á°ú¸¦ ¹®ÀÚÇüÀÏ °æ¿ì
+			// rs.next() ê²€ìƒ‰ê²°ê³¼ì˜ ë‹¤ìŒ ë ˆì½”ë“œ
+			// rs.getint() ê²€ìƒ‰ê²°ê³¼ë¥¼ ì •ìˆ˜í˜•ì¼ ê²½ìš°
+			// rs.getstring() ê²€ìƒ‰ê²°ê³¼ë¥¼ ë¬¸ìí˜•ì¼ ê²½ìš°
 			while(rs.next()) {
-				// 1. ÇÑÁÙ½Ä [ ·¹ÄÚµå ] ´ÜÀ§ °´Ã¼È­
+				// 1. í•œì¤„ì‹ [ ë ˆì½”ë“œ ] ë‹¨ìœ„ ê°ì²´í™”
 				Reply_Product temp = new Reply_Product(
 					rs.getInt(1), 
 					rs.getString(2), 
@@ -215,58 +215,58 @@ public class ProductDao {
 					); 
 				replylist.add(temp);
 			}
-			// ¹İº¹¹®ÀÌ Á¾·áµÇ¸é ¸®½ºÆ® ¹İÈ¯
-			// ¼º°ø½Ã µ¥ÀÌÅÍ ¸ñ·Ï ¹İÈ¯
+			// ë°˜ë³µë¬¸ì´ ì¢…ë£Œë˜ë©´ ë¦¬ìŠ¤íŠ¸ ë°˜í™˜
+			// ì„±ê³µì‹œ ë°ì´í„° ëª©ë¡ ë°˜í™˜
 			return replylist;
 		}
 		catch (Exception e) {
-			System.out.println("[sql ¿¬°á ½ÇÆĞ] : »çÀ¯ " + e);
+			System.out.println("[sql ì—°ê²° ì‹¤íŒ¨] : ì‚¬ìœ  " + e);
 		}
-		// ½ÇÆĞ½Ã 
+		// ì‹¤íŒ¨ì‹œ 
 		return null;
 	}
 	public boolean reply_delete(int r_num) {
 		try {
-			// 1. sql ÀÛ¼º
+			// 1. sql ì‘ì„±
 			String sql = "delete from p_reply where r_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, r_num);
 			
-			// 3. sql ½ÇÇà
+			// 3. sql ì‹¤í–‰
 			ps.executeUpdate();
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 			
 		} catch (SQLException e) {
-			System.out.println("[SQL ´ñ±Û »èÁ¦ ½ÇÆĞ ] "+ e);
+			System.out.println("[SQL ëŒ“ê¸€ ì‚­ì œ ì‹¤íŒ¨ ] "+ e);
 			}
 		
 		return false;
 	}
 	public boolean re_updaete(int P_num,String contents) {
 		try {
-			// 1. SQL ÀÛ¼º
-			// select * from Å×ÀÌºí¸í where Á¶°Ç=( ÇÊµå¸í = °ª )
+			// 1. SQL ì‘ì„±
+			// select * from í…Œì´ë¸”ëª… where ì¡°ê±´=( í•„ë“œëª… = ê°’ )
 			String sql = "UPDATE p_reply SET r_content=? where P_num=?";
-			// 2. sql Á¶ÀÛ
+			// 2. sql ì¡°ì‘
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, contents);
 			ps.setInt(2, P_num);
 
-			// 3. SQL ½ÇÇà
+			// 3. SQL ì‹¤í–‰
 			ps.executeUpdate(); 
 			
-			// 4. sql °á°ú
+			// 4. sql ê²°ê³¼
 			return true;
 		}
 		catch(Exception e) {
-			System.out.println("¼öÁ¤¿À·á " + e);
+			System.out.println("ìˆ˜ì •ì˜¤ë£Œ " + e);
 		}
 		return false;
 	}
-	// »óÅÂº¯°æ
+	// ìƒíƒœë³€ê²½
 	public boolean change_condition(int p_num) {
 		try {
 			String sql = "select p_condition from product where p_num=?";
@@ -292,11 +292,11 @@ public class ProductDao {
 			}
 		}
 		catch(Exception e) {
-			System.out.println("[SQL Á¦Ç° ¼öÁ¤ ½ÇÆĞ ]" + e);
+			System.out.println("[SQL ì œí’ˆ ìˆ˜ì • ì‹¤íŒ¨ ]" + e);
 		}
 		return false;
 	}
-	// 2. Á¦Ç° Ç®·Â
+	// 2. ì œí’ˆ í’€ë ¥
 
 	
 }
