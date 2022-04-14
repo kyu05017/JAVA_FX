@@ -2,8 +2,6 @@ package controllor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import controllor.login.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
