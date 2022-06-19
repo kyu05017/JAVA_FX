@@ -15,10 +15,6 @@ Eclipse <br>
 # 4. 개발 기간
 2022.04.13 ~ 2022.04.21
 
-![11]()
-![12]()
-![13]()
-
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/98489230/174474496-551f9630-8fa3-484e-8a64-609724e98a18.png" width="400px">
