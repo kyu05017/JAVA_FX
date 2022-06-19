@@ -27,7 +27,7 @@ Eclipse <br>
 </p>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/98489230/174474491-9730b573-b9f9-463d-aa6e-dd5b2b28bb88.png" width="400px">
+<img src="https://user-images.githubusercontent.com/98489230/174477393-aa5b09c7-47a5-4199-bfd0-d21de534ca1c.png" width="400px">
 <img src="https://user-images.githubusercontent.com/98489230/174474493-863c1c6c-1522-44be-9ad2-71cd76b338ab.png" width="400px">
 </p>
 
